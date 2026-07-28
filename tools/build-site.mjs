@@ -3,10 +3,13 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import process from 'node:process';
 import { pages } from '../src/site.config.mjs';
+import { questions } from '../data/python-practice-questions.js';
+import { finalProject } from '../data/python-final-project.js';
 
 const rootDirectory = process.cwd();
 const checkOnly = process.argv.includes('--check');
 const assetHashes = new Map();
+const siteUrl = 'https://x7do0.github.io/X7do0-Academy';
 
 const read = relativePath => readFile(path.join(rootDirectory, relativePath), 'utf8');
 
@@ -66,9 +69,8 @@ async function renderExtraHead(page) {
 
 async function renderScripts(page) {
   const pageScripts = page.scripts ?? (page.script ? [page.script] : []);
-  const [navDrawer, i18n, ...versionedPageScripts] = await Promise.all([
+  const [navDrawer, ...versionedPageScripts] = await Promise.all([
     versionedAsset(page.root, 'assets/js/nav-drawer.js'),
-    versionedAsset(page.root, 'assets/js/i18n.js'),
     ...pageScripts.map(src => versionedAsset(page.root, src))
   ]);
   const pageScript = versionedPageScripts
@@ -76,10 +78,6 @@ async function renderScripts(page) {
     .join('\n');
 
   return `    <script type="module" src="${navDrawer}"></script>
-    <script type="module">
-        import i18n from '${i18n}';
-        i18n.init();
-    </script>
 ${pageScript}`.trimEnd();
 }
 
@@ -97,6 +95,7 @@ async function buildPages() {
     const renderedHead = render(head, {
       title: page.title,
       description: page.description,
+      canonical: `${siteUrl}/${page.output}`,
       root: page.root,
       tailwindCss: await versionedAsset(page.root, 'assets/css/tailwind.css'),
       variablesCss: await versionedAsset(page.root, 'assets/css/variables.css'),
@@ -109,13 +108,42 @@ async function buildPages() {
       bodyAttributes: page.bodyAttributes,
       navbar: render(navbar, { root: page.root }).trimEnd(),
       content,
-      footer: footer.trimEnd(),
+      footer: render(footer, { root: page.root }).trimEnd(),
       scripts: await renderScripts(page)
     });
     const destination = path.join(rootDirectory, page.output);
     await mkdir(path.dirname(destination), { recursive: true });
     await writeFile(destination, `${html.trim()}\n`, 'utf8');
   }
+}
+
+const xmlEscape = value => value
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;');
+
+async function buildDiscoveryFiles() {
+  const urls = [
+    ...pages.map(page => `${siteUrl}/${page.output}`),
+    ...questions.map(question => `${siteUrl}/courses/python/practice/question.html?id=${question.id}`),
+    ...finalProject.stages.map(stage => `${siteUrl}/courses/python/project/stage.html?id=${stage.id}`)
+  ];
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(url => `  <url><loc>${xmlEscape(url)}</loc></url>`).join('\n')}
+</urlset>
+`;
+  const robots = `User-agent: *
+Allow: /
+
+Sitemap: ${siteUrl}/sitemap.xml
+`;
+
+  await Promise.all([
+    writeFile(path.join(rootDirectory, 'sitemap.xml'), sitemap, 'utf8'),
+    writeFile(path.join(rootDirectory, 'robots.txt'), robots, 'utf8')
+  ]);
 }
 
 async function pathExists(candidate) {
@@ -137,7 +165,9 @@ async function validateOutput() {
     'assets/preview.png',
     'assets/css/tailwind.css',
     'package.json',
-    'package-lock.json'
+    'package-lock.json',
+    'sitemap.xml',
+    'robots.txt'
   ];
 
   for (const requiredFile of requiredFiles) {
@@ -150,6 +180,9 @@ async function validateOutput() {
     const html = await read(page.output);
     if (html.includes('cdn.tailwindcss.com')) {
       failures.push(`${page.output} still loads the Tailwind CDN`);
+    }
+    if (!html.includes(`<link rel="canonical" href="${siteUrl}/${page.output}">`)) {
+      failures.push(`${page.output} has no matching canonical URL`);
     }
 
     const attributes = html.matchAll(/\b(?:href|src)="([^"]+)"/g);
@@ -179,6 +212,7 @@ async function validateOutput() {
 
 if (!checkOnly) {
   await buildPages();
+  await buildDiscoveryFiles();
   console.log(`Generated ${pages.length} static pages from shared templates.`);
 } else {
   await validateOutput();
