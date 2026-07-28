@@ -21,10 +21,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/tailwind.css?v=06f661781b">
+    <link rel="stylesheet" href="../../assets/css/tailwind.css?v=a090b13af4">
     <link rel="stylesheet" href="../../assets/css/variables.css?v=7967938615">
-    <link rel="stylesheet" href="../../assets/css/styles.css?v=bdbde45902">
-    <link rel="stylesheet" href="../../assets/css/course-shell.css?v=40bae03f63">
+    <link rel="stylesheet" href="../../assets/css/styles.css?v=941c3b1203">
+    <link rel="stylesheet" href="../../assets/css/course-shell.css?v=80dad31a4c">
+    <link rel="stylesheet" href="../../assets/css/code-experience.css?v=dce7398854">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="../../assets/js/theme-manager.js?v=3b7a594baf"></script>
 </head>
@@ -33,7 +34,10 @@
     data-nav-section="courses"
     data-nav-home="../../index.html"
     data-nav-courses="../index.html"
+    data-nav-overview="./index.html"
+    data-nav-lessons="./lessons/index.html"
     data-nav-practice="./practice/index.html"
+    data-nav-project="./project/index.html"
     data-nav-connect="../../accounts/index.html">
     <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-60 pointer-events-none"></div>
     <nav class="w-full py-6 px-4 navbar-sticky">
@@ -71,11 +75,11 @@
         </span>
     </div>
     <nav class="course-sidebar__nav">
-        <a href="./index.html#course-overview" class="">
+        <a href="./index.html" class="active">
             <i class="fas fa-border-all" aria-hidden="true"></i>
             <span>نظرة عامة</span>
         </a>
-        <a href="./index.html#lessons" class="active">
+        <a href="./lessons/index.html" class="">
             <i class="fas fa-book-open" aria-hidden="true"></i>
             <span>الدروس</span>
         </a>
@@ -93,34 +97,26 @@
         <header id="course-overview" class="course-header">
             <div class="course-header__icon"><i class="fab fa-python" aria-hidden="true"></i></div>
             <div>
-                <h1>دروس بايثون</h1>
-                <p>شرح عملي منظم مع أمثلة وملفات الموضوع والتحدي.</p>
+                <h1>نظرة عامة على بايثون</h1>
+                <p>المفاهيم الأساسية للدورة في بطاقات تفاعلية مختصرة.</p>
             </div>
         </header>
 
-        <section class="course-topics" aria-labelledby="course-topics-title">
+        <section class="concept-overview" aria-labelledby="concept-overview-title">
             <div class="course-topics__heading">
                 <div>
-                    <span>نظرة عامة</span>
-                    <h2 id="course-topics-title">المواضيع البرمجية</h2>
+                    <h2 id="concept-overview-title">المواضيع البرمجية</h2>
                 </div>
-                <p>اختر أي موضوع لعرض شرحه وملفاته بالتفصيل.</p>
+                <p>مرّر المؤشر فوق أي نقطة، أو اضغط عليها في الهاتف، لمشاهدة مثالها البرمجي.</p>
             </div>
-            <div id="course-topics-grid" class="course-topics-grid"></div>
-        </section>
-
-        <section id="lessons" class="lesson-workspace" aria-label="دروس أساسيات بايثون">
-            <aside class="lesson-index">
-                <div class="lesson-index__header">
-                    <h2>الدروس</h2>
-                    <span>12 درساً</span>
-                </div>
-                <nav id="lesson-list" aria-label="قائمة الدروس"></nav>
-            </aside>
-            <article id="lesson-viewer" class="lesson-viewer" aria-live="polite"></article>
+            <div id="lesson-grid" class="concept-card-grid"></div>
         </section>
     </main>
 </div>
+
+<aside id="code-preview-popover" class="code-preview-popover" aria-live="polite" aria-hidden="true">
+    <div id="code-preview-content"></div>
+</aside>
     <footer class="mt-auto py-8 text-center relative z-10">
         <div class="divider-gradient max-w-6xl mx-auto mb-8"></div>
         <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-4 text-xs font-bold text-academic-secondary" aria-label="روابط إضافية">
@@ -130,7 +126,7 @@
         </nav>
         <p class="text-academic-secondary text-[10px] tracking-[0.3em] uppercase font-bold">X7do0eng</p>
     </footer>
-    <script type="module" src="../../assets/js/nav-drawer.js?v=e6d44aec66"></script>
-    <script type="module" src="../../assets/js/app.js?v=ec79c472e4"></script>
+    <script type="module" src="../../assets/js/nav-drawer.js?v=408e8a56be"></script>
+    <script type="module" src="../../assets/js/app.js?v=96cd10ee98"></script>
 </body>
 </html>

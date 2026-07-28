@@ -99,6 +99,7 @@ async function buildPages() {
     const sidebar = page.courseSection
       ? render(courseSidebar, {
           courseHome: page.courseHome,
+          lessonsHome: page.lessonsHome,
           practiceHome: page.practiceHome,
           projectHome: page.projectHome,
           overviewActive: page.courseSection === 'overview' ? 'active' : '',

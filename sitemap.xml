@@ -5,6 +5,7 @@
   <url><loc>https://x7do0.github.io/X7do0-Academy/about/index.html</loc></url>
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/index.html</loc></url>
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/index.html</loc></url>
+  <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/lessons/index.html</loc></url>
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/practice/index.html</loc></url>
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/practice/question.html</loc></url>
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/index.html</loc></url>
@@ -36,8 +37,8 @@
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/practice/question.html?id=25</loc></url>
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=requirements</loc></url>
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=data</loc></url>
+  <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=input</loc></url>
+  <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=display</loc></url>
   <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=functions</loc></url>
-  <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=validation</loc></url>
-  <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=storage</loc></url>
-  <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=refactor</loc></url>
+  <url><loc>https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html?id=integration</loc></url>
 </urlset>

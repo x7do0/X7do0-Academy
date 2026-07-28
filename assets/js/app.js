@@ -1,226 +1,195 @@
 import i18n from './i18n.js';
 import { lessons } from '../../data/python-lessons.js';
+import { getLessonPresentation } from './content-presentation.js';
+import { enhanceCodeWindows, escapeHtml, renderCodeWindow } from './code-experience.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await i18n.init();
     if (document.body.dataset.page !== 'python') return;
 
-    const lessonList = document.getElementById('lesson-list');
-    const lessonViewer = document.getElementById('lesson-viewer');
-    const topicsGrid = document.getElementById('course-topics-grid');
-    const siteUrl = 'https://x7do0.github.io/X7do0-Academy';
-    let activeLesson = null;
-    let activeFileType = 'subject';
-    let fileRequest = 0;
+    const lessonGrid = document.getElementById('lesson-grid');
+    const popover = document.getElementById('code-preview-popover');
+    const popoverContent = document.getElementById('code-preview-content');
+    let hideTimer;
 
-    const escapeHtml = value => String(value ?? '')
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
+    const accentColors = {
+        blue: '#4f7df3',
+        purple: '#8b5cf6',
+        green: '#22c55e',
+        pink: '#ec4899',
+        indigo: '#6366f1',
+        yellow: '#eab308'
+    };
 
-    const normalizeNote = note => typeof note === 'object' ? note?.text : note;
+    const fallbackCode = item => {
+        const label = item?.label || '';
+        if (label === 'str()') return 'text = str(100)\nprint(text)';
+        if (label === 'int()') return 'number = int("25")\nprint(number)';
+        if (label === 'float()') return 'price = float("19.5")\nprint(price)';
+        return item?.code || '';
+    };
 
-    const itemLabel = item => item?.label || item?.text || (item?.type === 'group' ? 'أمثلة مرتبطة' : 'مثال برمجي');
+    const codeAttribute = code => encodeURIComponent(code || '');
 
-    function updateLessonMetadata(lesson) {
-        const title = `${lesson.title} | أكاديمية X7do0`;
-        const description = `درس ${lesson.title} من مسار أساسيات بايثون في أكاديمية X7do0.`;
-        const canonical = `${siteUrl}/courses/python/index.html#lesson-${lesson.id}`;
-        document.title = title;
-        document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonical);
-        document.querySelector('meta[name="description"]')?.setAttribute('content', description);
-        document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
-        document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
-        document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonical);
+    function conceptButton(item, extraClass = '') {
+        const code = fallbackCode(item);
+        if (!code) return '';
+        const note = typeof item.note === 'object' ? item.note?.text : item.note;
+        return `
+            <button type="button" class="concept-point ${extraClass}" data-code="${codeAttribute(code)}" aria-expanded="false">
+                <span>${escapeHtml(item.label || 'مثال برمجي')}</span>
+                ${note ? `<small>${escapeHtml(note)}</small>` : ''}
+            </button>`;
     }
 
-    function renderExample(item) {
-        const label = escapeHtml(item.label || item.text || '');
-        const note = escapeHtml(normalizeNote(item.note) || item.explanation || '');
-        const code = escapeHtml(item.code || '');
+    function renderItem(item) {
+        if (!item?.type) return '';
 
-        if (item.type === 'alert' || item.type === 'text') {
-            return `<div class="lesson-note">${item.icon ? `<i class="${escapeHtml(item.icon)}" aria-hidden="true"></i>` : ''}<span>${escapeHtml(item.text || '')}</span></div>`;
-        }
-
-        if (item.type === 'module-box') {
-            const lines = (item.content || []).map(line => `
-                <li>
-                    <code dir="ltr">${escapeHtml(line.code)}</code>
-                    ${line.comment ? `<span>${escapeHtml(line.comment)}</span>` : ''}
-                </li>`).join('');
-            return `
-                <section class="lesson-example">
-                    <h4>${label}</h4>
-                    <ul class="lesson-module-list">${lines}</ul>
-                </section>`;
+        if (['keyword', 'compound', 'code-box', 'logic-row', 'method', 'pill', 'pill-box', 'code-link'].includes(item.type)) {
+            return conceptButton(item);
         }
 
         if (item.type === 'group') {
-            return `<div class="lesson-example-group">${(item.items || []).map(renderExample).join('')}</div>`;
+            return `<div class="concept-point-group">${(item.items || []).map(renderItem).join('')}</div>`;
         }
 
         if (item.type === 'container') {
-            return `<div class="lesson-example-group">${(item.items || [])
-                .filter(child => child.type !== 'divider')
-                .map(child => renderExample({ ...child, type: 'keyword' }))
-                .join('')}</div>`;
+            return `<div class="concept-point-stack">${(item.items || []).filter(child => child.type !== 'divider').map(renderItem).join('')}</div>`;
         }
 
-        return `
-            <section class="lesson-example">
-                ${label ? `<h4>${label}</h4>` : ''}
-                ${code ? `<pre><code class="language-python" dir="ltr">${code}</code></pre>` : ''}
-                ${note ? `<p>${note}</p>` : ''}
-            </section>`;
-    }
-
-    function renderLesson(lesson) {
-        activeLesson = lesson;
-        activeFileType = 'subject';
-        updateLessonMetadata(lesson);
-
-        lessonViewer.innerHTML = `
-            <article class="lesson-document">
-                <span class="lesson-document__eyebrow">الدرس ${escapeHtml(lesson.id)}</span>
-                <h2>${escapeHtml(lesson.title)}</h2>
-                <p class="lesson-document__summary">شرح عملي مختصر يوضح الفكرة بأمثلة مباشرة يمكنك مراجعتها وتطبيقها.</p>
-                <section class="lesson-section">
-                    <h3>الأمثلة الأساسية</h3>
-                    <div class="lesson-examples">${(lesson.items || []).map(renderExample).join('')}</div>
-                </section>
-                ${lesson.extraInfo?.text ? `
-                    <section class="lesson-section">
-                        <h3>معلومة مهمة</h3>
-                        <div class="lesson-note"><i class="${escapeHtml(lesson.extraInfo.icon || 'fas fa-info-circle')}" aria-hidden="true"></i><span>${escapeHtml(lesson.extraInfo.text)}</span></div>
-                    </section>` : ''}
-            </article>
-            ${lesson.files ? `
-                <section class="file-viewer" aria-labelledby="lesson-files-title">
-                    <div class="file-viewer__header">
-                        <div class="file-viewer__tabs" role="tablist" aria-label="ملفات الدرس">
-                            <button type="button" class="file-viewer__tab active" role="tab" aria-selected="true" data-file-type="subject">ملف الموضوع</button>
-                            <button type="button" class="file-viewer__tab" role="tab" aria-selected="false" data-file-type="challenge">ملف التحدي</button>
-                        </div>
-                        <a class="file-viewer__download" id="lesson-file-download" href="${escapeHtml(lesson.files.subject)}" download>
-                            <i class="fas fa-download" aria-hidden="true"></i>
-                            تنزيل الملف
-                        </a>
+        if (item.type === 'module-box') {
+            return `
+                <section class="concept-module">
+                    <h4>${escapeHtml(item.label)}</h4>
+                    <div class="concept-point-stack">
+                        ${(item.content || []).map(line => conceptButton({
+                            label: line.comment ? `${line.code} — ${line.comment.replace(/^#\s*/, '')}` : line.code,
+                            code: line.code
+                        })).join('')}
                     </div>
-                    <h3 id="lesson-files-title" class="sr-only">عرض ملفات الدرس</h3>
-                    <div id="lesson-file-content" class="file-viewer__status" aria-live="polite">جاري فتح الملف...</div>
-                </section>` : ''}
-        `;
-
-        lessonList.querySelectorAll('.lesson-list-link').forEach(link => {
-            const selected = link.dataset.lessonId === lesson.id;
-            link.classList.toggle('active', selected);
-            link.setAttribute('aria-current', selected ? 'page' : 'false');
-        });
-        topicsGrid?.querySelectorAll('.course-topic-card').forEach(card => {
-            const selected = card.dataset.lessonId === lesson.id;
-            card.classList.toggle('active', selected);
-            card.setAttribute('aria-pressed', String(selected));
-        });
-
-        lessonViewer.querySelectorAll('pre code').forEach(code => window.hljs?.highlightElement(code));
-        lessonViewer.querySelectorAll('[data-file-type]').forEach(button => {
-            button.addEventListener('click', () => selectFile(button.dataset.fileType));
-        });
-
-        if (lesson.files) loadLessonFile(lesson.files.subject);
-    }
-
-    async function loadLessonFile(path) {
-        const content = document.getElementById('lesson-file-content');
-        if (!content) return;
-
-        const requestId = ++fileRequest;
-        content.className = 'file-viewer__status';
-        content.textContent = 'جاري فتح الملف...';
-
-        try {
-            const response = await fetch(path);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const source = await response.text();
-            if (requestId !== fileRequest) return;
-            content.className = '';
-            content.innerHTML = `<pre><code class="language-python" dir="ltr">${escapeHtml(source)}</code></pre>`;
-            const code = content.querySelector('code');
-            if (code) window.hljs?.highlightElement(code);
-        } catch {
-            if (requestId !== fileRequest) return;
-            content.className = 'file-viewer__status';
-            content.textContent = 'تعذر عرض الملف الآن، ويمكنك تنزيله مباشرة.';
+                </section>`;
         }
-    }
 
-    function selectFile(type) {
-        if (!activeLesson?.files?.[type]) return;
-        activeFileType = type;
-        const path = activeLesson.files[type];
-        lessonViewer.querySelectorAll('[data-file-type]').forEach(button => {
-            const selected = button.dataset.fileType === activeFileType;
-            button.classList.toggle('active', selected);
-            button.setAttribute('aria-selected', String(selected));
-        });
-        const download = document.getElementById('lesson-file-download');
-        if (download) download.href = path;
-        loadLessonFile(path);
-    }
-
-    function selectLesson(lesson, options = {}) {
-        renderLesson(lesson);
-        if (options.updateHash !== false) {
-            history.replaceState(null, '', `#lesson-${lesson.id}`);
+        if (item.type === 'alert') {
+            return `<div class="concept-note concept-note--${escapeHtml(item.color || 'blue')}">${item.icon ? `<i class="${escapeHtml(item.icon)}" aria-hidden="true"></i>` : ''}<span>${escapeHtml(item.text)}</span></div>`;
         }
-        if (options.scroll) {
-            document.getElementById('lessons')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        if (item.type === 'text') {
+            return `<p class="concept-intro">${escapeHtml(item.text)}</p>`;
         }
+
+        return '';
     }
 
-    function renderLessonList() {
-        if (!lessonList || !lessonViewer) return;
-        lessonList.innerHTML = lessons.map(lesson => `
-            <a href="#lesson-${escapeHtml(lesson.id)}" class="lesson-list-link" data-lesson-id="${escapeHtml(lesson.id)}">
-                <span class="lesson-list-link__number">${escapeHtml(lesson.id)}</span>
-                <span>${escapeHtml(lesson.title)}</span>
-            </a>`).join('');
+    function showCodePreview(element) {
+        const code = decodeURIComponent(element.dataset.code || '').replace(/\\n/g, '\n');
+        if (!code || !popover || !popoverContent) return;
+        const label = element.querySelector(':scope > span')?.textContent?.trim() || 'معاينة الكود';
+        popoverContent.innerHTML = renderCodeWindow({
+            code,
+            label,
+            filename: 'example.py',
+            compact: true
+        });
+        enhanceCodeWindows(popoverContent);
+        popover.classList.add('is-visible');
+        popover.setAttribute('aria-hidden', 'false');
+        clearTimeout(hideTimer);
+    }
 
-        lessonList.addEventListener('click', event => {
-            const link = event.target.closest('[data-lesson-id]');
-            if (!link) return;
-            event.preventDefault();
-            const lesson = lessons.find(item => item.id === link.dataset.lessonId);
-            if (lesson) selectLesson(lesson, { scroll: true });
+    function hideCodePreview(delay = 180) {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => {
+            popover?.classList.remove('is-visible');
+            popover?.setAttribute('aria-hidden', 'true');
+        }, delay);
+    }
+
+    function toggleMobilePreview(element) {
+        const existing = element.nextElementSibling?.classList.contains('mobile-programming-preview')
+            ? element.nextElementSibling
+            : null;
+
+        document.querySelectorAll('.mobile-programming-preview').forEach(preview => {
+            if (preview !== existing) {
+                preview.previousElementSibling?.setAttribute('aria-expanded', 'false');
+                preview.remove();
+            }
         });
 
-        if (topicsGrid) {
-            topicsGrid.innerHTML = lessons.map(lesson => `
-                <button type="button" class="course-topic-card" data-lesson-id="${escapeHtml(lesson.id)}" aria-pressed="false">
-                    <span class="course-topic-card__header">
-                        <span class="course-topic-card__number">${escapeHtml(lesson.id)}</span>
-                        <span class="course-topic-card__action">عرض التفاصيل <i class="fas fa-arrow-down" aria-hidden="true"></i></span>
-                    </span>
-                    <h3>${escapeHtml(lesson.title)}</h3>
-                    <ul>
-                        ${(lesson.items || []).slice(0, 5).map(item => `<li>${escapeHtml(itemLabel(item))}</li>`).join('')}
-                    </ul>
-                </button>`).join('');
+        if (existing) {
+            existing.remove();
+            element.setAttribute('aria-expanded', 'false');
+            return;
+        }
 
-            topicsGrid.addEventListener('click', event => {
-                const card = event.target.closest('[data-lesson-id]');
-                if (!card) return;
-                const lesson = lessons.find(item => item.id === card.dataset.lessonId);
-                if (lesson) selectLesson(lesson, { scroll: true });
+        const code = decodeURIComponent(element.dataset.code || '').replace(/\\n/g, '\n');
+        const label = element.querySelector(':scope > span')?.textContent?.trim() || 'معاينة الكود';
+        const preview = document.createElement('div');
+        preview.className = 'mobile-programming-preview';
+        preview.innerHTML = renderCodeWindow({ code, label, filename: 'example.py', compact: true });
+        element.insertAdjacentElement('afterend', preview);
+        element.setAttribute('aria-expanded', 'true');
+        enhanceCodeWindows(preview);
+    }
+
+    function bindInteractions() {
+        const mobileQuery = window.matchMedia('(max-width: 767px), (hover: none)');
+
+        lessonGrid.querySelectorAll('[data-code]').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                if (!mobileQuery.matches) showCodePreview(element);
             });
-        }
+            element.addEventListener('mouseleave', () => {
+                if (!mobileQuery.matches) hideCodePreview();
+            });
+            element.addEventListener('focus', () => {
+                if (!mobileQuery.matches) showCodePreview(element);
+            });
+            element.addEventListener('blur', () => {
+                if (!mobileQuery.matches) hideCodePreview();
+            });
+            element.addEventListener('click', () => {
+                if (mobileQuery.matches) toggleMobilePreview(element);
+                else showCodePreview(element);
+            });
+        });
 
-        const hashId = window.location.hash.match(/^#lesson-(\d+)$/)?.[1];
-        selectLesson(lessons.find(lesson => lesson.id === hashId) || lessons[0], { updateHash: Boolean(hashId) });
+        popover?.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+        popover?.addEventListener('mouseleave', () => hideCodePreview(120));
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') hideCodePreview(0);
+        });
     }
 
-    renderLessonList();
+    function renderCards() {
+        if (!lessonGrid) return;
+
+        lessonGrid.innerHTML = lessons.map(lesson => {
+            const presentation = getLessonPresentation(lesson.id);
+            const accent = accentColors[presentation.color] || accentColors.blue;
+            return `
+                <article class="concept-card" style="--concept-accent:${accent}">
+                    <header class="concept-card__header">
+                        <span class="concept-card__icon"><i class="${escapeHtml(presentation.icon)}" aria-hidden="true"></i></span>
+                        <div class="concept-card__heading">
+                            <span class="concept-card__eyebrow">${escapeHtml(lesson.id)}</span>
+                            <h2>${escapeHtml(lesson.title)}</h2>
+                        </div>
+                    </header>
+                    <div class="concept-card__body">
+                        ${(lesson.items || []).map(renderItem).join('')}
+                        ${lesson.extraInfo?.text ? `<div class="concept-note"><i class="${escapeHtml(lesson.extraInfo.icon || 'fas fa-info-circle')}" aria-hidden="true"></i><span>${escapeHtml(lesson.extraInfo.text)}</span></div>` : ''}
+                    </div>
+                    <a href="./lessons/index.html#lesson-${escapeHtml(lesson.id)}" class="concept-card__lesson-link">
+                        <span>فتح الشرح التفصيلي</span>
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    </a>
+                </article>`;
+        }).join('');
+
+        bindInteractions();
+    }
+
+    renderCards();
 });

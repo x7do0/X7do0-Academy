@@ -2,8 +2,10 @@
   "nav": {
     "home": "الرئيسية",
     "courses": "الدورات",
+    "overview": "نظرة عامة",
     "lessons": "الدروس",
     "practice": "التمارين",
+    "project": "المشروع",
     "connect": "تواصل معي",
     "open_menu": "فتح قائمة التنقل",
     "close_menu": "إغلاق قائمة التنقل",

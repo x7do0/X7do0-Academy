@@ -232,6 +232,227 @@
     white-space: nowrap;
 }
 
+/* Programming concepts overview */
+.concept-overview {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.concept-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.concept-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(112, 141, 184, 0.2);
+    border-block-start: 3px solid var(--concept-accent, #5b86f4);
+    border-radius: 0.9rem;
+    background: var(--bg-card);
+    box-shadow: 0 12px 30px rgba(2, 8, 23, 0.1);
+}
+
+.concept-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.85rem 0.9rem 0.7rem;
+}
+
+.concept-card__icon {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 0.62rem;
+    color: #fff;
+    background: var(--concept-accent, #5b86f4);
+    box-shadow: 0 7px 18px color-mix(in srgb, var(--concept-accent, #5b86f4) 28%, transparent);
+}
+
+.concept-card__heading {
+    min-width: 0;
+    flex: 1;
+}
+
+.concept-card__eyebrow {
+    display: block;
+    margin-bottom: 0.12rem;
+    color: var(--text-muted);
+    font: 800 0.58rem/1.4 "Fira Code", Consolas, monospace;
+}
+
+.concept-card h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.82rem;
+}
+
+.concept-card__body {
+    display: grid;
+    gap: 0.42rem;
+    flex: 1;
+    padding: 0 0.75rem 0.75rem;
+}
+
+.concept-point,
+.concept-note,
+.concept-group {
+    min-width: 0;
+    border-radius: 0.55rem;
+}
+
+.concept-point-group,
+.concept-point-stack {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.concept-module {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.45rem;
+    border: 1px solid rgba(112, 141, 184, 0.12);
+    border-radius: 0.55rem;
+    background: color-mix(in srgb, var(--bg-interactive) 72%, transparent);
+}
+
+.concept-module h4,
+.concept-intro {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.62rem;
+    line-height: 1.65;
+}
+
+.concept-point small {
+    flex: 1 1 100%;
+    color: var(--text-muted);
+    font-size: 0.58rem;
+    font-weight: 650;
+}
+
+.concept-point {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.55rem;
+    width: 100%;
+    min-height: 2.35rem;
+    padding: 0.48rem 0.6rem;
+    border: 1px solid rgba(112, 141, 184, 0.18);
+    color: var(--text-secondary);
+    background: var(--bg-interactive);
+    text-align: start;
+    font-size: 0.67rem;
+    font-weight: 750;
+    line-height: 1.55;
+    cursor: pointer;
+    transition: 160ms ease;
+}
+
+.concept-point::after {
+    content: "\f121";
+    flex: 0 0 auto;
+    color: var(--concept-accent, #6c91ef);
+    font-family: "Font Awesome 6 Free";
+    font-size: 0.62rem;
+    font-weight: 900;
+    opacity: 0.72;
+}
+
+.concept-point:hover,
+.concept-point:focus-visible,
+.concept-point.is-active {
+    border-color: color-mix(in srgb, var(--concept-accent, #5b86f4) 62%, transparent);
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--concept-accent, #5b86f4) 11%, var(--bg-interactive));
+    transform: translateY(-1px);
+}
+
+.concept-point code {
+    direction: ltr;
+    unicode-bidi: isolate;
+    color: #c9d8ff;
+    font-family: "Fira Code", Consolas, monospace;
+    font-size: 0.96em;
+}
+
+.concept-group {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.45rem;
+    border: 1px solid rgba(112, 141, 184, 0.12);
+    background: color-mix(in srgb, var(--bg-interactive) 72%, transparent);
+}
+
+.concept-group__title {
+    padding-inline: 0.15rem;
+    color: var(--text-muted);
+    font-size: 0.6rem;
+    font-weight: 850;
+}
+
+.concept-note {
+    margin: 0;
+    padding: 0.5rem 0.6rem;
+    color: var(--text-muted);
+    background: color-mix(in srgb, var(--concept-accent, #5b86f4) 7%, transparent);
+    font-size: 0.64rem;
+    line-height: 1.65;
+}
+
+.concept-card__lesson-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding: 0.62rem 0.85rem;
+    border-block-start: 1px solid rgba(112, 141, 184, 0.14);
+    color: var(--concept-accent, #7398f5);
+    background: color-mix(in srgb, var(--concept-accent, #5b86f4) 6%, transparent);
+    font-size: 0.64rem;
+    font-weight: 900;
+}
+
+.concept-card__lesson-link:hover,
+.concept-card__lesson-link:focus-visible {
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--concept-accent, #5b86f4) 12%, transparent);
+}
+
+.code-preview-popover {
+    position: fixed;
+    z-index: 1200;
+    inset-inline-start: max(1rem, calc((100vw - 1180px) / 2));
+    inset-block-end: 1rem;
+    width: min(33rem, calc(100vw - 2rem));
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.65rem);
+    transition: opacity 150ms ease, transform 150ms ease, visibility 150ms;
+}
+
+.code-preview-popover.is-visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.mobile-programming-preview {
+    margin-top: 0.35rem;
+}
+
 .course-topic-card li::before {
     content: "•";
     margin-inline-end: 0.35rem;
@@ -422,25 +643,6 @@
     font-size: 0.72rem;
 }
 
-.lesson-example pre {
-    margin: 0;
-    padding: 0.65rem;
-    overflow: auto;
-    direction: ltr;
-    border: 1px solid rgba(105, 137, 184, 0.15);
-    border-radius: 0.5rem;
-    text-align: left;
-    background: #08111f;
-}
-
-.lesson-example pre code {
-    direction: ltr;
-    unicode-bidi: plaintext;
-    font-family: "Fira Code", Consolas, monospace;
-    font-size: 0.73rem;
-    line-height: 1.7;
-}
-
 .lesson-note {
     display: flex;
     align-items: flex-start;
@@ -540,23 +742,8 @@
     text-align: center;
 }
 
-.file-viewer pre {
-    max-height: 31rem;
-    margin: 0;
-    padding: 1rem;
-    overflow: auto;
-    direction: ltr;
-    text-align: left;
-    background: #08111f;
-}
-
-.file-viewer pre code {
-    direction: ltr;
-    text-align: left;
-    unicode-bidi: plaintext;
-    font-family: "Fira Code", Consolas, monospace;
-    font-size: 0.78rem;
-    line-height: 1.75;
+.file-viewer__code {
+    padding: 0 0.75rem 0.75rem;
 }
 
 .practice-desktop-layout {
@@ -606,6 +793,10 @@
 
     .course-sidebar {
         display: none;
+    }
+
+    .concept-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .lesson-workspace,
@@ -668,6 +859,26 @@
 
     .course-topics-grid {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .concept-card-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .concept-card {
+        border-radius: 0.75rem;
+    }
+
+    .concept-card__header {
+        padding: 0.72rem;
+    }
+
+    .concept-card__body {
+        padding: 0 0.62rem 0.62rem;
+    }
+
+    .code-preview-popover {
+        display: none;
     }
 
     .course-topics__heading {

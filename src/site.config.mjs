@@ -64,15 +64,44 @@ export const pages = [
     data-nav-section="courses"
     data-nav-home="../../index.html"
     data-nav-courses="../index.html"
+    data-nav-overview="./index.html"
+    data-nav-lessons="./lessons/index.html"
     data-nav-practice="./practice/index.html"
+    data-nav-project="./project/index.html"
     data-nav-connect="../../accounts/index.html"`,
-    styles: ['assets/css/course-shell.css'],
+    styles: ['assets/css/course-shell.css', 'assets/css/code-experience.css'],
     script: 'assets/js/app.js',
     highlight: true,
-    courseSection: 'lessons',
+    courseSection: 'overview',
     courseHome: './index.html',
+    lessonsHome: './lessons/index.html',
     practiceHome: './practice/index.html',
     projectHome: './project/index.html'
+  },
+  {
+    output: 'courses/python/lessons/index.html',
+    source: 'src/pages/python-lessons.html',
+    root: '../../../',
+    title: 'دروس بايثون | أكاديمية X7do0',
+    description: 'شرح تفصيلي لدروس أساسيات بايثون مع أمثلة وملفات الموضوع والتحدي.',
+    bodyAttributes: `class="antialiased pb-20"
+    data-page="python-lessons"
+    data-nav-section="courses"
+    data-nav-home="../../../index.html"
+    data-nav-courses="../../index.html"
+    data-nav-overview="../index.html"
+    data-nav-lessons="./index.html"
+    data-nav-practice="../practice/index.html"
+    data-nav-project="../project/index.html"
+    data-nav-connect="../../../accounts/index.html"`,
+    styles: ['assets/css/course-shell.css', 'assets/css/code-experience.css'],
+    script: 'assets/js/python-lessons.js',
+    highlight: true,
+    courseSection: 'lessons',
+    courseHome: '../index.html',
+    lessonsHome: './index.html',
+    practiceHome: '../practice/index.html',
+    projectHome: '../project/index.html'
   },
   {
     output: 'courses/python/practice/index.html',
@@ -85,12 +114,16 @@ export const pages = [
     data-nav-section="courses"
     data-nav-home="../../../index.html"
     data-nav-courses="../../index.html"
+    data-nav-overview="../index.html"
+    data-nav-lessons="../lessons/index.html"
     data-nav-practice="./index.html"
+    data-nav-project="../project/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
     script: 'assets/js/python-practice.js',
     courseSection: 'practice',
     courseHome: '../index.html',
+    lessonsHome: '../lessons/index.html',
     practiceHome: './index.html',
     projectHome: '../project/index.html'
   },
@@ -105,13 +138,17 @@ export const pages = [
     data-nav-section="courses"
     data-nav-home="../../../index.html"
     data-nav-courses="../../index.html"
+    data-nav-overview="../index.html"
+    data-nav-lessons="../lessons/index.html"
     data-nav-practice="./index.html"
+    data-nav-project="../project/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
     highlight: true,
     scripts: ['assets/js/python-detail.js', 'assets/js/python-runner.js'],
     courseSection: 'practice',
     courseHome: '../index.html',
+    lessonsHome: '../lessons/index.html',
     practiceHome: './index.html',
     projectHome: '../project/index.html'
   },
@@ -126,12 +163,16 @@ export const pages = [
     data-nav-section="courses"
     data-nav-home="../../../index.html"
     data-nav-courses="../../index.html"
+    data-nav-overview="../index.html"
+    data-nav-lessons="../lessons/index.html"
     data-nav-practice="../practice/index.html"
+    data-nav-project="./index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-project.css'],
     script: 'assets/js/python-project.js',
     courseSection: 'project',
     courseHome: '../index.html',
+    lessonsHome: '../lessons/index.html',
     practiceHome: '../practice/index.html',
     projectHome: './index.html'
   },
@@ -146,12 +187,16 @@ export const pages = [
     data-nav-section="courses"
     data-nav-home="../../../index.html"
     data-nav-courses="../../index.html"
+    data-nav-overview="../index.html"
+    data-nav-lessons="../lessons/index.html"
     data-nav-practice="../practice/index.html"
+    data-nav-project="./index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-project.css'],
     script: 'assets/js/python-project-stage.js',
     courseSection: 'project',
     courseHome: '../index.html',
+    lessonsHome: '../lessons/index.html',
     practiceHome: '../practice/index.html',
     projectHome: './index.html'
   }
