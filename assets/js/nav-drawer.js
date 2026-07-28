@@ -1,7 +1,7 @@
 /**
- * Mobile Navigation Drawer
- * Reads nav paths from body data attributes, builds a slide-over drawer.
- * Usage: <body data-nav-home="..." data-nav-courses="..." data-nav-connect="...">
+ * Mobile navigation built from page-relative paths declared on <body>.
+ * Required attributes: data-nav-home, data-nav-courses, data-nav-practice,
+ * and data-nav-connect.
  */
 
 import i18n from './i18n.js';
@@ -16,7 +16,8 @@ const DRAWER_OPEN_CLASS = 'drawer-open';
 
 const i18nKeys = {
     home: 'nav.home',
-    courses: 'nav.courses',
+    courses: 'nav.lessons',
+    practice: 'nav.practice',
     connect: 'nav.connect',
 };
 
@@ -25,8 +26,10 @@ const NavDrawer = {
         const body = document.body;
         this.homePath = body.dataset.navHome;
         this.coursesPath = body.dataset.navCourses;
+        this.practicePath = body.dataset.navPractice;
         this.connectPath = body.dataset.navConnect;
         this.currentPage = body.dataset.page;
+        this.activeKey = this.getActiveKey();
 
         if (!this.homePath) return;
 
@@ -36,23 +39,24 @@ const NavDrawer = {
         this.bindEvents();
     },
 
+    getActiveKey() {
+        if (this.currentPage === 'home') return 'home';
+        if (this.currentPage === 'connect') return 'connect';
+        if (this.currentPage?.startsWith('python-practice')) return 'practice';
+        return 'courses';
+    },
+
+    getItems() {
+        return [
+            { key: 'home', path: this.homePath, icon: 'fa-home' },
+            { key: 'courses', path: this.coursesPath, icon: 'fa-book-open' },
+            { key: 'practice', path: this.practicePath, icon: 'fa-code' },
+            { key: 'connect', path: this.connectPath, icon: 'fa-circle-ellipsis' },
+        ].filter(item => item.path);
+    },
+
     buildBottomNav() {
         if (document.getElementById(BOTTOM_NAV_ID)) return;
-
-        const activeKey = this.currentPage === 'home'
-            ? 'home'
-            : this.currentPage === 'connect'
-                ? 'connect'
-                : this.currentPage?.startsWith('python-practice')
-                    ? 'practice'
-                    : 'courses';
-
-        const items = [
-            { key: 'home', path: this.homePath, icon: 'fa-home', labelKey: 'nav.home' },
-            { key: 'courses', path: this.coursesPath, icon: 'fa-folder', labelKey: 'nav.courses' },
-            { key: 'practice', path: `${this.homePath}#progress`, icon: 'fa-chart-column', labelKey: 'dashboard.progress_title' },
-            { key: 'connect', path: this.connectPath, icon: 'fa-circle-ellipsis', labelKey: 'dashboard.more' },
-        ];
 
         const nav = document.createElement('nav');
         nav.id = BOTTOM_NAV_ID;
@@ -60,14 +64,13 @@ const NavDrawer = {
         nav.setAttribute('aria-label', i18n.t('nav.quick_navigation'));
         nav.dataset.i18nAriaLabel = 'nav.quick_navigation';
 
-        items.forEach(({ key, path, icon, labelKey }) => {
-            if (!path) return;
-
+        this.getItems().forEach(({ key, path, icon }) => {
             const link = document.createElement('a');
             link.href = path;
             link.className = 'mobile-bottom-link';
             link.dataset.bottomNav = key;
-            if (key === activeKey) {
+
+            if (key === this.activeKey) {
                 link.classList.add('active');
                 link.setAttribute('aria-current', 'page');
             }
@@ -77,8 +80,8 @@ const NavDrawer = {
             iconElement.setAttribute('aria-hidden', 'true');
 
             const label = document.createElement('span');
-            label.dataset.i18n = labelKey;
-            label.textContent = i18n.t(labelKey);
+            label.dataset.i18n = i18nKeys[key];
+            label.textContent = i18n.t(i18nKeys[key]);
 
             link.append(iconElement, label);
             nav.appendChild(link);
@@ -107,13 +110,7 @@ const NavDrawer = {
         const nav = document.createElement('nav');
         nav.className = 'nav-drawer-links';
 
-        const items = [
-            { key: 'home', path: this.homePath },
-            { key: 'courses', path: this.coursesPath },
-            { key: 'connect', path: this.connectPath },
-        ];
-
-        items.forEach(({ key, path }) => {
+        this.getItems().forEach(({ key, path }) => {
             const link = document.createElement('a');
             link.href = path;
             link.className = 'nav-drawer-link';
@@ -121,17 +118,16 @@ const NavDrawer = {
             link.dataset.navLink = key;
             link.textContent = i18n.t(i18nKeys[key]);
 
-            const currentSection = document.body.dataset.navSection || this.currentPage;
-            if (currentSection === key) {
+            if (key === this.activeKey) {
                 link.classList.add('nav-link-active');
+                link.setAttribute('aria-current', 'page');
             }
 
             link.addEventListener('click', () => this.close());
             nav.appendChild(link);
         });
 
-        drawer.appendChild(closeBtn);
-        drawer.appendChild(nav);
+        drawer.append(closeBtn, nav);
         document.body.appendChild(drawer);
 
         this.drawer = drawer;
@@ -153,25 +149,24 @@ const NavDrawer = {
 
         this.hamburger.addEventListener('click', () => this.toggle());
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isOpen) {
-                this.close();
-            }
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && this.isOpen) this.close();
         });
 
-        document.addEventListener('click', (e) => {
-            if (this.isOpen && !this.drawer.contains(e.target) && e.target !== this.hamburger && !this.hamburger.contains(e.target)) {
+        document.addEventListener('click', event => {
+            if (
+                this.isOpen &&
+                !this.drawer.contains(event.target) &&
+                event.target !== this.hamburger &&
+                !this.hamburger.contains(event.target)
+            ) {
                 this.close();
             }
         });
     },
 
     toggle() {
-        if (this.isOpen) {
-            this.close();
-        } else {
-            this.open();
-        }
+        this.isOpen ? this.close() : this.open();
     },
 
     open() {
@@ -182,7 +177,6 @@ const NavDrawer = {
         this.overlay.classList.add(VISIBLE_CLASS);
         document.body.classList.add(DRAWER_OPEN_CLASS);
         this.hamburger.setAttribute('aria-expanded', 'true');
-
         this.closeBtn.focus();
         this.focusTrap();
     },
@@ -207,6 +201,7 @@ const NavDrawer = {
         if (this._focusHandler) {
             this.drawer.removeEventListener('keydown', this._focusHandler);
         }
+
         const focusable = this.drawer.querySelectorAll(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
@@ -215,19 +210,18 @@ const NavDrawer = {
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
 
-        const handler = (e) => {
-            if (e.key !== 'Tab') return;
-            if (e.shiftKey && document.activeElement === first) {
-                e.preventDefault();
+        this._focusHandler = event => {
+            if (event.key !== 'Tab') return;
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
                 last.focus();
-            } else if (!e.shiftKey && document.activeElement === last) {
-                e.preventDefault();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
                 first.focus();
             }
         };
 
-        this.drawer.addEventListener('keydown', handler);
-        this._focusHandler = handler;
+        this.drawer.addEventListener('keydown', this._focusHandler);
     },
 };
 
