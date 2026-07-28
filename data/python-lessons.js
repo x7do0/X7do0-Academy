@@ -2,8 +2,6 @@ export const lessons = [
   {
     id: '01',
     title: 'الطباعة والمخرجات',
-    icon: 'fas fa-print',
-    color: 'blue',
     items: [
       { type: 'keyword', label: 'الأرقام', code: 'print(100)\nprint(3.14)' },
       { type: 'keyword', label: 'النصوص وعلامات التنصيص', code: 'print("Hello World")\nprint("Ali"[0]) # A' },
@@ -25,8 +23,6 @@ export const lessons = [
   {
     id: '02',
     title: 'أنواع المتغيرات',
-    icon: 'fas fa-layer-group',
-    color: 'purple',
     items: [
       { type: 'keyword', label: 'الأعداد (int, float)', code: 'x = 10    # int\ny = 10.5  # float' },
       { type: 'keyword', label: 'النصوص (str)', code: 'name = "Python"' },
@@ -44,9 +40,6 @@ export const lessons = [
   {
     id: '03',
     title: 'العمليات الحسابية',
-    icon: 'fas fa-calculator',
-    color: 'green',
-    layout: 'grid',
     items: [
       { type: 'keyword', label: 'الضرب (*)', code: 'x = 5 * 2\nprint(x)' },
       { type: 'keyword', label: 'الأس (**)', code: 'x = 5 ** 2\nprint(x)' },
@@ -65,8 +58,6 @@ export const lessons = [
   {
     id: '04',
     title: 'مدخلات المستخدم',
-    icon: 'fas fa-keyboard',
-    color: 'blue',
     items: [
       { type: 'keyword', label: 'طريقة الإدخال', code: 'name = input("Enter name: ")', style: 'block', padding: 'py-3' },
       { type: 'alert', text: 'تُحفَظ المدخلات دائمًا كنص (String).', color: 'amber', icon: 'fas fa-exclamation-triangle' }
@@ -79,8 +70,6 @@ export const lessons = [
   {
     id: '05',
     title: 'تحويل الأنواع',
-    icon: 'fas fa-magic',
-    color: 'pink',
     items: [
       {
         type: 'group',
@@ -103,8 +92,6 @@ export const lessons = [
   {
     id: '06',
     title: 'دمج الدوال',
-    icon: 'fas fa-code-branch',
-    color: 'blue',
     items: [
       { type: 'text', text: 'دمج الدوال (Function Nesting)', icon: 'bar', color: 'slate' },
       {
@@ -124,8 +111,6 @@ export const lessons = [
   {
     id: '07',
     title: 'الجمل الشرطية',
-    icon: 'fas fa-random',
-    color: 'blue',
     items: [
       { type: 'code-box', label: 'الشروط الأساسية if / elif / else', code: 'x = 10\nif x > 5:\n    print("Big")\nelif x == 5:\n    print("Equal")\nelse:\n    print("Small")', color: 'green' },
       { type: 'code-box', label: 'الجمل الشرطية المتداخلة', code: 'if x > 0:\n    if x % 2 == 0:\n        print("Positive Even")\n    else:\n        print("Positive Odd")', color: 'purple' },
@@ -141,8 +126,6 @@ export const lessons = [
   {
     id: '08',
     title: 'الحلقات التكرارية',
-    icon: 'fas fa-sync',
-    color: 'yellow',
     items: [
       { type: 'code-box', label: 'حلقة for مع range', code: 'for i in range(101):\n    print(i)', note: 'تبدأ من 0 وتنتهي عند 100؛ لأن 101 غير مشمول.', style: 'simple' },
       { type: 'code-box', label: 'تحديد البداية والنهاية', code: 'for i in range(1, 101):\n    print(i)', note: 'تبدأ من 1 وتنتهي عند 100.', style: 'simple' },
@@ -166,8 +149,6 @@ export const lessons = [
   {
     id: '09',
     title: 'الدوال المخصصة',
-    icon: 'fas fa-cube',
-    color: 'blue',
     items: [
       { type: 'code-box', label: 'دالة أساسية بلا معاملات', code: 'def say_hi():\n    print("Hello!")\n\nsay_hi()', color: 'green', style: 'left-align' },
       { type: 'code-box', label: 'دالة بمعاملات وقيمة معادة', code: 'def add(a, b):\n    return a + b\n\nresult = add(5, 10)\nprint(result)', color: 'green', style: 'left-align' }
@@ -180,8 +161,6 @@ export const lessons = [
   {
     id: '10',
     title: 'المكتبات',
-    icon: 'fas fa-boxes',
-    color: 'purple',
     items: [
       {
         type: 'module-box',
@@ -215,8 +194,6 @@ export const lessons = [
   {
     id: '11',
     title: 'القوائم والـ Tuple',
-    icon: 'fas fa-tools',
-    color: 'indigo',
     items: [
       { type: 'keyword', label: 'إنشاء قائمة [ ]', code: 'numbers = [5, 2, 9, 1, 7]\nprint(numbers)' },
       { type: 'keyword', label: 'عدد العناصر (len)', code: 'print(len(numbers))' },
@@ -240,8 +217,6 @@ export const lessons = [
   {
     id: '12',
     title: 'القواميس والمجموعات',
-    icon: 'fas fa-key',
-    color: 'indigo',
     items: [
       { type: 'code-box', label: 'إنشاء Dictionary', code: 'student = {\n    "name": "Ali",\n    "age": 21,\n    "grade": "A"\n}\nprint(student)', color: 'blue' },
       { type: 'keyword', label: 'الوصول بالقيمة المفتاحية', code: 'print(student["name"])' },

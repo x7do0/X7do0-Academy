@@ -33,12 +33,28 @@ assets/
 courses/
 data/
 files/
+src/
+tools/
 index.html
+package.json
 ```
 
 ## التشغيل
 
-المشروع ثابت ويمكن تشغيله عبر خادم محلي بسيط أو نشره على GitHub Pages. يفضّل عدم فتح الصفحات مباشرة بصيغة `file://` لأن ملفات النصوص تُحمّل عبر `fetch`.
+يتطلب البناء Node.js وnpm. ثبّت الاعتماديات ثم ولّد صفحات HTML وملف Tailwind CSS:
+
+```bash
+npm install
+npm run build
+```
+
+يولّد أمر البناء الصفحات الثابتة من `src/pages/` والقوالب المشتركة في `src/templates/`، ثم يتحقق من الروابط والملفات المحلية الأساسية. الملفات الناتجة في جذر المستودع وداخل `accounts/` و`courses/` جاهزة للنشر مباشرة على GitHub Pages.
+
+أثناء تعديل CSS يمكن استخدام:
+
+```bash
+npm run dev
+```
 
 ## الترخيص
 

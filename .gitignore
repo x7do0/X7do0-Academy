@@ -39,7 +39,6 @@ opencode.json
 
 # Development-only (not for deployment)
 tests/
-tools/
 backup/
 archive/
 docs/

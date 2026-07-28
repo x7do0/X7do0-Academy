@@ -1,5 +1,6 @@
 import i18n from './i18n.js';
 import { lessons } from '../../data/python-lessons.js';
+import { getLessonPresentation } from './content-presentation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await i18n.init();
@@ -125,15 +126,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         mainContainer.innerHTML = '';
 
         lessons.forEach(lesson => {
-            const color = lesson.color || 'blue';
+            const presentation = getLessonPresentation(lesson.id);
+            const color = presentation.color;
             const card = document.createElement('section');
-            card.className = `academic-card p-6 group ${lesson.span > 1 ? `md:col-span-${lesson.span}` : ''}`;
+            card.className = `academic-card p-6 group ${presentation.span > 1 ? `md:col-span-${presentation.span}` : ''}`;
             card.style.borderLeft = `4px solid ${accentVar(color)}`;
 
             let contentBody = '';
-            if (lesson.layout === 'grid') {
+            if (presentation.layout === 'grid') {
                 contentBody = `<div class="grid grid-cols-2 gap-3">${lesson.items.map(item => renderItem(item, color)).join('')}</div>`;
-            } else if (lesson.layout === 'grid-column' && lesson.columns) {
+            } else if (presentation.layout === 'grid-column' && lesson.columns) {
                 contentBody = `<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">${lesson.columns.map(column => `<div class="space-y-4">${column.map(item => renderItem(item, color)).join('')}</div>`).join('')}</div>`;
             } else {
                 contentBody = `<ul class="space-y-3">${(lesson.items || []).map(item => item.type === 'group' || item.type === 'container' ? renderItem(item, color) : `<li>${renderItem(item, color)}</li>`).join('')}</ul>`;
@@ -147,7 +149,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="flex items-center justify-center w-8 h-8 rounded-lg text-sm font-bold font-mono" style="background:${color === 'blue' ? 'var(--accent-soft)' : `var(--${color}-50, var(--bg-interactive))`};color:${color === 'blue' ? 'var(--accent)' : `var(--${color}-600, var(--text-primary))`}">${lesson.id}</span>
                         <h3 class="text-lg font-bold text-academic-primary">${lesson.title}</h3>
                     </div>
-                    <i class="${lesson.icon}" style="color:${color === 'blue' ? 'var(--accent)' : 'var(--text-muted)'};opacity:0.6;"></i>
+                    <i class="${presentation.icon}" style="color:${color === 'blue' ? 'var(--accent)' : 'var(--text-muted)'};opacity:0.6;"></i>
                 </div>
                 ${contentBody}${extraInfo}${renderFiles(lesson)}`;
 
