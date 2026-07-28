@@ -195,10 +195,10 @@ pre {
     margin-top: 0.75rem;
     overflow: hidden;
     border: 1px solid var(--editor-border);
-    border-radius: 14px;
+    border-radius: 10px;
     background: var(--editor-bg);
     color: var(--editor-text);
-    box-shadow: 0 18px 45px rgba(2, 6, 23, 0.24);
+    box-shadow: 0 8px 22px rgba(2, 6, 23, 0.16);
     direction: ltr !important;
     text-align: left !important;
     unicode-bidi: isolate;
@@ -209,8 +209,8 @@ pre {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    min-height: 42px;
-    padding: 0.55rem 0.85rem;
+    min-height: 36px;
+    padding: 0.4rem 0.7rem;
     border-bottom: 1px solid var(--editor-border);
     background: var(--editor-toolbar);
     color: #94a3b8;
@@ -224,8 +224,8 @@ pre {
 }
 
 .code-panel__traffic-lights span {
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     border-radius: 999px;
     background: #ff5f57;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
@@ -260,7 +260,7 @@ pre {
 .code-panel pre {
     margin: 0;
     max-width: 100%;
-    padding: 1.35rem 1.45rem 1.5rem;
+    padding: 1rem 1.05rem 1.1rem;
     overflow-x: auto;
     background:
         radial-gradient(circle at top right, rgba(56, 189, 248, 0.07), transparent 34%),
@@ -371,16 +371,16 @@ pre {
 
 @media (max-width: 640px) {
     .code-panel {
-        border-radius: 12px;
+        border-radius: 9px;
     }
 
     .code-panel__toolbar {
-        min-height: 40px;
-        padding-inline: 0.7rem;
+        min-height: 34px;
+        padding-inline: 0.6rem;
     }
 
     .code-panel pre {
-        padding: 1rem;
+        padding: 0.85rem;
     }
 
     .code-panel code,

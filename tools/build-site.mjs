@@ -44,9 +44,7 @@ function renderExtraHead(page) {
     .map(href => `    <link rel="stylesheet" href="${page.root}${href}">`)
     .join('\n');
   const highlight = page.highlight
-    ? `    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-theme-link">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>if(document.documentElement.dataset.theme==='dark'){const link=document.getElementById('hljs-theme-link');if(link)link.href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css'}</script>`
+    ? '    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>'
     : '';
 
   return [styles, highlight].filter(Boolean).join('\n');

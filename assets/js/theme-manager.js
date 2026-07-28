@@ -43,13 +43,6 @@ class ThemeManager {
         this.html.dataset.theme = theme;
         localStorage.setItem('theme', theme);
         this.updateIcons();
-
-        const hljsLink = document.getElementById('hljs-theme-link');
-        if (hljsLink) {
-            hljsLink.href = theme === 'dark'
-                ? 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css'
-                : 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css';
-        }
     }
 
     updateIcons() {
