@@ -21,10 +21,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/tailwind.css?v=bd518b142d">
+    <link rel="stylesheet" href="../../../assets/css/tailwind.css?v=06f661781b">
     <link rel="stylesheet" href="../../../assets/css/variables.css?v=7967938615">
-    <link rel="stylesheet" href="../../../assets/css/styles.css?v=b5b3e79234">
-    <link rel="stylesheet" href="../../../assets/css/python-practice.css?v=dd5e42b467">
+    <link rel="stylesheet" href="../../../assets/css/styles.css?v=bdbde45902">
+    <link rel="stylesheet" href="../../../assets/css/course-shell.css?v=40bae03f63">
+    <link rel="stylesheet" href="../../../assets/css/python-practice.css?v=3b8b0179c2">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="../../../assets/js/theme-manager.js?v=3b7a594baf"></script>
 </head>
@@ -61,33 +62,48 @@
             </div>
         </div>
     </nav>
-<main class="max-w-6xl mx-auto px-4 py-8">
-        <nav class="mb-6">
-            <div class="flex items-center gap-2 text-xs font-mono text-academic-muted">
-                <a href="../../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_home">الرئيسية</a>
-                <span>/</span>
-                <a href="../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_courses">الدورات</a>
-                <span>/</span>
-                <a href="../index.html" class="hover:text-academic-accent transition-colors" data-i18n="python_name">بايثون</a>
-                <span>/</span>
-                <a href="./index.html" class="hover:text-academic-accent transition-colors" data-i18n="python_practice_card_title">التمارين</a>
-                <span>/</span>
-                <span class="text-academic-secondary" data-i18n="python.question.label">التمرين</span>
-            </div>
-        </nav>
-
-        <div class="mb-8">
-            <a href="./index.html" class="text-academic-secondary hover:text-academic-accent font-bold text-sm flex items-center gap-2">
-                <i class="fas fa-arrow-left rtl:rotate-180"></i>
-                <span data-i18n="python.practice.back_to_questions">العودة إلى التمارين</span>
+<div class="course-shell">
+    <aside class="course-sidebar" aria-label="أقسام مسار بايثون">
+    <div class="course-sidebar__brand">
+        <span class="course-sidebar__icon"><i class="fab fa-python" aria-hidden="true"></i></span>
+        <span>
+            <strong>أساسيات بايثون</strong>
+            <small>المسار التعليمي</small>
+        </span>
+    </div>
+    <nav class="course-sidebar__nav">
+        <a href="../index.html#course-overview" class="">
+            <i class="fas fa-border-all" aria-hidden="true"></i>
+            <span>نظرة عامة</span>
+        </a>
+        <a href="../index.html#lessons" class="">
+            <i class="fas fa-book-open" aria-hidden="true"></i>
+            <span>الدروس</span>
+        </a>
+        <a href="./index.html" class="active">
+            <i class="fas fa-code" aria-hidden="true"></i>
+            <span>التمارين</span>
+        </a>
+        <a href="../project/index.html" class="">
+            <i class="far fa-folder" aria-hidden="true"></i>
+            <span>المشاريع</span>
+        </a>
+    </nav>
+</aside>
+    <main class="course-main">
+        <header class="course-header course-header--question">
+            <a href="./index.html" class="course-back-link">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                <span>العودة إلى التمارين</span>
             </a>
-        </div>
+        </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <aside id="sidebar" class="md:col-span-1"></aside>
-            <article id="question-view" class="md:col-span-3 flex flex-col gap-6"></article>
+        <div class="question-workspace">
+            <article id="question-view" class="question-main"></article>
+            <aside id="sidebar" class="question-index"></aside>
         </div>
     </main>
+</div>
     <footer class="mt-auto py-8 text-center relative z-10">
         <div class="divider-gradient max-w-6xl mx-auto mb-8"></div>
         <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-4 text-xs font-bold text-academic-secondary" aria-label="روابط إضافية">
@@ -98,7 +114,7 @@
         <p class="text-academic-secondary text-[10px] tracking-[0.3em] uppercase font-bold">X7do0eng</p>
     </footer>
     <script type="module" src="../../../assets/js/nav-drawer.js?v=e6d44aec66"></script>
-    <script type="module" src="../../../assets/js/python-detail.js?v=9145a74971"></script>
+    <script type="module" src="../../../assets/js/python-detail.js?v=da83034f4f"></script>
     <script type="module" src="../../../assets/js/python-runner.js?v=e1fceb16d7"></script>
 </body>
 </html>

@@ -1,49 +1,34 @@
-<nav class="max-w-7xl mx-auto px-4 py-4">
-        <div class="flex items-center gap-2 text-xs font-mono text-academic-muted">
-            <a href="../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_home">الرئيسية</a>
-            <span>/</span>
-            <a href="../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_courses">الدورات</a>
-            <span>/</span>
-            <span class="text-academic-secondary" data-i18n="python_name">بايثون</span>
-        </div>
-    </nav>
-
-    <header class="course-context-header sticky top-0 z-40 py-4 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="academic-card card-accent-top px-6 py-4 flex justify-between items-center relative overflow-hidden bg-academic-card">
-                <div class="flex items-center gap-4">
-                    <div class="relative flex items-center justify-center w-10 h-10 rounded-lg bg-accent-solid shadow-sm"><i class="fab fa-python text-2xl"></i></div>
-                    <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-academic-primary" data-i18n="course_python_notes_header_title" data-i18n-html="true">دروس <span class="text-academic-accent">بايثون</span></h1>
-                </div>
-                <div class="hidden sm:flex items-center gap-4 text-[10px] font-mono text-blue-900/60 dark:text-slate-400 uppercase tracking-widest"><span class="flex items-center gap-1"><i class="fas fa-user-circle"></i> X7do0</span></div>
+<div class="course-shell">
+    {{courseSidebar}}
+    <main class="course-main">
+        <header id="course-overview" class="course-header">
+            <div class="course-header__icon"><i class="fab fa-python" aria-hidden="true"></i></div>
+            <div>
+                <h1>دروس بايثون</h1>
+                <p>شرح عملي منظم مع أمثلة وملفات الموضوع والتحدي.</p>
             </div>
+        </header>
 
-            <nav class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <a href="./index.html" class="academic-card p-4 border-s-accent bg-[var(--accent-soft)] flex items-center gap-4 transition-all">
-                    <div class="w-10 h-10 rounded bg-accent-solid flex items-center justify-center"><i class="fas fa-book-open"></i></div>
-                    <div>
-                        <div class="text-academic-primary font-bold" data-i18n="python_notes_card_title">الدروس</div>
-                        <div class="text-xs text-academic-secondary" data-i18n="python_notes_card_desc">دروس المسار وشروحاته</div>
-                    </div>
-                </a>
-                <a href="./practice/index.html" class="academic-card p-4 border-s-4 border-[var(--border-soft)] hover:border-[var(--accent)] flex items-center gap-4 transition-all group">
-                    <div class="w-10 h-10 rounded bg-[var(--bg-interactive)] flex items-center justify-center text-[var(--text-muted)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all"><i class="fas fa-code"></i></div>
-                    <div>
-                        <div class="text-academic-primary font-bold opacity-70 group-hover:opacity-100 transition-opacity" data-i18n="python_practice_card_title">التمارين</div>
-                        <div class="text-xs text-academic-muted" data-i18n="python_practice_card_desc">25 تمرينًا وتحديًا برمجيًا</div>
-                    </div>
-                </a>
-                <a href="./project/index.html" class="academic-card p-4 border-s-4 border-[var(--border-soft)] hover:border-[var(--accent)] flex items-center gap-4 transition-all group">
-                    <div class="w-10 h-10 rounded bg-[var(--bg-interactive)] flex items-center justify-center text-[var(--text-muted)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all"><i class="fas fa-flag-checkered"></i></div>
-                    <div>
-                        <div class="text-academic-primary font-bold opacity-70 group-hover:opacity-100 transition-opacity">المشروع الختامي</div>
-                        <div class="text-xs text-academic-muted">مدير مهام عبر 6 مراحل</div>
-                    </div>
-                </a>
-            </nav>
-        </div>
-    </header>
+        <section class="course-topics" aria-labelledby="course-topics-title">
+            <div class="course-topics__heading">
+                <div>
+                    <span>نظرة عامة</span>
+                    <h2 id="course-topics-title">المواضيع البرمجية</h2>
+                </div>
+                <p>اختر أي موضوع لعرض شرحه وملفاته بالتفصيل.</p>
+            </div>
+            <div id="course-topics-grid" class="course-topics-grid"></div>
+        </section>
 
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        <div id="lesson-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 auto-rows-min"></div>
+        <section id="lessons" class="lesson-workspace" aria-label="دروس أساسيات بايثون">
+            <aside class="lesson-index">
+                <div class="lesson-index__header">
+                    <h2>الدروس</h2>
+                    <span>12 درساً</span>
+                </div>
+                <nav id="lesson-list" aria-label="قائمة الدروس"></nav>
+            </aside>
+            <article id="lesson-viewer" class="lesson-viewer" aria-live="polite"></article>
+        </section>
     </main>
+</div>

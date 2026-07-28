@@ -72,7 +72,7 @@ const DetailController = {
         }
 
         this.currentQuestion = question;
-        this.shareMetadata = updateQuestionMetadata(question);
+        updateQuestionMetadata(question);
         this.render(question);
     },
 
@@ -150,19 +150,11 @@ const DetailController = {
         const { prev, next } = this.getPrevNext(question.id);
         const category = this.getCategory(question.categoryId);
         const steps = question.steps || [];
-        const shareText = `${question.title}\n${question.prompt}\nأكاديمية X7do0`;
-        const telegramShare = `https://t.me/share/url?url=${encodeURIComponent(this.shareMetadata.canonical)}&text=${encodeURIComponent(shareText)}`;
-        const whatsappShare = `https://wa.me/?text=${encodeURIComponent(`${shareText}\n${this.shareMetadata.canonical}`)}`;
 
         container.innerHTML = `
             <div id="q-header" class="mb-8">
-                <div class="flex flex-wrap items-center justify-between gap-3 mb-2">
+                <div class="flex flex-wrap items-center gap-3 mb-2">
                     <span class="category-tag">${category ? arabicLabel(category.label) : i18n.t('python.practice.unknown_category')}</span>
-                    <div class="share-actions" aria-label="مشاركة السؤال">
-                        <span>مشاركة</span>
-                        <a href="${telegramShare}" target="_blank" rel="noopener noreferrer" aria-label="مشاركة السؤال على تيليغرام"><i class="fab fa-telegram-plane" aria-hidden="true"></i><span>تيليغرام</span></a>
-                        <a href="${whatsappShare}" target="_blank" rel="noopener noreferrer" aria-label="مشاركة السؤال على واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>واتساب</span></a>
-                    </div>
                 </div>
                 <h1 class="text-3xl md:text-4xl font-bold text-academic-primary">
                     <span class="block">${escapeHtml(question.title)}</span>

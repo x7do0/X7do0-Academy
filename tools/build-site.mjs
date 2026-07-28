@@ -85,16 +85,29 @@ ${pageScript}`.trimEnd();
 }
 
 async function buildPages() {
-  const [layout, head, navbar, footer] = await Promise.all([
+  const [layout, head, navbar, footer, courseSidebar] = await Promise.all([
     read('src/templates/layout.html'),
     read('src/templates/head.html'),
     read('src/templates/navbar.html'),
-    read('src/templates/footer.html')
+    read('src/templates/footer.html'),
+    read('src/templates/course-sidebar.html')
   ]);
 
   for (const page of pages) {
     await ensurePageSource(page);
-    const content = (await read(page.source)).trim();
+    const sourceContent = (await read(page.source)).trim();
+    const sidebar = page.courseSection
+      ? render(courseSidebar, {
+          courseHome: page.courseHome,
+          practiceHome: page.practiceHome,
+          projectHome: page.projectHome,
+          overviewActive: page.courseSection === 'overview' ? 'active' : '',
+          lessonsActive: page.courseSection === 'lessons' ? 'active' : '',
+          practiceActive: page.courseSection === 'practice' ? 'active' : '',
+          projectActive: page.courseSection === 'project' ? 'active' : ''
+        }).trim()
+      : '';
+    const content = render(sourceContent, { courseSidebar: sidebar });
     const renderedHead = render(head, {
       title: page.title,
       description: page.description,

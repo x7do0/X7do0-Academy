@@ -66,7 +66,13 @@ export const pages = [
     data-nav-courses="../index.html"
     data-nav-practice="./practice/index.html"
     data-nav-connect="../../accounts/index.html"`,
-    script: 'assets/js/app.js'
+    styles: ['assets/css/course-shell.css'],
+    script: 'assets/js/app.js',
+    highlight: true,
+    courseSection: 'lessons',
+    courseHome: './index.html',
+    practiceHome: './practice/index.html',
+    projectHome: './project/index.html'
   },
   {
     output: 'courses/python/practice/index.html',
@@ -81,8 +87,12 @@ export const pages = [
     data-nav-courses="../../index.html"
     data-nav-practice="./index.html"
     data-nav-connect="../../../accounts/index.html"`,
-    styles: ['assets/css/python-practice.css'],
-    script: 'assets/js/python-practice.js'
+    styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
+    script: 'assets/js/python-practice.js',
+    courseSection: 'practice',
+    courseHome: '../index.html',
+    practiceHome: './index.html',
+    projectHome: '../project/index.html'
   },
   {
     output: 'courses/python/practice/question.html',
@@ -97,16 +107,20 @@ export const pages = [
     data-nav-courses="../../index.html"
     data-nav-practice="./index.html"
     data-nav-connect="../../../accounts/index.html"`,
-    styles: ['assets/css/python-practice.css'],
+    styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
     highlight: true,
-    scripts: ['assets/js/python-detail.js', 'assets/js/python-runner.js']
+    scripts: ['assets/js/python-detail.js', 'assets/js/python-runner.js'],
+    courseSection: 'practice',
+    courseHome: '../index.html',
+    practiceHome: './index.html',
+    projectHome: '../project/index.html'
   },
   {
     output: 'courses/python/project/index.html',
     source: 'src/pages/python-project.html',
     root: '../../../',
     title: 'المشروع الختامي | أكاديمية X7do0',
-    description: 'مشروع مدير مهام ختامي لمسار Python، مقسم إلى مراحل تعليمية قابلة للتشغيل.',
+    description: 'مشروع مدير مهام ختامي لمسار بايثون، معروض على مراحل عملية واضحة.',
     bodyAttributes: `class="antialiased pb-20"
     data-page="python-project"
     data-nav-section="courses"
@@ -114,15 +128,19 @@ export const pages = [
     data-nav-courses="../../index.html"
     data-nav-practice="../practice/index.html"
     data-nav-connect="../../../accounts/index.html"`,
-    styles: ['assets/css/python-project.css'],
-    script: 'assets/js/python-project.js'
+    styles: ['assets/css/course-shell.css', 'assets/css/python-project.css'],
+    script: 'assets/js/python-project.js',
+    courseSection: 'project',
+    courseHome: '../index.html',
+    practiceHome: '../practice/index.html',
+    projectHome: './index.html'
   },
   {
     output: 'courses/python/project/stage.html',
     source: 'src/pages/python-project-stage.html',
     root: '../../../',
     title: 'مرحلة المشروع الختامي | أكاديمية X7do0',
-    description: 'مرحلة تعليمية تفاعلية من مشروع مدير المهام بلغة Python.',
+    description: 'تفاصيل مرحلة من مراحل مشروع مدير المهام بلغة بايثون.',
     bodyAttributes: `class="antialiased pb-20"
     data-page="python-project-stage"
     data-nav-section="courses"
@@ -130,23 +148,11 @@ export const pages = [
     data-nav-courses="../../index.html"
     data-nav-practice="../practice/index.html"
     data-nav-connect="../../../accounts/index.html"`,
-    styles: ['assets/css/python-project.css'],
-    script: 'assets/js/python-project-stage.js'
-  },
-  {
-    output: 'courses/python/project/summary.html',
-    source: 'src/pages/python-project-summary.html',
-    root: '../../../',
-    title: 'ملخص المشروع الختامي | أكاديمية X7do0',
-    description: 'ملخص ما بناه الطالب وما تعلمه في مشروع Python الختامي.',
-    bodyAttributes: `class="antialiased pb-20"
-    data-page="python-project-summary"
-    data-nav-section="courses"
-    data-nav-home="../../../index.html"
-    data-nav-courses="../../index.html"
-    data-nav-practice="../practice/index.html"
-    data-nav-connect="../../../accounts/index.html"`,
-    styles: ['assets/css/python-project.css'],
-    script: 'assets/js/python-project-summary.js'
+    styles: ['assets/css/course-shell.css', 'assets/css/python-project.css'],
+    script: 'assets/js/python-project-stage.js',
+    courseSection: 'project',
+    courseHome: '../index.html',
+    practiceHome: '../practice/index.html',
+    projectHome: './index.html'
   }
 ];
