@@ -88,59 +88,26 @@ const DetailController = {
         const sidebar = document.getElementById('sidebar');
         if (!sidebar) return;
 
+        const activeCategory = this.getCategory(question.categoryId);
         sidebar.innerHTML = `
-            <div class="sticky top-24 space-y-4">
-                <div class="academic-card p-4 md:hidden">
-                    <button type="button" id="mobile-menu-toggle" class="w-full flex items-center justify-between text-academic-primary font-bold" aria-expanded="false" aria-controls="sidebar-content">
-                        <span>${i18n.t('python.question.menu')}</span>
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-                <div id="sidebar-content" class="hidden md:block">
-                    <div class="label mb-4">${i18n.t('python.practice.categories')}</div>
-                    <div class="space-y-4">
-                        ${categories.map(category => {
-                            const categoryQuestions = this.getQuestionsByCategory(category.id);
-                            const isActiveCategory = categoryQuestions.some(item => item.id === question.id);
-                            const completedCount = categoryQuestions.filter(item => tracker.isQuestionCompleted(item.id)).length;
-
-                            return `
-                                <div class="space-y-1">
-                                    <button type="button" class="category-disclosure w-full flex items-center justify-between text-sm font-bold text-academic-primary group" aria-expanded="${isActiveCategory}" aria-controls="question-category-${category.id}">
-                                        <span>${arabicLabel(category.label)}</span>
-                                        <span class="text-[10px] opacity-50">${completedCount}/${categoryQuestions.length}</span>
-                                    </button>
-                                    <div id="question-category-${category.id}" class="${isActiveCategory ? '' : 'hidden'} space-y-1 mt-2 ps-4 border-s" style="border-color:var(--border-soft);">
-                                        ${categoryQuestions.map(item => {
-                                            return `
-                                                <a href="./question.html?id=${item.id}" class="block text-xs py-1.5 px-2 rounded" style="${item.id === question.id ? 'background:var(--accent-soft);color:var(--accent);font-weight:700;' : 'color:var(--text-secondary);'}">
-                                                    <i class="fas ${tracker.isQuestionCompleted(item.id) ? 'fa-check-circle text-green-500' : 'fa-circle text-[6px]'} me-2"></i>
-                                                    <span class="block">${escapeHtml(item.title)}</span>
-                                                </a>`;
-                                        }).join('')}
-                                    </div>
-                                </div>`;
-                        }).join('')}
-                    </div>
-                </div>
-            </div>`;
-
-        const mobileToggle = document.getElementById('mobile-menu-toggle');
-        mobileToggle?.addEventListener('click', () => {
-            const content = document.getElementById('sidebar-content');
-            const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-            content?.classList.toggle('hidden', isExpanded);
-            mobileToggle.setAttribute('aria-expanded', String(!isExpanded));
-        });
-
-        document.querySelectorAll('.category-disclosure').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = document.getElementById(button.getAttribute('aria-controls'));
-                const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                content?.classList.toggle('hidden', isExpanded);
-                button.setAttribute('aria-expanded', String(!isExpanded));
-            });
-        });
+            <div class="section-title-row">
+                <h2>${i18n.t('python.practice.categories')}</h2>
+            </div>
+            <nav class="practice-categories-list" aria-label="${i18n.t('python.practice.categories')}">
+                <a href="./index.html" class="category-btn">
+                    <span>${i18n.t('python.practice.all_questions')}</span>
+                    <span class="opacity-50 font-mono text-xs">${tracker.getCompletedQuestions().length}/${questions.length}</span>
+                </a>
+                ${categories.map(category => {
+                    const progress = tracker.getCategoryProgress(category.id);
+                    const isActive = activeCategory?.id === category.id;
+                    return `
+                        <a href="./index.html?category=${encodeURIComponent(category.id)}" class="category-btn ${isActive ? 'active' : ''}" ${isActive ? 'aria-current="page"' : ''}>
+                            <span>${arabicLabel(category.label)}</span>
+                            <span class="opacity-50 font-mono text-xs">${progress.completed}/${progress.total}</span>
+                        </a>`;
+                }).join('')}
+            </nav>`;
     },
 
     render(question) {

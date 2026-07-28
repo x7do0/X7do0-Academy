@@ -767,7 +767,7 @@
 
 .question-workspace {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 230px;
+    grid-template-columns: minmax(0, 1fr) 190px;
     grid-template-areas: "main index";
     gap: 1rem;
     align-items: start;

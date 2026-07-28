@@ -16,7 +16,8 @@ const DRAWER_OPEN_CLASS = 'drawer-open';
 
 const i18nKeys = {
     home: 'nav.home',
-    courses: 'nav.lessons',
+    courses: 'nav.courses',
+    about: 'nav.about',
     overview: 'nav.overview',
     lessons: 'nav.lessons',
     practice: 'nav.practice',
@@ -33,6 +34,7 @@ const NavDrawer = {
         this.overviewPath = body.dataset.navOverview;
         this.lessonsPath = body.dataset.navLessons;
         this.projectPath = body.dataset.navProject;
+        this.aboutPath = body.dataset.navAbout;
         this.connectPath = body.dataset.navConnect;
         this.currentPage = body.dataset.page;
         this.activeKey = this.getActiveKey();
@@ -48,8 +50,8 @@ const NavDrawer = {
     getActiveKey() {
         if (this.currentPage === 'home') return 'home';
         if (this.currentPage === 'connect') return 'connect';
-        if (this.currentPage === 'about') return null;
-        if (this.currentPage === 'python') return 'overview';
+        if (this.currentPage === 'about') return 'about';
+        if (this.currentPage === 'python') return 'courses';
         if (this.currentPage === 'python-lessons') return 'lessons';
         if (this.currentPage?.startsWith('python-practice')) return 'practice';
         if (this.currentPage?.startsWith('python-project')) return 'project';
@@ -57,21 +59,21 @@ const NavDrawer = {
     },
 
     getItems() {
-        if (this.overviewPath) {
-            return [
-                { key: 'overview', path: this.overviewPath, icon: 'fa-border-all' },
-                { key: 'lessons', path: this.lessonsPath, icon: 'fa-book-open' },
-                { key: 'practice', path: this.practicePath, icon: 'fa-code' },
-                { key: 'project', path: this.projectPath, icon: 'fa-folder' },
-                { key: 'home', path: this.homePath, icon: 'fa-home' },
-            ].filter(item => item.path);
-        }
-
         return [
             { key: 'home', path: this.homePath, icon: 'fa-home' },
-            { key: 'courses', path: this.coursesPath, icon: 'fa-book-open' },
+            { key: 'courses', path: this.coursesPath, icon: 'fa-layer-group' },
+            { key: 'lessons', path: this.lessonsPath, icon: 'fa-book-open' },
             { key: 'practice', path: this.practicePath, icon: 'fa-code' },
-            { key: 'connect', path: this.connectPath, icon: 'fa-circle-ellipsis' },
+            { key: 'project', path: this.projectPath, icon: 'fa-folder' },
+        ].filter(item => item.path);
+    },
+
+    getDrawerItems() {
+        return [
+            { key: 'home', path: this.homePath },
+            { key: 'courses', path: this.coursesPath },
+            { key: 'about', path: this.aboutPath },
+            { key: 'connect', path: this.connectPath },
         ].filter(item => item.path);
     },
 
@@ -81,7 +83,7 @@ const NavDrawer = {
         const nav = document.createElement('nav');
         nav.id = BOTTOM_NAV_ID;
         nav.className = 'mobile-bottom-nav';
-        if (this.overviewPath) nav.classList.add('mobile-bottom-nav--course');
+        nav.classList.add('mobile-bottom-nav--unified');
         nav.setAttribute('aria-label', i18n.t('nav.quick_navigation'));
         nav.dataset.i18nAriaLabel = 'nav.quick_navigation';
 
@@ -131,7 +133,7 @@ const NavDrawer = {
         const nav = document.createElement('nav');
         nav.className = 'nav-drawer-links';
 
-        this.getItems().forEach(({ key, path }) => {
+        this.getDrawerItems().forEach(({ key, path }) => {
             const link = document.createElement('a');
             link.href = path;
             link.className = 'nav-drawer-link';
