@@ -1,3 +1,5 @@
+import { questions } from '../../data/python-practice-questions.js';
+
 const PYODIDE_VERSION = '0.27.7';
 const PYODIDE_BASE = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`;
 
@@ -42,118 +44,121 @@ function normalizeOutput(value = '') {
         .join('\n');
 }
 
+function getCurrentQuestion() {
+    const questionId = Number.parseInt(new URLSearchParams(window.location.search).get('id'), 10);
+    return questions.find(question => question.id === questionId) || null;
+}
+
 function getExpectedOutput() {
-    return normalizeOutput(document.querySelector('.code-panel--output code')?.textContent || '');
+    return normalizeOutput(getCurrentQuestion()?.output || '');
+}
+
+function getSolutionCode() {
+    return getCurrentQuestion()?.code || '';
 }
 
 function starterCode() {
-    const prompt = document.querySelector('#q-prompt')?.textContent || '';
+    const prompt = getCurrentQuestion()?.prompt || '';
     return prompt.includes('input') || prompt.includes('إدخال')
         ? '# اكتب حلك هنا\nvalue = input()\nprint(value)'
         : '# اكتب حلك هنا\nprint("مرحباً من Python")';
 }
 
-function setStatus(element, type, title, details = '') {
+function setStatus(element, type, title) {
     const styles = {
-        idle: ['var(--bg-interactive)', 'var(--border-subtle)', 'var(--text-secondary)'],
-        loading: ['var(--accent-soft)', 'var(--border-accent)', 'var(--accent)'],
-        success: ['var(--success-soft)', 'var(--success)', 'var(--success)'],
-        error: ['rgba(239,68,68,.09)', 'rgba(239,68,68,.45)', '#ef4444']
+        match: ['var(--success-soft)', 'var(--success)', 'var(--success)'],
+        close: ['rgba(245,158,11,.1)', 'rgba(245,158,11,.55)', '#d97706'],
+        mismatch: ['rgba(239,68,68,.09)', 'rgba(239,68,68,.45)', '#ef4444']
     };
-    const [background, border, color] = styles[type] || styles.idle;
+    const [background, border, color] = styles[type] || styles.mismatch;
     element.style.background = background;
     element.style.borderColor = border;
     element.style.color = color;
-    element.innerHTML = `<strong>${title}</strong>${details ? `<pre dir="ltr" style="white-space:pre-wrap;margin:.65rem 0 0;font-family:var(--font-mono);font-size:.78rem;color:inherit">${details}</pre>` : ''}`;
+    element.textContent = title;
+    element.hidden = false;
 }
 
-function unlockLearningFlow() {
-    document.querySelectorAll('.reveal-toggle').forEach(button => {
-        if (button.textContent.includes('الحل')) {
-            button.disabled = false;
-            button.removeAttribute('aria-disabled');
-            button.style.opacity = '1';
-            button.title = '';
-        }
-    });
-    document.querySelectorAll('[data-runner-hint]').forEach(button => {
-        button.disabled = false;
-        button.style.opacity = '1';
-    });
+function outputSimilarity(actual, expected) {
+    const tokens = value => value.toLocaleLowerCase()
+        .match(/[\p{L}\p{N}_]+|[^\s]/gu) || [];
+    const actualTokens = new Set(tokens(actual));
+    const expectedTokens = new Set(tokens(expected));
+    if (!actualTokens.size || !expectedTokens.size) return 0;
+    const shared = [...actualTokens].filter(token => expectedTokens.has(token)).length;
+    return shared / Math.max(actualTokens.size, expectedTokens.size);
 }
 
-function lockSolution() {
-    document.querySelectorAll('.reveal-toggle').forEach(button => {
-        if (button.textContent.includes('الحل')) {
-            button.disabled = true;
-            button.setAttribute('aria-disabled', 'true');
-            button.style.opacity = '.48';
-            button.title = 'اكتب محاولة وشغّلها أولاً';
-        }
-    });
+function classifyOutput(actual, expected, hasError) {
+    if (hasError || !actual) return 'mismatch';
+    if (actual === expected) return 'match';
+    if (
+        actual.includes(expected)
+        || expected.includes(actual)
+        || outputSimilarity(actual, expected) >= 0.5
+    ) {
+        return 'close';
+    }
+    return 'mismatch';
+}
+
+function getCodeHint(level) {
+    const lines = getSolutionCode().split('\n');
+    const ratio = level === 1 ? 0.35 : 0.65;
+    const cutoff = Math.max(2, Math.ceil(lines.length * ratio));
+    const excerpt = lines.slice(0, cutoff).join('\n').trimEnd();
+    return `${excerpt}\n\n# أكمل الحل هنا`;
 }
 
 function buildRunner() {
     const questionView = document.getElementById('question-view');
-    const prompt = document.getElementById('q-prompt');
-    if (!questionView || !prompt || document.getElementById('python-runner')) return;
+    const stepsSection = document.getElementById('q-steps');
+    if (!questionView || !stepsSection || document.getElementById('python-runner')) return;
 
     const section = document.createElement('section');
     section.id = 'python-runner';
-    section.className = 'academic-card p-5 md:p-6 space-y-4';
+    section.className = 'runner-workspace';
     section.innerHTML = `
-        <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-            <div>
-                <div class="label mb-1">مساحة المحاولة</div>
-                <h2 class="text-xl font-bold text-academic-primary">اكتب الكود وشغّله داخل المتصفح</h2>
-                <p class="text-sm text-academic-secondary mt-1">المحرك يُحمّل فقط عند أول تشغيل. لا يتم إرسال كودك إلى خادم.</p>
-            </div>
-            <span id="runner-engine-state" class="text-xs font-bold text-academic-muted">المحرك غير محمّل</span>
+        <div>
+            <div class="label mb-1">مساحة المحاولة</div>
+            <h2 class="text-xl font-bold text-academic-primary">جرّب كتابة الحل</h2>
         </div>
         <label class="block">
             <span class="text-sm font-bold text-academic-primary block mb-2">كود Python</span>
-            <textarea id="runner-code" dir="ltr" spellcheck="false" aria-label="محرر كود Python" style="width:100%;min-height:260px;resize:vertical;border:1px solid #263246;border-radius:12px;background:#0b1220;color:#e2e8f0;padding:1rem;font:500 .86rem/1.75 'Fira Code',monospace;text-align:left;tab-size:4">${starterCode()}</textarea>
+            <textarea id="runner-code" class="runner-code-input" dir="ltr" spellcheck="false" aria-label="محرر كود Python">${starterCode()}</textarea>
         </label>
         <label class="block">
-            <span class="text-sm font-bold text-academic-primary block mb-2">الإدخال stdin — اختياري</span>
-            <textarea id="runner-stdin" dir="ltr" spellcheck="false" aria-label="إدخال البرنامج" placeholder="كل قيمة في سطر مستقل" style="width:100%;min-height:80px;resize:vertical;border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-interactive);color:var(--text-primary);padding:.8rem;font:500 .82rem/1.6 'Fira Code',monospace;text-align:left"></textarea>
+            <span class="text-sm font-bold text-academic-primary block mb-2">القيم التي سيقرأها البرنامج — اختيارية</span>
+            <textarea id="runner-input" class="runner-values-input" dir="ltr" spellcheck="false" aria-label="القيم التي سيقرأها البرنامج" placeholder="اكتب كل قيمة في سطر مستقل، مثلاً: 5"></textarea>
         </label>
-        <div class="flex flex-wrap gap-2">
-            <button id="runner-run" type="button" class="btn-accent px-5 py-2.5 rounded-lg font-bold"><i class="fas fa-play me-2"></i>تشغيل المحاولة</button>
-            <button id="runner-reset" type="button" class="px-5 py-2.5 rounded-lg font-bold" style="background:var(--bg-interactive);border:1px solid var(--border-subtle);color:var(--text-primary)"><i class="fas fa-rotate-left me-2"></i>إعادة المحاولة</button>
-            <button data-runner-hint="1" type="button" disabled class="px-4 py-2.5 rounded-lg font-bold" style="opacity:.45;background:var(--bg-interactive);border:1px solid var(--border-subtle);color:var(--text-primary)">التلميح الأول</button>
-            <button data-runner-hint="2" type="button" disabled class="px-4 py-2.5 rounded-lg font-bold" style="opacity:.45;background:var(--bg-interactive);border:1px solid var(--border-subtle);color:var(--text-primary)">التلميح الثاني</button>
+        <div class="runner-actions">
+            <button id="runner-run" type="button" class="btn-accent px-5 py-2.5 rounded-lg font-bold"><i class="fas fa-play me-2"></i>تشغيل</button>
+            <button id="runner-reset" type="button" class="runner-secondary-button"><i class="fas fa-rotate-left me-2"></i>مسح</button>
+            <button data-runner-hint="1" type="button" class="runner-secondary-button">تلميح برمجي 1</button>
+            <button data-runner-hint="2" type="button" class="runner-secondary-button">تلميح برمجي 2</button>
         </div>
-        <div id="runner-hint" hidden class="p-4 rounded-lg text-sm" style="background:var(--accent-soft);border:1px solid var(--border-accent);color:var(--text-primary)"></div>
-        <div id="runner-result" role="status" aria-live="polite" class="p-4 rounded-lg text-sm" style="border:1px solid var(--border-subtle)"></div>`;
+        <div id="runner-hint" hidden class="runner-hint"></div>
+        <div id="runner-result" hidden role="status" aria-live="polite" class="runner-result"></div>`;
 
-    prompt.insertAdjacentElement('afterend', section);
-    lockSolution();
+    stepsSection.insertAdjacentElement('afterend', section);
 
     const code = document.getElementById('runner-code');
-    const stdin = document.getElementById('runner-stdin');
+    const input = document.getElementById('runner-input');
     const result = document.getElementById('runner-result');
-    const engineState = document.getElementById('runner-engine-state');
     const runButton = document.getElementById('runner-run');
     const initialCode = code.value;
-    setStatus(result, 'idle', 'اكتب محاولة ثم اضغط تشغيل.');
 
     runButton.addEventListener('click', async () => {
         const source = code.value.trim();
         if (!source) {
-            setStatus(result, 'error', 'المحرر فارغ', 'اكتب كود Python أولاً.');
+            setStatus(result, 'mismatch', 'غير مطابق');
             return;
         }
 
-        unlockLearningFlow();
         runButton.disabled = true;
-        engineState.textContent = 'جارٍ تحميل المحرك…';
-        setStatus(result, 'loading', 'جارٍ تشغيل الكود…');
 
         try {
             const pyodide = await getPyodide();
-            engineState.textContent = 'المحرك جاهز';
-            const inputs = stdin.value.replace(/\r\n/g, '\n').split('\n');
+            const inputs = input.value.replace(/\r\n/g, '\n').split('\n');
             let inputIndex = 0;
             let stdout = '';
             let stderr = '';
@@ -180,20 +185,16 @@ builtins.input = _academy_input
 
             const actual = normalizeOutput(stdout);
             const expected = getExpectedOutput();
-            if (stderr.trim()) {
-                setStatus(result, 'error', 'اكتمل التشغيل مع رسائل خطأ', stderr.trim());
-            } else if (expected && actual === expected) {
-                setStatus(result, 'success', 'نجحت المحاولة واجتازت المخرجات المتوقعة', actual || 'تم التنفيذ بدون مخرجات.');
-                const completeButton = document.getElementById('complete-btn');
-                if (completeButton && completeButton.textContent.includes('تم الإنجاز')) completeButton.click();
-            } else if (expected) {
-                setStatus(result, 'error', 'المحاولة تعمل، لكن الناتج لا يطابق المتوقع', `الناتج الفعلي:\n${actual || '(فارغ)'}\n\nالناتج المتوقع:\n${expected}`);
-            } else {
-                setStatus(result, 'success', 'تم تشغيل الكود بنجاح', actual || 'تم التنفيذ بدون مخرجات.');
-            }
+            const classification = classifyOutput(actual, expected, Boolean(stderr.trim()));
+            const labels = {
+                match: 'مطابق',
+                close: 'قريب',
+                mismatch: 'غير مطابق'
+            };
+            setStatus(result, classification, labels[classification]);
         } catch (error) {
-            engineState.textContent = 'المحرك جاهز للمحاولة مجددًا';
-            setStatus(result, 'error', 'تعذر تنفيذ الكود', String(error?.message || error));
+            console.error('[PythonRunner]', error);
+            setStatus(result, 'mismatch', 'غير مطابق');
         } finally {
             runButton.disabled = false;
         }
@@ -201,27 +202,24 @@ builtins.input = _academy_input
 
     document.getElementById('runner-reset').addEventListener('click', () => {
         code.value = initialCode;
-        stdin.value = '';
-        setStatus(result, 'idle', 'تمت إعادة المحرر. اكتب محاولة جديدة.');
+        input.value = '';
+        result.hidden = true;
         code.focus();
     });
 
-    const steps = [...document.querySelectorAll('#q-reveals li')].map(item => item.textContent.trim()).filter(Boolean);
     document.querySelectorAll('[data-runner-hint]').forEach(button => {
         button.addEventListener('click', () => {
             const level = Number(button.dataset.runnerHint);
             const hint = document.getElementById('runner-hint');
-            const fallback = level === 1
-                ? 'قسّم المطلوب إلى خطوات صغيرة، وحدد المدخلات ثم الناتج المطلوب.'
-                : 'قارن كل سطر من ناتجك بالمخرجات المتوقعة وراجع نوع البيانات والتحويلات.';
-            hint.textContent = steps[level - 1] || fallback;
+            hint.innerHTML = '<pre dir="ltr"><code dir="ltr"></code></pre>';
+            hint.querySelector('code').textContent = getCodeHint(level);
             hint.hidden = false;
         });
     });
 }
 
 const observer = new MutationObserver(() => {
-    if (document.getElementById('q-prompt')) {
+    if (document.getElementById('q-steps')) {
         buildRunner();
         observer.disconnect();
     }
