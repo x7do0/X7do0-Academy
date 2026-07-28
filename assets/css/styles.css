@@ -118,6 +118,13 @@ section.academic-card:hover {
     color: var(--code-text);
 }
 
+.code-surface pre,
+.code-surface code {
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: isolate;
+}
+
 /* ── Progress surface ── */
 .progress-surface {
     background: var(--bg-progress);
@@ -213,10 +220,10 @@ section.academic-card:hover {
 
 /* ── Code overlay — theme-aware ── */
 .code-overlay-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    border-radius: 12px;
-    box-shadow: var(--shadow-elevated);
+    background: #0b1220;
+    border: 1px solid #263246;
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(2, 6, 23, 0.38);
     overflow: hidden;
 }
 
@@ -225,14 +232,18 @@ section.academic-card:hover {
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1rem;
-    background: var(--bg-section);
-    border-bottom: 1px solid var(--border-subtle);
+    background: #111a2b;
+    border-bottom: 1px solid #263246;
+    color: #cbd5e1;
 }
 
 .code-overlay-body {
-    background: var(--bg-code);
+    background: linear-gradient(145deg, #0b1220, #0d1526);
     padding: 1.25rem;
-    color: var(--code-text);
+    color: #e2e8f0;
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: isolate;
 }
 
 /* ── Sticky Navigation ── */
@@ -310,7 +321,19 @@ code,
 .file-path,
 .output {
     direction: ltr !important;
-    unicode-bidi: embed;
+    text-align: left !important;
+    unicode-bidi: isolate;
+    writing-mode: horizontal-tb;
+}
+
+pre,
+pre code {
+    white-space: pre;
+    word-break: normal;
+    overflow-wrap: normal;
+    tab-size: 4;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
 }
 
 .inline-code {
@@ -322,6 +345,8 @@ code,
     color: var(--code-text);
     font-family: var(--font-mono);
     font-size: 0.9em;
+    direction: ltr !important;
+    text-align: left !important;
     unicode-bidi: isolate;
 }
 
