@@ -1,39 +1,45 @@
-# X7do0 Academy
+# أكاديمية X7do0
 
-Learn programming with depth.
+منصة تعليمية عربية لتعلّم البرمجة بخطوات واضحة، مع تركيز حالي على أساسيات Python والتمارين العملية وتتبع التقدّم محليًا داخل المتصفح.
 
-X7do0 Academy is an educational platform designed to build strong programming foundations through structured learning and practical training.
+## توجه المشروع
 
-## Features
+- واجهة عربية فقط.
+- تصميم Arabic-first مع دعم كامل لاتجاه RTL.
+- تجربة متجاوبة للكمبيوتر والهاتف.
+- موقع Frontend/Static في المرحلة الحالية.
+- لا توجد حسابات مستخدمين أو Backend أو قاعدة بيانات ضمن النطاق الحالي.
 
-* Structured learning experience
-* Dark & light themes
-* English & Arabic support (RTL)
-* Interactive training questions
-* Progress tracking
-* Responsive design
+## المزايا الحالية
 
-## Current Content
+- مسار منظم لتعلّم أساسيات Python.
+- دروس وأمثلة وتمارين برمجية.
+- صفحة تدريب تضم أسئلة عملية.
+- تتبع محلي لنسبة الإنجاز.
+- مظهر فاتح وداكن.
+- تنقل مخصص للهاتف.
 
-| Course      | Status |
-| ----------- | ------ |
-| Python Core | Active |
+## المحتوى المتاح
 
-## Explore
+| المسار | الحالة |
+| --- | --- |
+| أساسيات Python | متاح |
 
-Visit the live website and start learning.
-
-## Project Structure
+## بنية المشروع
 
 ```text
-courses/
+accounts/
 assets/
+courses/
 data/
 files/
-tests/
-docs/
+index.html
 ```
 
-## License
+## التشغيل
+
+المشروع ثابت ويمكن تشغيله عبر خادم محلي بسيط أو نشره على GitHub Pages. يفضّل عدم فتح الصفحات مباشرة بصيغة `file://` لأن ملفات النصوص تُحمّل عبر `fetch`.
+
+## الترخيص
 
 MIT
