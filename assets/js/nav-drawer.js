@@ -51,10 +51,7 @@ const NavDrawer = {
         if (this.currentPage === 'home') return 'home';
         if (this.currentPage === 'connect') return 'connect';
         if (this.currentPage === 'about') return 'about';
-        if (this.currentPage === 'python') return 'courses';
-        if (this.currentPage === 'python-lessons') return 'lessons';
-        if (this.currentPage?.startsWith('python-practice')) return 'practice';
-        if (this.currentPage?.startsWith('python-project')) return 'project';
+        if (this.currentPage?.startsWith('python')) return 'courses';
         return 'courses';
     },
 
@@ -62,9 +59,7 @@ const NavDrawer = {
         return [
             { key: 'home', path: this.homePath, icon: 'fa-home' },
             { key: 'courses', path: this.coursesPath, icon: 'fa-layer-group' },
-            { key: 'lessons', path: this.lessonsPath, icon: 'fa-book-open' },
-            { key: 'practice', path: this.practicePath, icon: 'fa-code' },
-            { key: 'project', path: this.projectPath, icon: 'fa-folder' },
+            { key: 'connect', path: this.connectPath, icon: 'fa-circle-ellipsis' },
         ].filter(item => item.path);
     },
 
@@ -83,7 +78,7 @@ const NavDrawer = {
         const nav = document.createElement('nav');
         nav.id = BOTTOM_NAV_ID;
         nav.className = 'mobile-bottom-nav';
-        nav.classList.add('mobile-bottom-nav--unified');
+        nav.classList.add('mobile-bottom-nav--primary');
         nav.setAttribute('aria-label', i18n.t('nav.quick_navigation'));
         nav.dataset.i18nAriaLabel = 'nav.quick_navigation';
 

@@ -135,7 +135,7 @@ export const pages = [
     data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
-    script: 'assets/js/python-practice.js',
+    scripts: ['assets/js/python-practice.js', 'assets/js/practice-category-drawer.js'],
     courseSection: 'practice',
     courseHome: '../index.html',
     lessonsHome: '../lessons/index.html',
@@ -161,7 +161,7 @@ export const pages = [
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
     highlight: true,
-    scripts: ['assets/js/python-detail.js', 'assets/js/python-runner.js'],
+    scripts: ['assets/js/python-detail.js', 'assets/js/python-runner.js', 'assets/js/practice-category-drawer.js'],
     courseSection: 'practice',
     courseHome: '../index.html',
     lessonsHome: '../lessons/index.html',
