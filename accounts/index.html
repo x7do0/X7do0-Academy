@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معي | أكاديمية X7do0</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        academic: {
+                            bg: 'var(--bg-primary)',
+                            card: 'var(--bg-card)',
+                            primary: 'var(--text-primary)',
+                            secondary: 'var(--text-secondary)',
+                            accent: 'var(--accent-primary)',
+                            muted: 'var(--text-muted)',
+                            surface: 'var(--bg-card-hover)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../assets/js/theme-manager.js"></script>
+    <script type="module">
+        import i18n from '../assets/js/i18n.js';
+        i18n.init();
+    </script>
+    <script type="module" src="../assets/js/nav-drawer.js"></script>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col"
+    data-page="connect"
+    data-nav-home="../index.html"
+    data-nav-courses="../courses/index.html"
+    data-nav-connect="./index.html">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-60 pointer-events-none"></div>
+
+    <!-- Header -->
+    <nav class="w-full py-6 px-4 navbar-sticky">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="../index.html" class="flex items-center gap-3 group">
+                    <div
+                        class="w-8 h-8 rounded bg-accent-solid flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <i class="fas fa-graduation-cap text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg tracking-tight text-academic-primary transition-colors"
+                        data-i18n="brand.name_html" data-i18n-html="true">أكاديمية
+                        <span class="text-academic-accent">X7do0</span></span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-academic-secondary">
+                <a href="../index.html" class="nav-link hover:text-academic-accent transition-colors"
+                    data-i18n="nav.home" data-nav-link="home">الرئيسية</a>
+                <a href="../courses/index.html" class="nav-link hover:text-academic-accent transition-colors"
+                    data-i18n="nav.courses" data-nav-link="courses">الدورات</a>
+                <a href="./index.html" class="nav-link hover:text-academic-accent transition-colors"
+                    data-i18n="nav.connect" data-nav-link="connect">تواصل معي</a>
+                <div class="nav-divider"></div>
+            </div>
+
+            <!-- Toggles -->
+            <button id="theme-toggle"
+                class="flex items-center justify-center hover:text-academic-accent transition-colors rounded-lg hover:bg-[var(--bg-card-hover)]"
+                aria-label="تبديل مظهر الألوان" data-i18n-aria-label="controls.theme_toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <!-- Hamburger (mobile only) -->
+            <button id="hamburger-btn"
+                class="md:hidden flex items-center justify-center rounded-lg hover:bg-[var(--bg-card-hover)] transition-colors text-academic-secondary hover:text-academic-accent"
+                aria-label="فتح قائمة التنقل" data-i18n-aria-label="nav.open_menu"
+                aria-expanded="false"
+                aria-controls="mobile-nav-drawer">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center justify-center px-4 py-12 w-full max-w-4xl mx-auto">
+
+        <header class="mb-12 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-academic-primary mb-4" data-i18n="connect_title">تواصل معي</h1>
+            <p class="text-academic-secondary max-w-md mx-auto" data-i18n="connect_desc">
+                للأسئلة أو التعاون، تواصل معي عبر هذه المنصات.
+            </p>
+        </header>
+
+        <!-- Accounts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+
+            <!-- Box 1: Telegram (Personal) - Fixed RTL layout alignment with logical ms-auto -->
+            <a href="https://t.me/ctedev" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-4 p-4 rounded-xl bg-academic-card border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-blue-400 dark:hover:border-blue-500 transition-all group">
+                <div
+                    class="w-12 h-12 rounded-lg bg-academic-surface flex items-center justify-center text-blue-500 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fab fa-telegram-plane"></i>
+                </div>
+                <div class="text-start font-sans">
+                    <h3 class="font-bold text-academic-primary group-hover:text-blue-600 transition-colors">تيليغرام
+                    </h3>
+                    <p class="text-xs text-academic-secondary" data-i18n="desc_tg_personal">الحساب الشخصي</p>
+                </div>
+                <i class="fas fa-external-link-alt ms-auto text-academic-muted group-hover:text-blue-400"></i>
+            </a>
+
+            <!-- Box 2: Telegram Channel -->
+            <a href="https://t.me/x7do0eng" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-4 p-4 rounded-xl bg-academic-card border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-blue-400 dark:hover:border-blue-500 transition-all group">
+                <div
+                    class="w-12 h-12 rounded-lg bg-academic-surface flex items-center justify-center text-blue-500 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <div class="text-start font-sans">
+                    <h3 class="font-bold text-academic-primary group-hover:text-blue-600 transition-colors">قناة تيليغرام
+                        Channel</h3>
+                    <p class="text-xs text-academic-secondary" data-i18n="desc_tg_channel">القناة الرسمية</p>
+                </div>
+                <i class="fas fa-external-link-alt ms-auto text-academic-muted group-hover:text-blue-400"></i>
+            </a>
+
+            <!-- Box 3: YouTube -->
+            <a href="https://www.youtube.com/@X7do0eng" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-4 p-4 rounded-xl bg-academic-card border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-red-200 dark:hover:border-red-500 transition-all group">
+                <div
+                    class="w-12 h-12 rounded-lg bg-academic-surface flex items-center justify-center text-red-600 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="text-start font-sans">
+                    <h3 class="font-bold text-academic-primary group-hover:text-red-700 transition-colors">يوتيوب</h3>
+                    <p class="text-xs text-academic-secondary" data-i18n="desc_youtube">شروحات ودورات مرئية</p>
+                </div>
+                <i class="fas fa-external-link-alt ms-auto text-academic-muted group-hover:text-red-400"></i>
+            </a>
+
+            <!-- Box 4: Instagram -->
+            <a href="https://instagram.com/x7do0" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-4 p-4 rounded-xl bg-academic-card border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-pink-300 dark:hover:border-pink-500 transition-all group">
+                <div
+                    class="w-12 h-12 rounded-lg bg-academic-surface flex items-center justify-center text-pink-600 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="text-start font-sans">
+                    <h3 class="font-bold text-academic-primary group-hover:text-pink-600 transition-colors">إنستغرام
+                    </h3>
+                    <p class="text-xs text-academic-secondary" data-i18n="desc_instagram">الحساب الشخصي</p>
+                </div>
+                <i class="fas fa-external-link-alt ms-auto text-academic-muted group-hover:text-pink-400"></i>
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer
+        class="py-8 text-center text-academic-muted text-xs font-mono tracking-widest uppercase mt-auto">
+        <!-- Copyright Removed -->
+    </footer>
+
+    <!-- Theme & Language Logic -->
+    <!-- Script moved to head for anti-flash -->
+
+</body>
+
+</html>
