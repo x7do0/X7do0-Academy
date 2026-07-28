@@ -1,14 +1,9 @@
 /**
- * Theme Manager
- * Handles the color theme while the interface remains Arabic and RTL.
+ * يدير مظهر الألوان، بينما تبقى الواجهة عربية واتجاهها من اليمين إلى اليسار.
  */
 
-// Immediate Execution to prevent flash
 (function () {
     const savedTheme = localStorage.getItem('theme') || 'light';
-    localStorage.removeItem('lang');
-
-    // Apply immediately to root element
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.documentElement.lang = 'ar';
     document.documentElement.dir = 'rtl';
@@ -22,10 +17,7 @@ class ThemeManager {
     }
 
     init() {
-        // Highlight Active Nav
         this.highlightActiveNav();
-
-        // Event Listeners
         this.themeToggle = document.getElementById('theme-toggle');
 
         if (this.themeToggle) {
@@ -35,24 +27,23 @@ class ThemeManager {
                 this.setTheme(newTheme);
             });
         }
-
     }
 
     highlightActiveNav() {
         const currentPage = document.body.dataset.page;
-        if (currentPage) {
-            const navKey = document.body.dataset.navSection || currentPage;
-            const activeLinks = document.querySelectorAll(`[data-nav-link="${navKey}"]`);
-            activeLinks.forEach(link => {
-                link.classList.add('nav-link-active');
-            });
-        }
+        if (!currentPage) return;
+
+        const navKey = document.body.dataset.navSection || currentPage;
+        document.querySelectorAll(`[data-nav-link="${navKey}"]`).forEach(link => {
+            link.classList.add('nav-link-active');
+        });
     }
 
     setTheme(theme) {
         this.html.dataset.theme = theme;
         localStorage.setItem('theme', theme);
         this.updateIcons();
+
         const hljsLink = document.getElementById('hljs-theme-link');
         if (hljsLink) {
             hljsLink.href = theme === 'dark'
@@ -62,19 +53,9 @@ class ThemeManager {
     }
 
     updateIcons() {
-        const theme = this.html.dataset.theme || 'light';
-
-        if (this.themeToggle) {
-            const icon = this.themeToggle.querySelector('i');
-            if (icon) {
-                if (theme === 'dark') {
-                    icon.className = 'fas fa-sun';
-                } else {
-                    icon.className = 'fas fa-moon';
-                }
-            }
-        }
-
+        const icon = this.themeToggle?.querySelector('i');
+        if (!icon) return;
+        icon.className = this.html.dataset.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
 }
 
