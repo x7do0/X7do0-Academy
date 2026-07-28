@@ -1,195 +1,122 @@
 {
-    "nav": {
-        "home": "الرئيسية",
-        "courses": "الدورات",
-        "connect": "اتصل بنا",
-        "open_menu": "فتح قائمة التنقل",
-        "close_menu": "إغلاق قائمة التنقل",
-        "menu_label": "قائمة التنقل",
-        "quick_navigation": "التنقل السريع"
-    },
-    "controls": {
-        "theme_toggle": "تبديل مظهر الألوان"
-    },
-    "brand": {
-        "name_html": "أكاديمية <span class=\"text-academic-accent\">X7do0</span>"
-    },
-    "preview": {
-        "title": "المعاينة"
-    },
-    "home": {
-        "welcome_label": "مرحباً",
-        "hero_title_html": "أتقن التعقيد بـ <br/> <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400\">دقة وهدوء</span>",
-        "hero_desc": "فلسفة تعليمية مبنية على البساطة، العمق، والوضوح. نركز على المفاهيم الأساسية التي تقود هندسة البرمجيات الحديثة.",
-        "cta_start": "ابدأ التعلم",
-        "cta_contact": "تواصل معي",
-        "features": {
-            "struct_title": "تعلم منهجي",
-            "struct_desc": "مسارات مصممة بعناية لبناء المعرفة طبقة تلو الأخرى.",
-            "code_title": "كود تطبيقي",
-            "code_desc": "أمثلة واقعية وتحديات تفاعلية.",
-            "deep_title": "أساسيات عميقة",
-            "deep_desc": "فهم الـ 'لماذا' خلف الكود."
-        },
-        "instructor": {
-            "title": "عن المدرب",
-            "bio": "مهندس ومدرّب. أبني أكاديمية X7do0 لسد الفجوة بين النظرية الأكاديمية والهندسة العملية.",
-            "link": "المزيد عني ←"
-        }
-    },
-    "dashboard": {
-        "hero_title": "تعلّم البرمجة بخطوات واضحة",
-        "hero_description": "دروس عملية، تمارين واقعية، وتقدّم مستمر من الأساسيات إلى مستوى أقوى.",
-        "start_learning": "ابدأ التعلّم",
-        "paths_title": "مسارات التعلّم",
-        "view_all": "عرض الكل",
-        "path_python": "بايثون",
-        "path_python_desc": "من الأساسيات إلى بناء الحلول",
-        "continue_path": "متابعة المسار",
-        "planned": "قريباً",
-        "path_undecided": "سيتم تحديد المسار لاحقاً",
-        "unavailable": "غير متاح حالياً",
-        "progress_title": "تقدّمك",
-        "details": "عرض التفاصيل",
-        "by_course": "حسب الدورة",
-        "overall_progress": "التقدّم العام",
-        "level": "المستوى الحالي",
-        "level_beginner": "مبتدئ",
-        "level_intermediate": "متوسط",
-        "level_advanced": "متقدم",
-        "keep_going": "استمر، أنت بالطريق الصحيح",
-        "completed": "التمارين المكتملة",
-        "remaining": "التمارين المتبقية",
-        "total": "إجمالي التمارين",
-        "exercise": "تمرين",
-        "more": "المزيد"
-    },
-    "courses": {
-        "title": "الدورات المتاحة",
-        "desc": "اختر مسارك لتبدأ الرحلة. دوراتنا مصممة للعمق والاستدامة.",
-        "back_home": "العودة للرئيسية",
-        "catalog": "فهرس الدورات",
-        "active_badge": "نشط",
-        "planned_badge": "مخطط",
-        "coming_soon": "قريباً",
-        "lessons_count": "درس",
-        "python": {
-            "title": "أساسيات بايثون",
-            "desc": "أتقن لغة الحوسبة الحديثة. من المتغيرات إلى هياكل البيانات المعقدة، مصممة بوضوح."
-        },
-        "cpp": {
-            "title": "أنظمة C++",
-            "desc": "تعمق في إدارة الذاكرة والحوسبة عالية الأداء."
-        },
-        "csharp": {
-            "title": "تطوير C#",
-            "desc": "ابنِ تطبيقات قوية باستخدام منصة .NET."
-        }
-    },
+  "nav": {
+    "home": "الرئيسية",
+    "courses": "الدورات",
+    "lessons": "الدروس",
+    "practice": "التمارين",
+    "connect": "تواصل معي",
+    "open_menu": "فتح قائمة التنقل",
+    "close_menu": "إغلاق قائمة التنقل",
+    "menu_label": "قائمة التنقل",
+    "quick_navigation": "التنقل السريع"
+  },
+  "controls": {
+    "theme_toggle": "تبديل مظهر الألوان"
+  },
+  "brand": {
+    "name_html": "أكاديمية <span class=\"text-academic-accent\">X7do0</span>"
+  },
+  "preview": {
+    "title": "المعاينة"
+  },
+  "dashboard": {
+    "hero_title": "تعلّم البرمجة بخطوات واضحة",
+    "hero_description": "دروس عملية، وتمارين واقعية، وتقدّم مستمر من الأساسيات إلى بناء حلول أقوى.",
+    "start_learning": "ابدأ التعلّم",
+    "paths_title": "مسارات التعلّم",
+    "view_all": "عرض الكل",
+    "path_python": "بايثون",
+    "path_python_desc": "من الأساسيات إلى بناء الحلول",
+    "continue_path": "متابعة المسار",
+    "progress_title": "تقدّمك",
+    "by_course": "حسب الدورة",
+    "overall_progress": "نسبة الإنجاز",
+    "path_status": "حالة المسار",
+    "status_not_started": "لم يبدأ",
+    "status_in_progress": "قيد التقدّم",
+    "status_completed": "مكتمل",
+    "status_note": "تُحدَّث الحالة حسب نسبة الإنجاز",
+    "completed": "التمارين المكتملة",
+    "remaining": "التمارين المتبقية",
+    "total": "إجمالي التمارين",
+    "exercise": "تمرين",
+    "more": "المزيد"
+  },
+  "courses": {
+    "title": "الدورات المتاحة",
+    "desc": "ابدأ بمسار بايثون المتاح حاليًا، وتقدّم عبر الدروس والتمارين بخطوات منظّمة.",
+    "active_badge": "متاح",
+    "lessons_count": "درسًا",
+    "python": {
+      "title": "أساسيات بايثون",
+      "desc": "تعلّم بايثون من المتغيرات إلى هياكل البيانات عبر دروس واضحة وتمارين عملية."
+    }
+  },
   "page_title": {
     "home": "أكاديمية X7do0",
-    "courses": "الدورات المتاحة | أكاديمية X7do0",
+    "courses": "الدورات | أكاديمية X7do0",
     "python": "أساسيات بايثون | أكاديمية X7do0",
-    "python-practice": "أسئلة بايثون التدريبية | أكاديمية X7do0",
+    "python-practice": "تمارين بايثون | أكاديمية X7do0",
     "python-practice-detail": "سؤال بايثون | أكاديمية X7do0",
     "connect": "تواصل معي | أكاديمية X7do0"
   },
-    "connect": {
-        "title": "تواصل معي",
-        "desc": "أسئلة، تعاون، أو مجرد إلقاء تحية؟ تواصل معي عبر هذه المنصات.",
-        "telegram_personal": "حسابي الشخصي",
-        "telegram_channel": "القناة الرسمية",
-        "youtube": "شروحات فيديو ودورات",
-        "instagram": "حساب شخصي"
-    },
-    "python": {
-        "name": "بايثون",
-        "notes": "ملاحظات",
-        "practice_questions": "أسئلة التدريب",
-        "notes_desc": "دروس الدورة وشرحها",
-        "practice_desc": "25 تحديا وتمرين برمجي",
-        "header_notes_html": "ملاحظات <span class=\"text-academic-accent\">بايثون</span>",
-        "header_practice_html": "أسئلة التدريب <span class=\"text-academic-accent\">بايثون</span>",
-        "header_sub": "أساسيات بايثون الأكاديمية",
-        "files_resources": "الملفات والمصادر",
-        "lesson_code": "كود الدرس",
-        "challenge": "التحدي البرمجي",
-        "practice": {
-            "categories": "التصنيفات",
-            "progress": "التقدم",
-            "resume": "استئناف التعلم",
-            "search": "بحث...",
-            "search_label": "ابحث في تحديات بايثون",
-            "search_placeholder": "ابحث في تحديات بايثون (مثل: الحلقات، القوائم)...",
-            "all_questions": "جميع الأسئلة",
-            "back_to_questions": "العودة إلى أسئلة التدريب",
-            "continue_learning": "استمر في التعلم",
-            "all_completed": "تم إنجاز الكل",
-            "completed_count": "{completed} / {total} مكتمل",
-            "no_results_title": "لا توجد نتائج",
-            "no_results_desc": "جرّب تعديل البحث أو الفلاتر.",
-            "select_question": "اختر سؤالا لعرض التفاصيل.",
-            "unknown_category": "غير معروف",
-            "filters": "فلاتر التدريب"
-        },
-        "question": {
-            "label": "السؤال",
-            "prompt": "المطلوب",
-            "steps": "خطوات التنفيذ",
-            "solution": "الحل",
-            "output": "المخرجات",
-            "show_steps": "عرض الخطوات",
-            "show_solution": "عرض الحل",
-            "show_output": "عرض المخرجات",
-            "mark_completed": "تم الإنجاز",
-            "mark_incomplete": "لم يكتمل بعد",
-            "status_completed": "مكتمل",
-            "status_incomplete": "غير مكتمل",
-            "previous": "السابق",
-            "next": "التالي",
-            "menu": "القائمة",
-            "error": "خطأ",
-            "invalid_id": "يرجى إدخال رقم سؤال صالح.",
-            "not_found": "السؤال #{id} غير موجود.",
-            "return_to_questions": "العودة إلى الأسئلة"
-        }
-    },
+  "connect": {
+    "title": "تواصل معي",
+    "desc": "للأسئلة أو التعاون، يمكنك التواصل معي عبر المنصات الآتية.",
+    "telegram_personal": "الحساب الشخصي",
+    "telegram_channel": "القناة الرسمية",
+    "youtube": "شروحات ودورات مرئية",
+    "instagram": "الحساب الشخصي"
+  },
+  "python": {
+    "name": "بايثون",
+    "notes": "الدروس",
+    "practice_questions": "التمارين",
+    "notes_desc": "دروس المسار وشروحاته",
+    "practice_desc": "25 تمرينًا وتحديًا برمجيًا",
+    "header_notes_html": "دروس <span class=\"text-academic-accent\">بايثون</span>",
+    "header_practice_html": "تمارين <span class=\"text-academic-accent\">بايثون</span>",
+    "header_sub": "مسار بايثون",
+    "files_resources": "الملفات والمصادر",
+    "lesson_code": "كود الدرس",
+    "challenge": "التحدي البرمجي",
     "practice": {
-        "categories": "التصنيفات",
-        "progress": "التقدم",
-        "resume": "استئناف التعلم",
-        "search": "بحث...",
-        "search_label": "ابحث في تحديات بايثون",
-        "search_placeholder": "ابحث في تحديات بايثون (مثل: الحلقات، القوائم)...",
-        "all_questions": "جميع الأسئلة",
-        "back_to_questions": "العودة إلى أسئلة التدريب",
-        "continue_learning": "استمر في التعلم",
-        "all_completed": "تم إنجاز الكل",
-        "completed_count": "{completed} / {total} مكتمل",
-        "no_results_title": "لا توجد نتائج",
-        "no_results_desc": "جرّب تعديل البحث أو الفلاتر.",
-        "select_question": "اختر سؤالا لعرض التفاصيل.",
-        "unknown_category": "غير معروف",
-        "filters": "فلاتر التدريب"
+      "categories": "التصنيفات",
+      "progress": "نسبة الإنجاز",
+      "resume": "متابعة التعلّم",
+      "search_label": "البحث في تمارين بايثون",
+      "search_placeholder": "ابحث في التمارين، مثل الحلقات أو القوائم...",
+      "all_questions": "جميع التمارين",
+      "back_to_questions": "العودة إلى التمارين",
+      "continue_learning": "متابعة التعلّم",
+      "all_completed": "أكملت جميع التمارين",
+      "completed_count": "{completed} من {total} مكتمل",
+      "no_results_title": "لا توجد نتائج",
+      "no_results_desc": "جرّب تغيير عبارة البحث أو التصنيف.",
+      "select_question": "اختر تمرينًا لعرض تفاصيله.",
+      "unknown_category": "غير مصنّف",
+      "filters": "خيارات تصفية التمارين"
     },
     "question": {
-        "label": "السؤال",
-        "prompt": "المطلوب",
-        "steps": "خطوات التنفيذ",
-        "solution": "الحل",
-        "output": "المخرجات",
-        "show_solution": "عرض الحل",
-        "expected_output": "عرض المخرجات المتوقعة",
-        "mark_completed": "تم الإنجاز",
-        "mark_incomplete": "لم يكتمل بعد",
-        "status_completed": "مكتمل",
-        "status_incomplete": "غير مكتمل",
-        "previous": "السابق",
-        "next": "التالي",
-        "menu": "القائمة",
-        "error": "خطأ",
-        "invalid_id": "يرجى إدخال رقم سؤال صالح.",
-        "not_found": "السؤال #{id} غير موجود.",
-        "return_to_questions": "العودة إلى الأسئلة"
+      "label": "التمرين",
+      "prompt": "المطلوب",
+      "steps": "خطوات التنفيذ",
+      "solution": "الحل",
+      "output": "المخرجات",
+      "show_steps": "عرض الخطوات",
+      "show_solution": "عرض الحل",
+      "show_output": "عرض المخرجات",
+      "mark_completed": "تحديد كمكتمل",
+      "mark_incomplete": "تحديد كغير مكتمل",
+      "status_completed": "مكتمل",
+      "status_incomplete": "غير مكتمل",
+      "previous": "السابق",
+      "next": "التالي",
+      "menu": "قائمة التمارين",
+      "error": "تعذّر عرض التمرين",
+      "invalid_id": "رقم التمرين غير صالح.",
+      "not_found": "التمرين رقم {id} غير موجود.",
+      "return_to_questions": "العودة إلى التمارين"
     }
+  }
 }

@@ -22,6 +22,12 @@ function getCourseProgress(course) {
     };
 }
 
+function getPathStatusKey(percentage) {
+    if (percentage === 0) return 'dashboard.status_not_started';
+    if (percentage === 100) return 'dashboard.status_completed';
+    return 'dashboard.status_in_progress';
+}
+
 function renderHomeProgress() {
     const progressByCourse = courses.map(course => ({
         ...course,
@@ -41,12 +47,7 @@ function renderHomeProgress() {
     const total = progressByCourse.reduce((sum, course) => sum + course.total, 0);
     const remaining = Math.max(total - completed, 0);
     const percentage = total ? Math.round((completed / total) * 100) : 0;
-    const levelKey = percentage >= 80
-        ? 'dashboard.level_advanced'
-        : percentage >= 35
-            ? 'dashboard.level_intermediate'
-            : 'dashboard.level_beginner';
-    const level = i18n.t(levelKey);
+    const status = i18n.t(getPathStatusKey(percentage));
 
     document.querySelectorAll('[data-home-progress-value]').forEach(element => {
         element.textContent = `${percentage}%`;
@@ -65,7 +66,7 @@ function renderHomeProgress() {
         completed,
         total,
         remaining,
-        level,
+        status,
     };
 
     Object.entries(values).forEach(([key, value]) => {

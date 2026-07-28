@@ -5,44 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سؤال بايثون | أكاديمية X7do0</title>
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/variables.css">
     <link rel="stylesheet" href="../../../assets/css/styles.css">
     <link rel="stylesheet" href="../../../assets/css/python-practice.css">
-
-    <!-- Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-theme-link">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>if(document.documentElement.dataset.theme==='dark'){const l=document.getElementById('hljs-theme-link');if(l)l.href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css'}</script>
 
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ["Outfit", "sans-serif"],
-                        mono: ["Fira Code", "monospace"],
-                        arabic: ["Noto Sans Arabic", "sans-serif"],
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                        arabic: ['Noto Sans Arabic', 'sans-serif'],
                     },
                     colors: {
                         academic: {
-                            bg: "var(--bg-primary)",
-                            card: "var(--bg-card)",
-                            primary: "var(--text-primary)",
-                            secondary: "var(--text-secondary)",
-                            accent: "var(--accent-primary)",
-                            muted: "var(--text-muted)",
+                            bg: 'var(--bg-primary)',
+                            card: 'var(--bg-card)',
+                            primary: 'var(--text-primary)',
+                            secondary: 'var(--text-secondary)',
+                            accent: 'var(--accent-primary)',
+                            muted: 'var(--text-muted)',
                         }
                     }
                 }
@@ -57,100 +48,60 @@
     data-nav-section="courses"
     data-nav-home="../../../index.html"
     data-nav-courses="../../index.html"
+    data-nav-practice="./index.html"
     data-nav-connect="../../../accounts/index.html">
 
-    <!-- Background Elements -->
     <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-60 pointer-events-none"></div>
 
-    <!-- Global Sticky Nav -->
     <nav class="w-full py-6 px-4 navbar-sticky">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <a href="../../../index.html" class="flex items-center gap-3 group">
-                    <div
-                        class="w-8 h-8 rounded bg-accent-solid flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
-                        <i class="fas fa-graduation-cap text-sm"></i>
-                    </div>
-                    <span class="font-bold text-lg tracking-tight text-academic-primary transition-colors"
-                        data-i18n="brand.name_html" data-i18n-html="true">أكاديمية
-                        <span class="text-academic-accent">X7do0</span></span>
-                </a>
-            </div>
+            <a href="../../../index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded bg-accent-solid flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform"><i class="fas fa-graduation-cap text-sm"></i></div>
+                <span class="font-bold text-lg tracking-tight text-academic-primary transition-colors" data-i18n="brand.name_html" data-i18n-html="true">أكاديمية <span class="text-academic-accent">X7do0</span></span>
+            </a>
+
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-academic-secondary">
-                <a href="../../../index.html" class="nav-link hover:text-academic-accent transition-colors"
-                    data-i18n="nav.home" data-nav-link="home">الرئيسية</a>
-                <a href="../../index.html" class="nav-link hover:text-academic-accent transition-colors"
-                    data-i18n="nav.courses" data-nav-link="courses">الدورات</a>
-                <a href="../../../accounts/index.html"
-                    class="nav-link hover:text-academic-accent transition-colors"
-                    data-i18n="nav.connect" data-nav-link="connect">تواصل معي</a>
+                <a href="../../../index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.home" data-nav-link="home">الرئيسية</a>
+                <a href="../../index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.courses" data-nav-link="courses">الدورات</a>
+                <a href="../../../accounts/index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.connect" data-nav-link="connect">تواصل معي</a>
                 <div class="nav-divider"></div>
             </div>
 
-            <!-- Toggles -->
-            <button id="theme-toggle"
-                class="flex items-center justify-center hover:text-academic-accent transition-colors rounded-lg hover:bg-[var(--bg-card-hover)]"
-                aria-label="تبديل مظهر الألوان" data-i18n-aria-label="controls.theme_toggle">
-                <i class="fas fa-moon"></i>
-            </button>
-
-            <!-- Hamburger (mobile only) -->
-            <button id="hamburger-btn"
-                class="md:hidden flex items-center justify-center rounded-lg hover:bg-[var(--bg-card-hover)] transition-colors text-academic-secondary hover:text-academic-accent"
-                aria-label="فتح قائمة التنقل" data-i18n-aria-label="nav.open_menu"
-                aria-expanded="false"
-                aria-controls="mobile-nav-drawer">
-                <i class="fas fa-bars text-lg"></i>
-            </button>
+            <button id="theme-toggle" class="flex items-center justify-center hover:text-academic-accent transition-colors rounded-lg hover:bg-[var(--bg-card-hover)]" aria-label="تبديل مظهر الألوان" data-i18n-aria-label="controls.theme_toggle"><i class="fas fa-moon"></i></button>
+            <button id="hamburger-btn" class="md:hidden flex items-center justify-center rounded-lg hover:bg-[var(--bg-card-hover)] transition-colors text-academic-secondary hover:text-academic-accent" aria-label="فتح قائمة التنقل" data-i18n-aria-label="nav.open_menu" aria-expanded="false" aria-controls="mobile-nav-drawer"><i class="fas fa-bars text-lg"></i></button>
         </div>
     </nav>
 
     <main class="max-w-6xl mx-auto px-4 py-8">
-        <!-- Breadcrumb Navigation -->
         <nav class="mb-6">
             <div class="flex items-center gap-2 text-xs font-mono text-academic-muted">
-                <a href="../../../index.html" class="hover:text-academic-accent transition-colors"
-                    data-i18n="nav_home">الرئيسية</a>
+                <a href="../../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_home">الرئيسية</a>
                 <span>/</span>
-                <a href="../../index.html" class="hover:text-academic-accent transition-colors"
-                    data-i18n="nav_courses">الدورات</a>
+                <a href="../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_courses">الدورات</a>
                 <span>/</span>
-                <a href="../index.html" class="hover:text-academic-accent transition-colors"
-                    data-i18n="python_name">بايثون</a>
+                <a href="../index.html" class="hover:text-academic-accent transition-colors" data-i18n="python_name">بايثون</a>
                 <span>/</span>
-                <a href="./index.html" class="hover:text-academic-accent transition-colors"
-                    data-i18n="python_practice_card_title">أسئلة التدريب</a>
+                <a href="./index.html" class="hover:text-academic-accent transition-colors" data-i18n="python_practice_card_title">التمارين</a>
                 <span>/</span>
-                <span class="text-academic-secondary" data-i18n="question.label">السؤال</span>
+                <span class="text-academic-secondary" data-i18n="python.question.label">التمرين</span>
             </div>
         </nav>
 
-        <!-- Back Navigation -->
         <div class="mb-8">
-            <a href="./index.html"
-                class="text-academic-secondary hover:text-academic-accent font-bold text-sm flex items-center gap-2">
+            <a href="./index.html" class="text-academic-secondary hover:text-academic-accent font-bold text-sm flex items-center gap-2">
                 <i class="fas fa-arrow-left rtl:rotate-180"></i>
-                <span data-i18n="practice.back_to_questions">العودة إلى أسئلة التدريب</span>
+                <span data-i18n="python.practice.back_to_questions">العودة إلى التمارين</span>
             </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <!-- Sidebar -->
-            <aside id="sidebar" class="md:col-span-1">
-                <!-- Dynamically rendered -->
-            </aside>
-
-            <!-- Question View Container -->
-            <article id="question-view" class="md:col-span-3 flex flex-col gap-6">
-                <!-- Dynamically rendered -->
-            </article>
+            <aside id="sidebar" class="md:col-span-1"></aside>
+            <article id="question-view" class="md:col-span-3 flex flex-col gap-6"></article>
         </div>
     </main>
 
     <footer class="mt-12 py-12 text-center relative z-10">
-        <div
-            class="divider-gradient max-w-6xl mx-auto mb-8">
-        </div>
+        <div class="divider-gradient max-w-6xl mx-auto mb-8"></div>
         <p class="text-academic-secondary text-[10px] tracking-[0.3em] uppercase font-bold">X7do0eng</p>
     </footer>
 

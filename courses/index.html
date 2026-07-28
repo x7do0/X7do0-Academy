@@ -5,21 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الدورات | أكاديمية X7do0</title>
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
 
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -55,139 +48,63 @@
     data-page="courses"
     data-nav-home="../index.html"
     data-nav-courses="./index.html"
+    data-nav-practice="./python/practice/index.html"
     data-nav-connect="../accounts/index.html">
 
-    <!-- Background Elements -->
     <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-60 pointer-events-none"></div>
 
-    <!-- Header -->
     <nav class="w-full py-6 px-4 navbar-sticky">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <a href="../index.html" class="flex items-center gap-3 group">
-                    <div
-                        class="w-8 h-8 rounded bg-accent-solid flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
-                        <i class="fas fa-graduation-cap text-sm"></i>
-                    </div>
-                    <span class="font-bold text-lg tracking-tight text-academic-primary transition-colors"
-                        data-i18n="brand.name_html" data-i18n-html="true">أكاديمية
-                        <span class="text-academic-accent">X7do0</span></span>
-                </a>
-            </div>
+            <a href="../index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded bg-accent-solid flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                    <i class="fas fa-graduation-cap text-sm"></i>
+                </div>
+                <span class="font-bold text-lg tracking-tight text-academic-primary transition-colors" data-i18n="brand.name_html" data-i18n-html="true">أكاديمية <span class="text-academic-accent">X7do0</span></span>
+            </a>
+
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-academic-secondary">
-                <a href="../index.html" class="nav-link hover:text-academic-accent transition-colors"
-                    data-i18n="nav.home" data-nav-link="home">الرئيسية</a>
-                <a href="./index.html" class="nav-link hover:text-academic-accent transition-colors"
-                    data-i18n="nav.courses" data-nav-link="courses">الدورات</a>
-                <a href="../accounts/index.html" class="nav-link hover:text-academic-accent transition-colors"
-                    data-i18n="nav.connect" data-nav-link="connect">تواصل معي</a>
+                <a href="../index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.home" data-nav-link="home">الرئيسية</a>
+                <a href="./index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.courses" data-nav-link="courses">الدورات</a>
+                <a href="../accounts/index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.connect" data-nav-link="connect">تواصل معي</a>
                 <div class="nav-divider"></div>
             </div>
 
-            <!-- Toggles -->
-            <button id="theme-toggle"
-                class="flex items-center justify-center hover:text-academic-accent transition-colors rounded-lg hover:bg-[var(--bg-card-hover)]"
-                aria-label="تبديل مظهر الألوان" data-i18n-aria-label="controls.theme_toggle">
+            <button id="theme-toggle" class="flex items-center justify-center hover:text-academic-accent transition-colors rounded-lg hover:bg-[var(--bg-card-hover)]" aria-label="تبديل مظهر الألوان" data-i18n-aria-label="controls.theme_toggle">
                 <i class="fas fa-moon"></i>
             </button>
 
-            <!-- Hamburger (mobile only) -->
-            <button id="hamburger-btn"
-                class="md:hidden flex items-center justify-center rounded-lg hover:bg-[var(--bg-card-hover)] transition-colors text-academic-secondary hover:text-academic-accent"
-                aria-label="فتح قائمة التنقل" data-i18n-aria-label="nav.open_menu"
-                aria-expanded="false"
-                aria-controls="mobile-nav-drawer">
+            <button id="hamburger-btn" class="md:hidden flex items-center justify-center rounded-lg hover:bg-[var(--bg-card-hover)] transition-colors text-academic-secondary hover:text-academic-accent" aria-label="فتح قائمة التنقل" data-i18n-aria-label="nav.open_menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
                 <i class="fas fa-bars text-lg"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
-
-        <header class="mb-12 text-center md:text-left">
-            <h1 class="text-3xl md:text-4xl font-bold text-academic-primary mb-4" data-i18n="courses_title">
-                الدورات المتاحة</h1>
-            <p class="text-academic-secondary max-w-2xl" data-i18n="courses_desc">
-                اختر مسارك لتبدأ الرحلة. صُممت الدورات للعمق والاستمرار.
-            </p>
+        <header class="mb-12 text-center md:text-start">
+            <h1 class="text-3xl md:text-4xl font-bold text-academic-primary mb-4" data-i18n="courses_title">الدورات المتاحة</h1>
+            <p class="text-academic-secondary max-w-2xl" data-i18n="courses_desc">ابدأ بمسار بايثون المتاح حاليًا، وتقدّم عبر الدروس والتمارين بخطوات منظّمة.</p>
         </header>
 
-        <!-- Courses Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- Python Course (Active) -->
-            <a href="./python/index.html"
-                class="group relative block academic-card card-accent-top overflow-hidden transform hover:-translate-y-1">
-
+            <a href="./python/index.html" class="group relative block academic-card card-accent-top overflow-hidden transform hover:-translate-y-1">
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-6">
-                        <div
-                            class="w-12 h-12 rounded-lg icon-box text-2xl">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <span
-                            class="badge-success"
-                            data-i18n="active_badge">متاح</span>
+                        <div class="w-12 h-12 rounded-lg icon-box text-2xl"><i class="fab fa-python"></i></div>
+                        <span class="badge-success" data-i18n="active_badge">متاح</span>
                     </div>
-
-                    <h2 class="text-xl font-bold text-academic-primary transition-colors mb-2"
-                        data-i18n="course_python_title">
-                        أساسيات بايثون</h2>
-                    <p class="text-sm text-academic-secondary leading-relaxed mb-6" data-i18n="course_python_desc">
-                        تعلّم لغة الحوسبة الحديثة من المتغيرات إلى هياكل البيانات المعقدة بخطوات واضحة.
-                    </p>
-
+                    <h2 class="text-xl font-bold text-academic-primary transition-colors mb-2" data-i18n="course_python_title">أساسيات بايثون</h2>
+                    <p class="text-sm text-academic-secondary leading-relaxed mb-6" data-i18n="course_python_desc">تعلّم بايثون من المتغيرات إلى هياكل البيانات عبر دروس واضحة وتمارين عملية.</p>
                     <div class="flex items-center gap-4 text-xs font-mono text-academic-muted">
-                        <span><i class="fas fa-layer-group mr-1"></i> <span id="python-lesson-count">12</span> <span
-                                data-i18n="lessons_count">درساً</span></span>
-                        <span><i class="fas fa-code mr-1"></i> تفاعلي</span>
+                        <span><i class="fas fa-layer-group me-1"></i> <span id="python-lesson-count">12</span> <span data-i18n="lessons_count">درسًا</span></span>
+                        <span><i class="fas fa-code me-1"></i> عملي</span>
                     </div>
                 </div>
-                <!-- Hover Effect Overlay -->
-                <div
-                    class="absolute inset-0 bg-[var(--accent-soft)] opacity-0 group-hover:opacity-30 pointer-events-none transition-opacity">
-                </div>
+                <div class="absolute inset-0 bg-[var(--accent-soft)] opacity-0 group-hover:opacity-30 pointer-events-none transition-opacity"></div>
             </a>
-
-            <!-- C++ Course (Coming Soon) -->
-            <div
-                class="relative block academic-card cursor-not-allowed group" style="opacity:0.65;">
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-6">
-                        <div
-                            class="w-12 h-12 rounded-lg bg-[var(--bg-interactive)] flex items-center justify-center text-[var(--text-muted)] text-2xl">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <!-- Fixed Planned Badge in dark mode -->
-                        <span
-                            class="px-2 py-1 rounded bg-[var(--accent-soft)] text-[var(--accent)] text-[10px] font-bold uppercase tracking-wider border border-[var(--accent)]"
-                            data-i18n="planned_badge">مخطط له</span>
-                    </div>
-
-                    <h2 class="text-xl font-bold text-academic-secondary mb-2" data-i18n="course_cpp_title">أنظمة C++
-                    </h2>
-                    <p class="text-sm text-academic-secondary leading-relaxed mb-6" data-i18n="course_cpp_desc">
-                        تعرّف على إدارة الذاكرة والحوسبة عالية الأداء.
-                    </p>
-
-                    <div class="flex items-center gap-4 text-xs font-mono text-academic-muted">
-                        <span><i class="fas fa-clock mr-1"></i> <span data-i18n="coming_soon">قريباً</span></span>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </main>
 
-    <footer
-        class="py-8 text-center text-academic-muted text-xs font-mono tracking-widest uppercase mt-auto">
-        <!-- Copyright Removed -->
-    </footer>
-
-    <!-- Theme & Language Logic -->
-    <!-- Script moved to head for anti-flash -->
-
+    <footer class="py-8 text-center text-academic-muted text-xs font-mono tracking-widest uppercase mt-auto"></footer>
 </body>
 
 </html>

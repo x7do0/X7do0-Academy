@@ -1,11 +1,7 @@
 const i18n = {
-    currentLang: 'ar',
     resources: {},
-    cache: {},
-    initialized: false,
     initPromise: null,
     aliases: {
-        // theme-manager flat keys → JSON dotted keys
         nav_home: 'nav.home',
         nav_courses: 'nav.courses',
         nav_connect: 'nav.connect',
@@ -19,44 +15,18 @@ const i18n = {
         python_notes_card_desc: 'python.notes_desc',
         python_practice_card_title: 'python.practice_questions',
         python_practice_card_desc: 'python.practice_desc',
-        // Homepage
-        welcome_label: 'home.welcome_label',
-        hero_title: 'home.hero_title_html',
-        hero_desc: 'home.hero_desc',
-        cta_start: 'home.cta_start',
-        cta_contact: 'home.cta_contact',
-        feat_struct_title: 'home.features.struct_title',
-        feat_struct_desc: 'home.features.struct_desc',
-        feat_code_title: 'home.features.code_title',
-        feat_code_desc: 'home.features.code_desc',
-        feat_deep_title: 'home.features.deep_title',
-        feat_deep_desc: 'home.features.deep_desc',
-        instructor_title: 'home.instructor.title',
-        instructor_bio: 'home.instructor.bio',
-        instructor_link: 'home.instructor.link',
-        // Courses
         courses_title: 'courses.title',
         courses_desc: 'courses.desc',
-        back_home: 'courses.back_home',
-        course_catalog: 'courses.catalog',
         active_badge: 'courses.active_badge',
-        planned_badge: 'courses.planned_badge',
-        coming_soon: 'courses.coming_soon',
         lessons_count: 'courses.lessons_count',
         course_python_title: 'courses.python.title',
         course_python_desc: 'courses.python.desc',
-        course_cpp_title: 'courses.cpp.title',
-        course_cpp_desc: 'courses.cpp.desc',
-        course_csharp_title: 'courses.csharp.title',
-        course_csharp_desc: 'courses.csharp.desc',
-        // Connect
         connect_title: 'connect.title',
         connect_desc: 'connect.desc',
         desc_tg_personal: 'connect.telegram_personal',
         desc_tg_channel: 'connect.telegram_channel',
         desc_youtube: 'connect.youtube',
         desc_instagram: 'connect.instagram',
-        // Python page (additional)
         files_resources: 'python.files_resources',
         lesson_code: 'python.lesson_code',
         challenge: 'python.challenge'
@@ -66,11 +36,9 @@ const i18n = {
         if (this.initPromise) return this.initPromise;
 
         this.initPromise = (async () => {
-            localStorage.removeItem('lang');
             await this.loadResources();
-            this.applySettings();
+            this.applyArabicSettings();
             this.updateUI();
-            this.initialized = true;
             return this;
         })();
 
@@ -81,19 +49,13 @@ const i18n = {
         return new URL('../i18n/ar.json', import.meta.url);
     },
 
-    async fetchResources() {
-        if (this.cache.ar) return this.cache.ar;
-        const response = await fetch(this.getResourceUrl());
-        if (!response.ok) throw new Error('تعذر تحميل ملف اللغة العربية');
-        this.cache.ar = await response.json();
-        return this.cache.ar;
-    },
-
     async loadResources() {
         try {
-            this.resources = await this.fetchResources();
-        } catch (e) {
-            console.error('تعذر تحميل نصوص الواجهة العربية', e);
+            const response = await fetch(this.getResourceUrl());
+            if (!response.ok) throw new Error('تعذر تحميل ملف النصوص العربية');
+            this.resources = await response.json();
+        } catch (error) {
+            console.error('تعذر تحميل نصوص الواجهة العربية', error);
             this.resources = {};
         }
     },
@@ -102,13 +64,9 @@ const i18n = {
         return this.aliases[key] || key;
     },
 
-    resolveValue(source, key) {
+    resolveValue(key) {
         const resolvedKey = this.resolveKey(key);
-        if (Object.prototype.hasOwnProperty.call(source, resolvedKey)) {
-            return source[resolvedKey];
-        }
-
-        return resolvedKey.split('.').reduce((obj, k) => (obj || {})[k], source);
+        return resolvedKey.split('.').reduce((value, part) => value?.[part], this.resources);
     },
 
     format(value, params = {}) {
@@ -119,55 +77,41 @@ const i18n = {
         );
     },
 
-    humanizeMissingKey(key) {
-        return 'نص غير متاح';
-    },
-
     t(key, params = {}) {
-        const value = this.resolveValue(this.resources, key);
-
+        const value = this.resolveValue(key);
         if (value === undefined || value === null) {
-            console.warn(`[i18n] Missing translation: ${key}`);
-            return this.humanizeMissingKey(key);
+            console.warn(`[i18n] Missing Arabic text: ${key}`);
+            return 'نص غير متاح';
         }
-
         return this.format(value, params);
     },
 
-    applySettings() {
+    applyArabicSettings() {
         document.documentElement.lang = 'ar';
         document.documentElement.dir = 'rtl';
         document.documentElement.classList.add('font-arabic');
     },
 
     updateUI() {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            const translation = this.t(key);
-            if (!translation) return;
-
-            if (el.dataset.i18nHtml === 'true') {
-                el.innerHTML = translation;
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const translation = this.t(element.dataset.i18n);
+            if (element.dataset.i18nHtml === 'true') {
+                element.innerHTML = translation;
             } else {
-                el.textContent = translation;
+                element.textContent = translation;
             }
         });
 
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            el.setAttribute('placeholder', this.t(el.getAttribute('data-i18n-placeholder')));
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            element.setAttribute('placeholder', this.t(element.dataset.i18nPlaceholder));
         });
 
-        document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
-            el.setAttribute('aria-label', this.t(el.getAttribute('data-i18n-aria-label')));
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+            element.setAttribute('aria-label', this.t(element.dataset.i18nAriaLabel));
         });
 
-        // Update document title using lookup table
-        const page = document.body.dataset.page;
-        const titleKey = `page_title.${page}`;
-        const title = this.resolveValue(this.resources, titleKey);
-        if (typeof title === 'string' && title) {
-            document.title = title;
-        }
+        const pageTitle = this.resolveValue(`page_title.${document.body.dataset.page}`);
+        if (typeof pageTitle === 'string') document.title = pageTitle;
     }
 };
 
