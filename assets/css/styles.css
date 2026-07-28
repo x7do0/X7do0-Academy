@@ -724,8 +724,7 @@ img {
     }
 
     #mobile-menu-toggle,
-    .category-disclosure,
-    #complete-btn {
+    .category-disclosure {
         min-height: 44px;
     }
 
