@@ -1,0 +1,49 @@
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# Local scripts (do not upload)
+update.bat
+
+# Temporary files
+*.log
+*.tmp
+
+# Node / Playwright
+node_modules/
+playwright-report/
+test-results/
+
+# VS Code (optional)
+.vscode/
+
+# Screenshot artifacts (local only)
+before-*.png
+after-*.png
+docs/screenshots/
+
+# Temp directories
+tmp/
+temp/
+
+# Local environment
+.local/
+.cache/
+
+# Local hold directory (conflict resolution temporary storage)
+_local_hold/
+
+# OpenCode AI configuration (development only)
+.opencode/
+opencode.json
+
+# Development-only (not for deployment)
+tests/
+tools/
+backup/
+archive/
+docs/
+AGENTS.md
+playwright.config.js
+package.json
+package-lock.json
