@@ -42,6 +42,7 @@ const NavDrawer = {
     getActiveKey() {
         if (this.currentPage === 'home') return 'home';
         if (this.currentPage === 'connect') return 'connect';
+        if (this.currentPage === 'about') return null;
         if (this.currentPage?.startsWith('python-practice')) return 'practice';
         return 'courses';
     },
@@ -228,5 +229,4 @@ const NavDrawer = {
 document.addEventListener('DOMContentLoaded', async () => {
     await i18n.init();
     NavDrawer.init();
-    i18n.updateUI();
 });

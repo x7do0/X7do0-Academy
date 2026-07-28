@@ -28,6 +28,19 @@ export const pages = [
     data-nav-connect="./index.html"`
   },
   {
+    output: 'about/index.html',
+    source: 'src/pages/about.html',
+    root: '../',
+    title: 'عن المشروع | أكاديمية X7do0',
+    description: 'قصة أكاديمية X7do0 وقراراتها التعليمية والهندسية لتقديم تجربة برمجة عربية عملية.',
+    bodyAttributes: `class="antialiased min-h-screen flex flex-col"
+    data-page="about"
+    data-nav-home="../index.html"
+    data-nav-courses="../courses/index.html"
+    data-nav-practice="../courses/python/practice/index.html"
+    data-nav-connect="../accounts/index.html"`
+  },
+  {
     output: 'courses/index.html',
     source: 'src/pages/courses.html',
     root: '../',

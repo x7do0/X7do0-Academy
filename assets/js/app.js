@@ -10,6 +10,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     const overlay = document.getElementById('code-overlay');
     const overlayContent = document.getElementById('overlay-content');
     let overlayTimeout;
+    const siteUrl = 'https://x7do0.github.io/X7do0-Academy';
+
+    const updateLessonMetadata = lesson => {
+        const title = `${lesson.title} | أكاديمية X7do0`;
+        const description = `درس ${lesson.title} من مسار أساسيات Python في أكاديمية X7do0.`;
+        const canonical = `${siteUrl}/courses/python/index.html#lesson-${lesson.id}`;
+        document.title = title;
+        document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonical);
+        document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+        document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+        document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
+        document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonical);
+    };
 
     const keywordColorClass = color => ({
         green: 'keyword:green',
@@ -143,6 +156,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             const extraInfo = lesson.extraInfo ? `<div class="arabic-text text-xs mt-5 p-3 rounded-lg flex gap-2 items-start shadow-sm" style="color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-soft);"><i class="${lesson.extraInfo.icon}" style="color:var(--accent);margin-top:0.25rem;"></i><span>${lesson.extraInfo.text}</span></div>` : '';
+            const lessonUrl = `${siteUrl}/courses/python/index.html#lesson-${lesson.id}`;
+            const shareText = `درس Python: ${lesson.title}\nأكاديمية X7do0`;
+            const telegramShare = `https://t.me/share/url?url=${encodeURIComponent(lessonUrl)}&text=${encodeURIComponent(shareText)}`;
+            const whatsappShare = `https://wa.me/?text=${encodeURIComponent(`${shareText}\n${lessonUrl}`)}`;
 
             card.innerHTML = `
                 <div class="flex items-center justify-between mb-5">
@@ -150,7 +167,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="flex items-center justify-center w-8 h-8 rounded-lg text-sm font-bold font-mono" style="background:${color === 'blue' ? 'var(--accent-soft)' : `var(--${color}-50, var(--bg-interactive))`};color:${color === 'blue' ? 'var(--accent)' : `var(--${color}-600, var(--text-primary))`}">${lesson.id}</span>
                         <h3 class="text-lg font-bold text-academic-primary">${lesson.title}</h3>
                     </div>
-                    <i class="${presentation.icon}" style="color:${color === 'blue' ? 'var(--accent)' : 'var(--text-muted)'};opacity:0.6;"></i>
+                    <div class="lesson-share">
+                        <a href="${telegramShare}" target="_blank" rel="noopener noreferrer" aria-label="مشاركة درس ${lesson.title} على تيليغرام"><i class="fab fa-telegram-plane" aria-hidden="true"></i></a>
+                        <a href="${whatsappShare}" target="_blank" rel="noopener noreferrer" aria-label="مشاركة درس ${lesson.title} على واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <i class="${presentation.icon}" style="color:${color === 'blue' ? 'var(--accent)' : 'var(--text-muted)'};opacity:0.6;"></i>
+                    </div>
                 </div>
                 ${contentBody}${extraInfo}${renderFiles(lesson)}`;
 
@@ -159,6 +180,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         setupInteractions();
         animateCards();
+
+        const linkedLesson = lessons.find(lesson => `#lesson-${lesson.id}` === window.location.hash);
+        if (linkedLesson) updateLessonMetadata(linkedLesson);
     }
 
     function setupInteractions() {
