@@ -37,6 +37,7 @@ const NavDrawer = {
         this.aboutPath = body.dataset.navAbout;
         this.connectPath = body.dataset.navConnect;
         this.currentPage = body.dataset.page;
+        this.isCourseContext = this.currentPage?.startsWith('python');
         this.activeKey = this.getActiveKey();
 
         if (!this.homePath) return;
@@ -51,16 +52,28 @@ const NavDrawer = {
         if (this.currentPage === 'home') return 'home';
         if (this.currentPage === 'connect') return 'connect';
         if (this.currentPage === 'about') return 'about';
-        if (this.currentPage?.startsWith('python')) return 'courses';
+        if (this.currentPage === 'python-lessons') return 'lessons';
+        if (this.currentPage?.startsWith('python-practice')) return 'practice';
+        if (this.currentPage?.startsWith('python-project')) return 'project';
+        if (this.isCourseContext) return 'courses';
         return 'courses';
     },
 
     getItems() {
-        return [
+        const globalItems = [
             { key: 'home', path: this.homePath, icon: 'fa-home' },
             { key: 'courses', path: this.coursesPath, icon: 'fa-layer-group' },
             { key: 'connect', path: this.connectPath, icon: 'fa-circle-ellipsis' },
-        ].filter(item => item.path);
+        ];
+        const courseItems = [
+            { key: 'home', path: this.homePath, icon: 'fa-home' },
+            { key: 'courses', path: this.coursesPath, icon: 'fa-layer-group' },
+            { key: 'lessons', path: this.lessonsPath, icon: 'fa-book-open' },
+            { key: 'practice', path: this.practicePath, icon: 'fa-code' },
+            { key: 'project', path: this.projectPath, icon: 'fa-folder' },
+        ];
+
+        return (this.isCourseContext ? courseItems : globalItems).filter(item => item.path);
     },
 
     getDrawerItems() {
@@ -78,7 +91,7 @@ const NavDrawer = {
         const nav = document.createElement('nav');
         nav.id = BOTTOM_NAV_ID;
         nav.className = 'mobile-bottom-nav';
-        nav.classList.add('mobile-bottom-nav--primary');
+        nav.classList.add(this.isCourseContext ? 'mobile-bottom-nav--course' : 'mobile-bottom-nav--primary');
         nav.setAttribute('aria-label', i18n.t('nav.quick_navigation'));
         nav.dataset.i18nAriaLabel = 'nav.quick_navigation';
 
