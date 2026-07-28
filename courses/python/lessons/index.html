@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مرحلة المشروع الختامي | أكاديمية X7do0</title>
-    <meta name="description" content="تفاصيل مرحلة من مراحل مشروع مدير المهام بلغة بايثون.">
-    <link rel="canonical" href="https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html">
-    <meta property="og:title" content="مرحلة المشروع الختامي | أكاديمية X7do0">
-    <meta property="og:description" content="تفاصيل مرحلة من مراحل مشروع مدير المهام بلغة بايثون.">
+    <title>دروس بايثون | أكاديمية X7do0</title>
+    <meta name="description" content="شرح تفصيلي لدروس أساسيات بايثون مع أمثلة وملفات الموضوع والتحدي.">
+    <link rel="canonical" href="https://x7do0.github.io/X7do0-Academy/courses/python/lessons/index.html">
+    <meta property="og:title" content="دروس بايثون | أكاديمية X7do0">
+    <meta property="og:description" content="شرح تفصيلي لدروس أساسيات بايثون مع أمثلة وملفات الموضوع والتحدي.">
     <meta property="og:image" content="https://x7do0.github.io/X7do0-Academy/assets/preview.png">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_IQ">
     <meta property="og:site_name" content="أكاديمية X7do0">
-    <meta property="og:url" content="https://x7do0.github.io/X7do0-Academy/courses/python/project/stage.html">
+    <meta property="og:url" content="https://x7do0.github.io/X7do0-Academy/courses/python/lessons/index.html">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="../../../assets/favicon.png">
     <link rel="apple-touch-icon" href="../../../assets/favicon.png">
@@ -25,18 +25,19 @@
     <link rel="stylesheet" href="../../../assets/css/variables.css?v=7967938615">
     <link rel="stylesheet" href="../../../assets/css/styles.css?v=941c3b1203">
     <link rel="stylesheet" href="../../../assets/css/course-shell.css?v=80dad31a4c">
-    <link rel="stylesheet" href="../../../assets/css/python-project.css?v=cebeef14b5">
+    <link rel="stylesheet" href="../../../assets/css/code-experience.css?v=dce7398854">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="../../../assets/js/theme-manager.js?v=3b7a594baf"></script>
 </head>
 <body class="antialiased pb-20"
-    data-page="python-project-stage"
+    data-page="python-lessons"
     data-nav-section="courses"
     data-nav-home="../../../index.html"
     data-nav-courses="../../index.html"
     data-nav-overview="../index.html"
-    data-nav-lessons="../lessons/index.html"
+    data-nav-lessons="./index.html"
     data-nav-practice="../practice/index.html"
-    data-nav-project="./index.html"
+    data-nav-project="../project/index.html"
     data-nav-connect="../../../accounts/index.html">
     <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-60 pointer-events-none"></div>
     <nav class="w-full py-6 px-4 navbar-sticky">
@@ -78,7 +79,7 @@
             <i class="fas fa-border-all" aria-hidden="true"></i>
             <span>نظرة عامة</span>
         </a>
-        <a href="../lessons/index.html" class="">
+        <a href="./index.html" class="active">
             <i class="fas fa-book-open" aria-hidden="true"></i>
             <span>الدروس</span>
         </a>
@@ -86,20 +87,31 @@
             <i class="fas fa-code" aria-hidden="true"></i>
             <span>التمارين</span>
         </a>
-        <a href="./index.html" class="active">
+        <a href="../project/index.html" class="">
             <i class="far fa-folder" aria-hidden="true"></i>
             <span>المشاريع</span>
         </a>
     </nav>
 </aside>
     <main class="course-main">
-        <header class="course-header course-header--question">
-            <a href="./index.html" class="course-back-link">
-                <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                <span>العودة إلى المشاريع</span>
-            </a>
+        <header class="course-header">
+            <div class="course-header__icon"><i class="fas fa-book-open" aria-hidden="true"></i></div>
+            <div>
+                <h1>دروس بايثون</h1>
+                <p>شرح تفصيلي مع أمثلة وملفات الموضوع والتحدي.</p>
+            </div>
         </header>
-        <article id="project-stage" aria-live="polite"></article>
+
+        <section id="lessons" class="lesson-workspace" aria-label="دروس أساسيات بايثون">
+            <aside class="lesson-index">
+                <div class="lesson-index__header">
+                    <h2>الدروس</h2>
+                    <span>12 درساً</span>
+                </div>
+                <nav id="lesson-list" aria-label="قائمة الدروس"></nav>
+            </aside>
+            <article id="lesson-viewer" class="lesson-viewer" aria-live="polite"></article>
+        </section>
     </main>
 </div>
     <footer class="mt-auto py-8 text-center relative z-10">
@@ -112,6 +124,6 @@
         <p class="text-academic-secondary text-[10px] tracking-[0.3em] uppercase font-bold">X7do0eng</p>
     </footer>
     <script type="module" src="../../../assets/js/nav-drawer.js?v=408e8a56be"></script>
-    <script type="module" src="../../../assets/js/python-project-stage.js?v=d34dffd94a"></script>
+    <script type="module" src="../../../assets/js/python-lessons.js?v=b55257786a"></script>
 </body>
 </html>

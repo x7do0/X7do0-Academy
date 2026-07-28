@@ -17,7 +17,10 @@ const DRAWER_OPEN_CLASS = 'drawer-open';
 const i18nKeys = {
     home: 'nav.home',
     courses: 'nav.lessons',
+    overview: 'nav.overview',
+    lessons: 'nav.lessons',
     practice: 'nav.practice',
+    project: 'nav.project',
     connect: 'nav.connect',
 };
 
@@ -27,6 +30,9 @@ const NavDrawer = {
         this.homePath = body.dataset.navHome;
         this.coursesPath = body.dataset.navCourses;
         this.practicePath = body.dataset.navPractice;
+        this.overviewPath = body.dataset.navOverview;
+        this.lessonsPath = body.dataset.navLessons;
+        this.projectPath = body.dataset.navProject;
         this.connectPath = body.dataset.navConnect;
         this.currentPage = body.dataset.page;
         this.activeKey = this.getActiveKey();
@@ -43,11 +49,24 @@ const NavDrawer = {
         if (this.currentPage === 'home') return 'home';
         if (this.currentPage === 'connect') return 'connect';
         if (this.currentPage === 'about') return null;
+        if (this.currentPage === 'python') return 'overview';
+        if (this.currentPage === 'python-lessons') return 'lessons';
         if (this.currentPage?.startsWith('python-practice')) return 'practice';
+        if (this.currentPage?.startsWith('python-project')) return 'project';
         return 'courses';
     },
 
     getItems() {
+        if (this.overviewPath) {
+            return [
+                { key: 'overview', path: this.overviewPath, icon: 'fa-border-all' },
+                { key: 'lessons', path: this.lessonsPath, icon: 'fa-book-open' },
+                { key: 'practice', path: this.practicePath, icon: 'fa-code' },
+                { key: 'project', path: this.projectPath, icon: 'fa-folder' },
+                { key: 'home', path: this.homePath, icon: 'fa-home' },
+            ].filter(item => item.path);
+        }
+
         return [
             { key: 'home', path: this.homePath, icon: 'fa-home' },
             { key: 'courses', path: this.coursesPath, icon: 'fa-book-open' },
@@ -62,6 +81,7 @@ const NavDrawer = {
         const nav = document.createElement('nav');
         nav.id = BOTTOM_NAV_ID;
         nav.className = 'mobile-bottom-nav';
+        if (this.overviewPath) nav.classList.add('mobile-bottom-nav--course');
         nav.setAttribute('aria-label', i18n.t('nav.quick_navigation'));
         nav.dataset.i18nAriaLabel = 'nav.quick_navigation';
 

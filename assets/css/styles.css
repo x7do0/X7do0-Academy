@@ -754,6 +754,11 @@ img {
         box-shadow: 0 -8px 24px rgba(23, 33, 58, 0.08);
     }
 
+    .mobile-bottom-nav--course {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        padding-inline: 0.25rem;
+    }
+
     .mobile-bottom-link {
         display: flex;
         min-height: 52px;

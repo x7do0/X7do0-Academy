@@ -4,31 +4,23 @@
         <header id="course-overview" class="course-header">
             <div class="course-header__icon"><i class="fab fa-python" aria-hidden="true"></i></div>
             <div>
-                <h1>دروس بايثون</h1>
-                <p>شرح عملي منظم مع أمثلة وملفات الموضوع والتحدي.</p>
+                <h1>نظرة عامة على بايثون</h1>
+                <p>المفاهيم الأساسية للدورة في بطاقات تفاعلية مختصرة.</p>
             </div>
         </header>
 
-        <section class="course-topics" aria-labelledby="course-topics-title">
+        <section class="concept-overview" aria-labelledby="concept-overview-title">
             <div class="course-topics__heading">
                 <div>
-                    <span>نظرة عامة</span>
-                    <h2 id="course-topics-title">المواضيع البرمجية</h2>
+                    <h2 id="concept-overview-title">المواضيع البرمجية</h2>
                 </div>
-                <p>اختر أي موضوع لعرض شرحه وملفاته بالتفصيل.</p>
+                <p>مرّر المؤشر فوق أي نقطة، أو اضغط عليها في الهاتف، لمشاهدة مثالها البرمجي.</p>
             </div>
-            <div id="course-topics-grid" class="course-topics-grid"></div>
-        </section>
-
-        <section id="lessons" class="lesson-workspace" aria-label="دروس أساسيات بايثون">
-            <aside class="lesson-index">
-                <div class="lesson-index__header">
-                    <h2>الدروس</h2>
-                    <span>12 درساً</span>
-                </div>
-                <nav id="lesson-list" aria-label="قائمة الدروس"></nav>
-            </aside>
-            <article id="lesson-viewer" class="lesson-viewer" aria-live="polite"></article>
+            <div id="lesson-grid" class="concept-card-grid"></div>
         </section>
     </main>
 </div>
+
+<aside id="code-preview-popover" class="code-preview-popover" aria-live="polite" aria-hidden="true">
+    <div id="code-preview-content"></div>
+</aside>
