@@ -80,4 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await i18n.init();
     renderHomeProgress();
 });
-window.addEventListener('pageshow', renderHomeProgress);
+window.addEventListener('pageshow', async () => {
+    await i18n.init();
+    renderHomeProgress();
+});
