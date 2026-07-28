@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية X7do0</title>
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+
+    <meta name="theme-color" content="#2457d6">
+
+    <meta property="og:title" content="X7do0 Academy">
+    <meta property="og:description" content="Programming tutorials and exercises for structured learning.">
+    <meta property="og:image" content="https://x7do0eng.github.io/X7do0-Academy/assets/preview.png">
+    <meta property="og:type" content="website">
+
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/variables.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/home.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        academic: {
+                            bg: 'var(--bg-primary)',
+                            card: 'var(--bg-card)',
+                            primary: 'var(--text-primary)',
+                            secondary: 'var(--text-secondary)',
+                            accent: 'var(--accent-primary)',
+                            muted: 'var(--text-muted)',
+                            surface: 'var(--bg-card-hover)',
+                        },
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    },
+                    animation: {
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 5s ease-in-out 1s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="./assets/js/theme-manager.js"></script>
+    <script type="module">
+        import i18n from './assets/js/i18n.js';
+        i18n.init();
+    </script>
+    <script type="module" src="./assets/js/nav-drawer.js"></script>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col"
+    data-page="home"
+    data-nav-home="./index.html"
+    data-nav-courses="./courses/index.html"
+    data-nav-connect="./accounts/index.html">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-60 pointer-events-none"></div>
+
+    <!-- Header -->
+    <nav class="w-full py-6 px-4 navbar-sticky">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="./index.html" class="flex items-center gap-3 group">
+                    <div
+                        class="w-8 h-8 rounded bg-accent-solid flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <i class="fas fa-graduation-cap text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg tracking-tight text-academic-primary transition-colors"
+                        data-i18n="brand.name_html" data-i18n-html="true">أكاديمية
+                        <span class="text-academic-accent">X7do0</span></span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-academic-secondary">
+                <a href="./index.html" class="nav-link hover:text-academic-accent transition-colors"
+                    data-i18n="nav.home" data-nav-link="home">الرئيسية</a>
+                <a href="./courses/index.html" class="nav-link hover:text-academic-accent transition-colors"
+                    data-i18n="nav.courses" data-nav-link="courses">الدورات</a>
+                <a href="./accounts/index.html" class="nav-link hover:text-academic-accent transition-colors"
+                    data-i18n="nav.connect" data-nav-link="connect">تواصل معي</a>
+                <div class="nav-divider"></div>
+            </div>
+
+            <!-- Toggles -->
+            <div class="flex items-center gap-1">
+                <button id="theme-toggle"
+                    class="flex items-center justify-center text-academic-secondary hover:text-academic-accent transition-colors rounded-lg hover:bg-[var(--bg-card-hover)]"
+                    aria-label="تبديل مظهر الألوان" data-i18n-aria-label="controls.theme_toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <!-- Hamburger (mobile only) -->
+            <button id="hamburger-btn"
+                class="md:hidden flex items-center justify-center rounded-lg hover:bg-[var(--bg-card-hover)] transition-colors text-academic-secondary hover:text-academic-accent"
+                aria-label="فتح قائمة التنقل" data-i18n-aria-label="nav.open_menu"
+                aria-expanded="false"
+                aria-controls="mobile-nav-drawer">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+    </nav>
+
+
+    <main class="home-shell flex-grow">
+        <section class="home-hero" aria-labelledby="home-title">
+            <div class="home-hero-copy">
+                <span class="home-kicker" aria-hidden="true"></span>
+                <h1 id="home-title" class="home-title font-bold" data-i18n="dashboard.hero_title">
+                    تعلّم البرمجة بخطوات واضحة
+                </h1>
+                <p class="home-description" data-i18n="dashboard.hero_description">
+                    دروس عملية، تمارين واقعية، وتقدّم مستمر من الأساسيات إلى مستوى أقوى.
+                </p>
+                <a href="./courses/python/index.html"
+                    class="home-primary-cta btn-accent inline-flex items-center gap-3">
+                    <span data-i18n="dashboard.start_learning">ابدأ التعلّم</span>
+                    <i class="fas fa-arrow-left rtl:rotate-180" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="code-visual-wrap" aria-label="مثال برمجي بلغة بايثون">
+                <span class="code-floating-icon braces" aria-hidden="true">{ }</span>
+                <span class="code-floating-icon terminal" aria-hidden="true"><i class="fas fa-terminal"></i></span>
+                <div class="code-visual">
+                    <div class="code-visual-bar">
+                        <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                        <i class="fas fa-bars text-slate-500" aria-hidden="true"></i>
+                    </div>
+                    <pre><code><span class="code-line"><span class="code-number">1</span><span><span class="code-keyword">def</span> <span class="code-function">learn</span>(code):</span></span><span class="code-line"><span class="code-number">2</span><span>    <span class="code-keyword">while</span> <span class="code-value">not</span> mastered(code):</span></span><span class="code-line"><span class="code-number">3</span><span>        practice(code)</span></span><span class="code-line"><span class="code-number">4</span><span>        build(project)</span></span><span class="code-line"><span class="code-number">5</span><span>        improve()</span></span><span class="code-line"><span class="code-number">6</span><span>    <span class="code-keyword">return</span> success</span></span></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="learning-paths" class="home-section" aria-labelledby="learning-paths-title">
+            <div class="home-section-heading">
+                <h2 id="learning-paths-title" data-i18n="dashboard.paths_title">مسارات التعلّم</h2>
+                <a href="./courses/index.html" class="home-section-link" data-i18n="dashboard.view_all">عرض الكل</a>
+            </div>
+
+            <div class="learning-paths-grid">
+                <article class="learning-path-card">
+                    <div class="path-card-head">
+                        <div class="path-card-icon python"><i class="fab fa-python" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="path-card-title" data-i18n="dashboard.path_python">بايثون</h3>
+                            <p class="path-card-subtitle" data-i18n="dashboard.path_python_desc">من الأساسيات إلى بناء الحلول</p>
+                        </div>
+                    </div>
+                    <div class="path-progress-row">
+                        <div class="path-progress-track"><div class="path-progress-fill" data-course-progress-fill="python"></div></div>
+                        <span data-course-progress-value="python">0%</span>
+                    </div>
+                    <a href="./courses/python/index.html" class="path-card-action" data-i18n="dashboard.continue_path">متابعة المسار</a>
+                </article>
+
+                <article class="learning-path-card" data-state="planned">
+                    <div class="path-card-head">
+                        <div class="path-card-icon"><i class="fas fa-hourglass-half" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="path-card-title" data-i18n="dashboard.planned">قريباً</h3>
+                            <p class="path-card-subtitle" data-i18n="dashboard.path_undecided">سيتم تحديد المسار لاحقاً</p>
+                        </div>
+                    </div>
+                    <div class="path-progress-row"><div class="path-progress-track"></div><span>0%</span></div>
+                    <span class="path-card-action is-disabled" data-i18n="dashboard.unavailable">غير متاح حالياً</span>
+                </article>
+
+                <article class="learning-path-card" data-state="planned">
+                    <div class="path-card-head">
+                        <div class="path-card-icon"><i class="fas fa-hourglass-half" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="path-card-title" data-i18n="dashboard.planned">قريباً</h3>
+                            <p class="path-card-subtitle" data-i18n="dashboard.path_undecided">سيتم تحديد المسار لاحقاً</p>
+                        </div>
+                    </div>
+                    <div class="path-progress-row"><div class="path-progress-track"></div><span>0%</span></div>
+                    <span class="path-card-action is-disabled" data-i18n="dashboard.unavailable">غير متاح حالياً</span>
+                </article>
+
+                <article class="learning-path-card" data-state="planned">
+                    <div class="path-card-head">
+                        <div class="path-card-icon"><i class="fas fa-hourglass-half" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="path-card-title" data-i18n="dashboard.planned">قريباً</h3>
+                            <p class="path-card-subtitle" data-i18n="dashboard.path_undecided">سيتم تحديد المسار لاحقاً</p>
+                        </div>
+                    </div>
+                    <div class="path-progress-row"><div class="path-progress-track"></div><span>0%</span></div>
+                    <span class="path-card-action is-disabled" data-i18n="dashboard.unavailable">غير متاح حالياً</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="progress" class="home-section" aria-labelledby="progress-title">
+            <div class="home-section-heading">
+                <h2 id="progress-title" data-i18n="dashboard.progress_title">تقدّمك</h2>
+                <a href="./courses/index.html" class="home-section-link" data-i18n="dashboard.by_course">حسب الدورة</a>
+            </div>
+            <div class="progress-dashboard">
+                <div class="progress-ring" data-home-progress-ring role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                    aria-label="التقدّم العام" data-i18n-aria-label="dashboard.overall_progress">
+                    <div class="progress-ring-inner">
+                        <span class="progress-ring-value" data-home-progress-value>0%</span>
+                        <span class="progress-ring-label" data-i18n="dashboard.overall_progress">التقدّم العام</span>
+                    </div>
+                </div>
+                <div class="progress-metrics">
+                    <div class="progress-metric">
+                        <span class="progress-metric-label" data-i18n="dashboard.level">المستوى الحالي</span>
+                        <strong class="progress-metric-value" data-home-metric="level">مبتدئ</strong>
+                        <span class="progress-metric-note" data-i18n="dashboard.keep_going">استمر، أنت بالطريق الصحيح</span>
+                    </div>
+                    <div class="progress-metric">
+                        <span class="progress-metric-label" data-i18n="dashboard.completed">التمارين المكتملة</span>
+                        <strong class="progress-metric-value" data-home-metric="completed">0</strong>
+                        <span class="progress-metric-note" data-i18n="dashboard.exercise">تمرين</span>
+                    </div>
+                    <div class="progress-metric">
+                        <span class="progress-metric-label" data-i18n="dashboard.remaining">التمارين المتبقية</span>
+                        <strong class="progress-metric-value" data-home-metric="remaining">25</strong>
+                        <span class="progress-metric-note" data-i18n="dashboard.exercise">تمرين</span>
+                    </div>
+                    <div class="progress-metric">
+                        <span class="progress-metric-label" data-i18n="dashboard.total">إجمالي التمارين</span>
+                        <strong class="progress-metric-value" data-home-metric="total">25</strong>
+                        <span class="progress-metric-note" data-i18n="dashboard.exercise">تمرين</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 text-center text-academic-muted text-xs font-mono tracking-widest uppercase">
+        <!-- Copyright Removed -->
+    </footer>
+
+    <script type="module" src="./assets/js/home-dashboard.js"></script>
+</body>
+
+</html>
