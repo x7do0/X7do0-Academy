@@ -13,14 +13,14 @@ update.bat
 node_modules/
 playwright-report/
 test-results/
+coverage/
 
 # VS Code (optional)
 .vscode/
 
-# Screenshot artifacts (local only)
+# Temporary screenshot artifacts
 before-*.png
 after-*.png
-docs/screenshots/
 
 # Temp directories
 tmp/
@@ -29,6 +29,9 @@ temp/
 # Local environment
 .local/
 .cache/
+.env
+.env.*
+!.env.example
 
 # Local hold directory (conflict resolution temporary storage)
 _local_hold/
@@ -38,9 +41,6 @@ _local_hold/
 opencode.json
 
 # Development-only (not for deployment)
-tests/
 backup/
 archive/
-docs/
 AGENTS.md
-playwright.config.js

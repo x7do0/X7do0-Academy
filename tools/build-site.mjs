@@ -17,7 +17,10 @@ async function versionedAsset(root, relativePath) {
   let hash = assetHashes.get(relativePath);
   if (!hash) {
     const content = await readFile(path.join(rootDirectory, relativePath));
-    hash = createHash('sha256').update(content).digest('hex').slice(0, 10);
+    const hashableContent = /\.(?:css|js|json)$/.test(relativePath)
+      ? content.toString('utf8').replaceAll('\r\n', '\n')
+      : content;
+    hash = createHash('sha256').update(hashableContent).digest('hex').slice(0, 10);
     assetHashes.set(relativePath, hash);
   }
   return `${root}${relativePath}?v=${hash}`;
