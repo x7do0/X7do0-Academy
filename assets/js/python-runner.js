@@ -1,7 +1,10 @@
 import { questions } from '../../data/python-practice-questions.js';
+import { validationInputs } from '../../data/python-practice-validation.js';
+import { createProgressTracker } from './progress-tracker.js';
 
 const PYODIDE_VERSION = '0.27.7';
 const PYODIDE_BASE = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`;
+const tracker = createProgressTracker('python', questions);
 
 let pyodidePromise = null;
 
@@ -49,20 +52,12 @@ function getCurrentQuestion() {
     return questions.find(question => question.id === questionId) || null;
 }
 
-function getExpectedOutput() {
-    return normalizeOutput(getCurrentQuestion()?.output || '');
-}
-
 function getSolutionCode() {
     return getCurrentQuestion()?.code || '';
 }
 
-function getAutomaticInputs() {
-    const values = getExpectedOutput()
-        .split('\n')
-        .map(line => line.match(/^Enter\b[^:]*:\s*(.+)$/i)?.[1]?.trim())
-        .filter(Boolean);
-    return values.length ? values : ['0'];
+function getValidationInputs() {
+    return validationInputs[getCurrentQuestion()?.id] || [[]];
 }
 
 function starterCode() {
@@ -73,16 +68,15 @@ function starterCode() {
 }
 
 function setStatus(element, type, title) {
-    const styles = {
-        match: ['var(--success-soft)', 'var(--success)', 'var(--success)'],
-        close: ['rgba(245,158,11,.1)', 'rgba(245,158,11,.55)', '#d97706'],
-        mismatch: ['rgba(239,68,68,.09)', 'rgba(239,68,68,.45)', '#ef4444']
+    const icons = {
+        match: 'fa-circle-check',
+        close: 'fa-circle-exclamation',
+        mismatch: 'fa-circle-xmark'
     };
-    const [background, border, color] = styles[type] || styles.mismatch;
-    element.style.background = background;
-    element.style.borderColor = border;
-    element.style.color = color;
-    element.textContent = title;
+    element.className = `runner-result runner-result--${type}`;
+    element.innerHTML = type === 'match'
+        ? `<i class="fas ${icons[type]}" aria-hidden="true"></i><span><strong>${title}</strong><small>تم تسجيل التمرين كمكتمل تلقائياً.</small></span>`
+        : `<i class="fas ${icons[type]}" aria-hidden="true"></i><strong>${title}</strong>`;
     element.hidden = false;
 }
 
@@ -96,17 +90,58 @@ function outputSimilarity(actual, expected) {
     return shared / Math.max(actualTokens.size, expectedTokens.size);
 }
 
-function classifyOutput(actual, expected, hasError) {
-    if (hasError || !actual) return 'mismatch';
-    if (actual === expected) return 'match';
+function classifyResults(results) {
+    if (results.every(result => !result.hasError && result.actual === result.expected)) {
+        return 'match';
+    }
+
+    const comparable = results.filter(result => !result.hasError && result.actual);
     if (
-        actual.includes(expected)
-        || expected.includes(actual)
-        || outputSimilarity(actual, expected) >= 0.5
+        comparable.length
+        && comparable.some(result => outputSimilarity(result.actual, result.expected) >= 0.5)
     ) {
         return 'close';
     }
+
     return 'mismatch';
+}
+
+async function executeCode(pyodide, source, inputs) {
+    let stdout = '';
+    let stderr = '';
+    pyodide.setStdout({ batched: value => { stdout += `${value}\n`; } });
+    pyodide.setStderr({ batched: value => { stderr += `${value}\n`; } });
+    pyodide.globals.set('__academy_inputs', inputs);
+    pyodide.globals.set('__academy_source', source);
+
+    try {
+        await pyodide.runPythonAsync(`
+import builtins
+import random
+
+_inputs = list(__academy_inputs)
+_index = 0
+
+def _academy_input(prompt=''):
+    global _index
+    if not _inputs:
+        return '0'
+    value = _inputs[_index] if _index < len(_inputs) else _inputs[-1]
+    _index += 1
+    return value
+
+builtins.input = _academy_input
+random.seed(1729)
+exec(compile(__academy_source, '<academy>', 'exec'), {'__name__': '__main__'})
+`);
+    } catch (error) {
+        stderr += error?.message || String(error);
+    }
+
+    return {
+        output: normalizeOutput(stdout),
+        hasError: Boolean(stderr.trim())
+    };
 }
 
 function getCodeHint(level) {
@@ -168,7 +203,7 @@ function buildRunner() {
         </div>
     `;
 
-    stepsSection.insertAdjacentElement('afterend', section);
+    stepsSection.insertAdjacentElement('beforebegin', section);
 
     const code = document.getElementById('runner-code');
     const result = document.getElementById('runner-result');
@@ -186,38 +221,35 @@ function buildRunner() {
 
         try {
             const pyodide = await getPyodide();
-            const inputs = getAutomaticInputs();
-            let stdout = '';
-            let stderr = '';
-            pyodide.setStdout({ batched: value => { stdout += `${value}\n`; } });
-            pyodide.setStderr({ batched: value => { stderr += `${value}\n`; } });
-            pyodide.globals.set('__academy_inputs', inputs);
-            await pyodide.runPythonAsync(`
-import builtins
-_inputs = list(__academy_inputs)
-_index = 0
-def _academy_input(prompt=''):
-    global _index
-    if prompt:
-        print(prompt, end='')
-    if not _inputs:
-        return '0'
-    value = _inputs[_index] if _index < len(_inputs) else _inputs[-1]
-    _index += 1
-    return value
-builtins.input = _academy_input
-`);
-            await pyodide.runPythonAsync(source);
+            const results = [];
 
-            const actual = normalizeOutput(stdout);
-            const expected = getExpectedOutput();
-            const classification = classifyOutput(actual, expected, Boolean(stderr.trim()));
+            for (const inputs of getValidationInputs()) {
+                const expected = await executeCode(pyodide, getSolutionCode(), inputs);
+                const actual = await executeCode(pyodide, source, inputs);
+                results.push({
+                    actual: actual.output,
+                    expected: expected.output,
+                    hasError: actual.hasError || expected.hasError
+                });
+            }
+
+            const classification = classifyResults(results);
             const labels = {
-                match: 'مطابق',
+                match: 'أحسنت! الحل صحيح',
                 close: 'قريب',
                 mismatch: 'غير مطابق'
             };
             setStatus(result, classification, labels[classification]);
+
+            if (classification === 'match') {
+                const question = getCurrentQuestion();
+                if (question) {
+                    tracker.markQuestionCompleted(question.id);
+                    document.dispatchEvent(new CustomEvent('academy:question-completed', {
+                        detail: { questionId: question.id }
+                    }));
+                }
+            }
         } catch (error) {
             console.error('[PythonRunner]', error);
             setStatus(result, 'mismatch', 'غير مطابق');

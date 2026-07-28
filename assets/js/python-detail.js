@@ -119,7 +119,6 @@ const DetailController = {
         const container = document.getElementById('question-view');
         if (!container) return;
 
-        const isCompleted = tracker.isQuestionCompleted(question.id);
         const { prev, next } = this.getPrevNext(question.id);
         const category = this.getCategory(question.categoryId);
         const steps = question.steps || [];
@@ -176,15 +175,6 @@ const DetailController = {
 
             </div>
 
-            <div class="flex items-center justify-between mb-8">
-                <div class="text-xs font-mono uppercase tracking-widest font-bold" style="color:var(--text-muted);">
-                    ${isCompleted ? `<span style="color:var(--success);"><i class="fas fa-check-circle me-1"></i>${i18n.t('python.question.status_completed')}</span>` : i18n.t('python.question.status_incomplete')}
-                </div>
-                <button type="button" id="complete-btn" class="px-6 py-2 rounded-lg text-sm font-bold transition-all ${isCompleted ? '' : 'btn-accent'}">
-                    ${isCompleted ? i18n.t('python.question.mark_incomplete') : i18n.t('python.question.mark_completed')}
-                </button>
-            </div>
-
             <div id="q-nav" class="grid grid-cols-2 gap-4 pt-8 border-t" style="border-color:var(--border);">
                 <a ${prev ? `href="./question.html?id=${prev.id}"` : 'aria-disabled="true" tabindex="-1"'} class="${prev ? '' : 'opacity-30'} academic-card p-4 transition-all ${prev ? 'hover:border-accent' : ''}">
                     <span class="text-xs text-academic-muted block mb-1">← ${i18n.t('python.question.previous')}</span>
@@ -196,12 +186,6 @@ const DetailController = {
                 </a>
             </div>`;
 
-        document.getElementById('complete-btn')?.addEventListener('click', () => {
-            if (isCompleted) tracker.unmarkQuestionCompleted(question.id);
-            else tracker.markQuestionCompleted(question.id);
-            this.render(question);
-        });
-
         document.getElementById('q-reveals')?.addEventListener('click', event => {
             const toggle = event.target.closest('.reveal-toggle');
             if (!toggle) return;
@@ -211,6 +195,11 @@ const DetailController = {
         });
 
         this.renderSidebar(question);
+        document.addEventListener('academy:question-completed', event => {
+            if (event.detail?.questionId === question.id) {
+                this.renderSidebar(question);
+            }
+        }, { once: true });
         if (typeof hljs !== 'undefined') {
             document.querySelectorAll('#q-reveals code.language-python').forEach(element => hljs.highlightElement(element));
         }
