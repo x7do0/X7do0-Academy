@@ -31,27 +31,33 @@
     font-size: 0.82rem;
 }
 
-#practice-categories-sidebar {
+.practice-categories-list {
     display: grid;
     gap: 0.2rem;
 }
 
-#practice-categories-sidebar .category-btn {
+.practice-categories-list .category-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     min-height: 2.45rem;
     padding: 0.5rem 0.6rem;
     border: 0;
+    border-radius: 0.5rem;
     color: var(--text-secondary);
     background: transparent;
     font-size: 0.7rem;
+    font-weight: 700;
+    text-align: start;
 }
 
-#practice-categories-sidebar .category-btn:hover,
-#practice-categories-sidebar .category-btn.active {
+.practice-categories-list .category-btn:hover,
+.practice-categories-list .category-btn.active {
     color: var(--text-primary);
     background: rgba(56, 97, 196, 0.18);
 }
 
-#practice-categories-sidebar .category-btn.active {
+.practice-categories-list .category-btn.active {
     box-shadow: inset -3px 0 #5b86f4;
 }
 
@@ -266,11 +272,11 @@
 }
 
 @media (max-width: 1023px) {
-    #practice-categories-sidebar {
+    .practice-categories-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    #practice-categories-sidebar .category-btn {
+    .practice-categories-list .category-btn {
         min-width: 0;
     }
 }

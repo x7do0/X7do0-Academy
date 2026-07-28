@@ -9,7 +9,10 @@ export const pages = [
     data-page="home"
     data-nav-home="./index.html"
     data-nav-courses="./courses/index.html"
+    data-nav-lessons="./courses/python/lessons/index.html"
     data-nav-practice="./courses/python/practice/index.html"
+    data-nav-project="./courses/python/project/index.html"
+    data-nav-about="./about/index.html"
     data-nav-connect="./accounts/index.html"`,
     styles: ['assets/css/home.css'],
     script: 'assets/js/home-dashboard.js'
@@ -24,7 +27,10 @@ export const pages = [
     data-page="connect"
     data-nav-home="../index.html"
     data-nav-courses="../courses/index.html"
+    data-nav-lessons="../courses/python/lessons/index.html"
     data-nav-practice="../courses/python/practice/index.html"
+    data-nav-project="../courses/python/project/index.html"
+    data-nav-about="../about/index.html"
     data-nav-connect="./index.html"`
   },
   {
@@ -37,7 +43,10 @@ export const pages = [
     data-page="about"
     data-nav-home="../index.html"
     data-nav-courses="../courses/index.html"
+    data-nav-lessons="../courses/python/lessons/index.html"
     data-nav-practice="../courses/python/practice/index.html"
+    data-nav-project="../courses/python/project/index.html"
+    data-nav-about="./index.html"
     data-nav-connect="../accounts/index.html"`
   },
   {
@@ -50,7 +59,10 @@ export const pages = [
     data-page="courses"
     data-nav-home="../index.html"
     data-nav-courses="./index.html"
+    data-nav-lessons="./python/lessons/index.html"
     data-nav-practice="./python/practice/index.html"
+    data-nav-project="./python/project/index.html"
+    data-nav-about="../about/index.html"
     data-nav-connect="../accounts/index.html"`
   },
   {
@@ -68,6 +80,7 @@ export const pages = [
     data-nav-lessons="./lessons/index.html"
     data-nav-practice="./practice/index.html"
     data-nav-project="./project/index.html"
+    data-nav-about="../../about/index.html"
     data-nav-connect="../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/code-experience.css'],
     script: 'assets/js/app.js',
@@ -93,6 +106,7 @@ export const pages = [
     data-nav-lessons="./index.html"
     data-nav-practice="../practice/index.html"
     data-nav-project="../project/index.html"
+    data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/code-experience.css'],
     script: 'assets/js/python-lessons.js',
@@ -118,6 +132,7 @@ export const pages = [
     data-nav-lessons="../lessons/index.html"
     data-nav-practice="./index.html"
     data-nav-project="../project/index.html"
+    data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
     script: 'assets/js/python-practice.js',
@@ -142,6 +157,7 @@ export const pages = [
     data-nav-lessons="../lessons/index.html"
     data-nav-practice="./index.html"
     data-nav-project="../project/index.html"
+    data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
     highlight: true,
@@ -167,6 +183,7 @@ export const pages = [
     data-nav-lessons="../lessons/index.html"
     data-nav-practice="../practice/index.html"
     data-nav-project="./index.html"
+    data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-project.css'],
     script: 'assets/js/python-project.js',
@@ -191,6 +208,7 @@ export const pages = [
     data-nav-lessons="../lessons/index.html"
     data-nav-practice="../practice/index.html"
     data-nav-project="./index.html"
+    data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-project.css'],
     script: 'assets/js/python-project-stage.js',

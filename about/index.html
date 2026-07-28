@@ -21,9 +21,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/tailwind.css?v=a090b13af4">
+    <link rel="stylesheet" href="../assets/css/tailwind.css?v=97858818f8">
     <link rel="stylesheet" href="../assets/css/variables.css?v=7967938615">
-    <link rel="stylesheet" href="../assets/css/styles.css?v=941c3b1203">
+    <link rel="stylesheet" href="../assets/css/styles.css?v=3ba331519b">
 
     <script src="../assets/js/theme-manager.js?v=3b7a594baf"></script>
 </head>
@@ -31,7 +31,10 @@
     data-page="about"
     data-nav-home="../index.html"
     data-nav-courses="../courses/index.html"
+    data-nav-lessons="../courses/python/lessons/index.html"
     data-nav-practice="../courses/python/practice/index.html"
+    data-nav-project="../courses/python/project/index.html"
+    data-nav-about="./index.html"
     data-nav-connect="../accounts/index.html">
     <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-60 pointer-events-none"></div>
     <nav class="w-full py-6 px-4 navbar-sticky">
@@ -45,7 +48,7 @@
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-academic-secondary">
                 <a href="../index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.home" data-nav-link="home">الرئيسية</a>
                 <a href="../courses/index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.courses" data-nav-link="courses">الدورات</a>
-                <a href="../about/index.html" class="nav-link hover:text-academic-accent transition-colors">عن المشروع</a>
+                <a href="../about/index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.about" data-nav-link="about">عن المشروع</a>
                 <a href="../accounts/index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.connect" data-nav-link="connect">تواصل معي</a>
                 <div class="nav-divider"></div>
             </div>
@@ -59,57 +62,44 @@
             </div>
         </div>
     </nav>
-<main class="flex-grow w-full max-w-5xl mx-auto px-4 py-12">
-        <header class="academic-card card-accent-top p-7 md:p-10 mb-8">
-            <span class="label">عن المشروع</span>
-            <h1 class="text-3xl md:text-5xl font-extrabold text-academic-primary mt-3 mb-5">تعليم البرمجة بالعربية، بتجربة عملية واضحة</h1>
-            <p class="text-academic-secondary leading-8 max-w-3xl">أكاديمية X7do0 مشروع تعليمي مفتوح يساعد المبتدئ العربي على الانتقال من فهم الفكرة إلى كتابة الكود وتشغيله بنفسه، من دون أن تقف اللغة أو تعقيد الواجهة في طريقه.</p>
-        </header>
+<main class="flex-grow w-full max-w-5xl mx-auto px-4 py-10 md:py-12">
+    <header class="academic-card card-accent-top p-7 md:p-10 mb-6">
+        <h1 class="text-3xl md:text-5xl font-extrabold text-academic-primary mb-4">تعليم البرمجة بالعربية، بطريقة عملية</h1>
+        <p class="text-academic-secondary leading-8 max-w-3xl">أكاديمية X7do0 تساعد المبتدئ على فهم الفكرة، مشاهدة الكود، ثم تطبيقه بنفسه ضمن تجربة عربية واضحة.</p>
+    </header>
 
-        <div class="grid md:grid-cols-2 gap-5">
-            <section class="academic-card p-6">
-                <i class="fas fa-bullseye text-academic-accent text-xl mb-4" aria-hidden="true"></i>
-                <h2 class="text-xl font-bold text-academic-primary mb-3">المشكلة والجمهور</h2>
-                <p class="text-academic-secondary leading-7">كثير من المصادر تبدأ بالمصطلح قبل الفكرة، أو تفترض شاشة كبيرة وخبرة سابقة. لذلك صُممت الأكاديمية للمبتدئ الذي يريد شرحاً عربياً موجزاً، مثالاً عملياً، وتمريناً يحصل منه على نتيجة واضحة.</p>
-            </section>
-            <section class="academic-card p-6">
-                <i class="fas fa-language text-academic-accent text-xl mb-4" aria-hidden="true"></i>
-                <h2 class="text-xl font-bold text-academic-primary mb-3">لماذا العربية أولاً؟</h2>
-                <p class="text-academic-secondary leading-7">الشرح والتنقل بالعربية، بينما يبقى الكود ومصطلحاته بالصياغة البرمجية الصحيحة وباتجاه من اليسار إلى اليمين. هذه الموازنة تجعل الفهم أسهل من دون تشويه ما سيشاهده المتعلم في بيئات التطوير الحقيقية.</p>
-            </section>
-            <section class="academic-card p-6">
-                <i class="fas fa-mobile-screen-button text-academic-accent text-xl mb-4" aria-hidden="true"></i>
-                <h2 class="text-xl font-bold text-academic-primary mb-3">الهاتف وواجهة RTL</h2>
-                <p class="text-academic-secondary leading-7">تجربة الهاتف جزء أساسي من التصميم، وليست نسخة مصغرة من سطح المكتب. التنقل والبطاقات ومساحة العمل تعمل بلمس مريح، مع احترام اتجاه العربية وعزل اتجاه الكود والمخرجات.</p>
-            </section>
-            <section class="academic-card p-6">
-                <i class="fas fa-gears text-academic-accent text-xl mb-4" aria-hidden="true"></i>
-                <h2 class="text-xl font-bold text-academic-primary mb-3">قرارات هندسية</h2>
-                <p class="text-academic-secondary leading-7">الموقع ثابت وسريع، يبني صفحاته من قوالب مشتركة، ويحفظ تقدم الطالب محلياً. تشغيل Python يتم داخل المتصفح، والتحقق يعتمد على سلوك البرنامج ومخرجاته بدلاً من فرض طريقة حل واحدة.</p>
-            </section>
-        </div>
+    <section class="academic-card p-6 md:p-8">
+        <h2 class="text-xl md:text-2xl font-bold text-academic-primary mb-5">ماذا تقدم الأكاديمية؟</h2>
+        <ul class="grid md:grid-cols-3 gap-4">
+            <li class="flex items-start gap-3">
+                <i class="fas fa-book-open text-academic-accent mt-1" aria-hidden="true"></i>
+                <span class="text-academic-secondary leading-7"><strong class="block text-academic-primary">دروس واضحة</strong>شرح عربي مع أمثلة وملفات قابلة للعرض.</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <i class="fas fa-code text-academic-accent mt-1" aria-hidden="true"></i>
+                <span class="text-academic-secondary leading-7"><strong class="block text-academic-primary">تمارين عملية</strong>كتابة الكود وتشغيله والتحقق من النتيجة.</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <i class="fas fa-folder-open text-academic-accent mt-1" aria-hidden="true"></i>
+                <span class="text-academic-secondary leading-7"><strong class="block text-academic-primary">مشروع ختامي</strong>تجميع مفاهيم الدورة ضمن مراحل مرتبة.</span>
+            </li>
+        </ul>
+    </section>
 
-        <section class="academic-card p-7 mt-5">
-            <h2 class="text-2xl font-bold text-academic-primary mb-4">ما تم بناؤه وما القادم؟</h2>
-            <p class="text-academic-secondary leading-7 mb-4">يتضمن المسار حالياً دروس أساسيات Python، وتمارين قابلة للتشغيل والتحقق التلقائي، ومشروعاً ختامياً من ست مراحل. أكبر التحديات كانت جعل تجربة الكود مريحة في RTL، ودعم أكثر من حل صحيح، والمحافظة على سرعة الموقع من دون خادم.</p>
-            <p class="text-academic-secondary leading-7">الخطة التالية هي توسيع المسارات والتمارين، تحسين قياس التقدم، وإضافة محتوى تطبيقي أعمق مع المحافظة على بساطة التجربة.</p>
-        </section>
-
-        <div class="flex flex-wrap gap-3 mt-8">
-            <a href="../courses/index.html" class="btn-accent px-5 py-3 text-sm">ابدأ التعلم</a>
-            <a href="../accounts/index.html" class="academic-card px-5 py-3 text-sm font-bold text-academic-primary hover:border-accent">تواصل معي</a>
-            <a href="https://github.com/x7do0/X7do0-Academy" target="_blank" rel="noopener noreferrer" class="academic-card px-5 py-3 text-sm font-bold text-academic-primary hover:border-accent">شاهد الكود المصدري</a>
-        </div>
-    </main>
+    <div class="flex flex-wrap gap-3 mt-6">
+        <a href="../courses/index.html" class="btn-accent px-5 py-3 text-sm">ابدأ التعلم</a>
+        <a href="https://github.com/x7do0eng/X7do0-Academy" target="_blank" rel="noopener noreferrer" class="academic-card px-5 py-3 text-sm font-bold text-academic-primary hover:border-accent">الكود المصدري</a>
+    </div>
+</main>
     <footer class="mt-auto py-8 text-center relative z-10">
         <div class="divider-gradient max-w-6xl mx-auto mb-8"></div>
         <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-4 text-xs font-bold text-academic-secondary" aria-label="روابط إضافية">
             <a href="../about/index.html" class="hover:text-academic-accent transition-colors">عن المشروع</a>
             <a href="../accounts/index.html" class="hover:text-academic-accent transition-colors">تواصل معي</a>
-            <a href="https://github.com/x7do0/X7do0-Academy" target="_blank" rel="noopener noreferrer" class="hover:text-academic-accent transition-colors">الكود المصدري</a>
+            <a href="https://github.com/x7do0eng/X7do0-Academy" target="_blank" rel="noopener noreferrer" class="hover:text-academic-accent transition-colors">الكود المصدري</a>
         </nav>
         <p class="text-academic-secondary text-[10px] tracking-[0.3em] uppercase font-bold">X7do0eng</p>
     </footer>
-    <script type="module" src="../assets/js/nav-drawer.js?v=408e8a56be"></script>
+    <script type="module" src="../assets/js/nav-drawer.js?v=7a2f5e6b59"></script>
 </body>
 </html>
