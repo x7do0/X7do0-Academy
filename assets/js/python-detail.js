@@ -138,6 +138,10 @@ const DetailController = {
                     <div>
                         <div class="label mb-3">${i18n.t('python.question.prompt')}</div>
                         <div class="text-academic-secondary leading-relaxed text-base">${formatInlineCode(question.prompt)}</div>
+                        ${question.promptEn ? `
+                            <div class="question-prompt-english" lang="en" dir="ltr">
+                                ${formatInlineCode(question.promptEn)}
+                            </div>` : ''}
                     </div>
                 </div>
             </div>

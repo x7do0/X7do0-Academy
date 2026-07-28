@@ -203,7 +203,7 @@ function buildRunner() {
         </div>
     `;
 
-    stepsSection.insertAdjacentElement('beforebegin', section);
+    stepsSection.insertAdjacentElement('afterend', section);
 
     const code = document.getElementById('runner-code');
     const result = document.getElementById('runner-result');
