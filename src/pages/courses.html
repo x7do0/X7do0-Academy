@@ -1,0 +1,24 @@
+<main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+        <header class="mb-12 text-center md:text-start">
+            <h1 class="text-3xl md:text-4xl font-bold text-academic-primary mb-4" data-i18n="courses_title">الدورات المتاحة</h1>
+            <p class="text-academic-secondary max-w-2xl" data-i18n="courses_desc">ابدأ بمسار بايثون المتاح حاليًا، وتقدّم عبر الدروس والتمارين بخطوات منظّمة.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="./python/index.html" class="group relative block academic-card card-accent-top overflow-hidden transform hover:-translate-y-1">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-12 h-12 rounded-lg icon-box text-2xl"><i class="fab fa-python"></i></div>
+                        <span class="badge-success" data-i18n="active_badge">متاح</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-academic-primary transition-colors mb-2" data-i18n="course_python_title">أساسيات بايثون</h2>
+                    <p class="text-sm text-academic-secondary leading-relaxed mb-6" data-i18n="course_python_desc">تعلّم بايثون من المتغيرات إلى هياكل البيانات عبر دروس واضحة وتمارين عملية.</p>
+                    <div class="flex items-center gap-4 text-xs font-mono text-academic-muted">
+                        <span><i class="fas fa-layer-group me-1"></i> <span id="python-lesson-count">12</span> <span data-i18n="lessons_count">درسًا</span></span>
+                        <span><i class="fas fa-code me-1"></i> عملي</span>
+                    </div>
+                </div>
+                <div class="absolute inset-0 bg-[var(--accent-soft)] opacity-0 group-hover:opacity-30 pointer-events-none transition-opacity"></div>
+            </a>
+        </div>
+    </main>

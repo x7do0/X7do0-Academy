@@ -39,11 +39,8 @@ opencode.json
 
 # Development-only (not for deployment)
 tests/
-tools/
 backup/
 archive/
 docs/
 AGENTS.md
 playwright.config.js
-package.json
-package-lock.json

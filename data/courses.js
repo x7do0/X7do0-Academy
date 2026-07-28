@@ -3,8 +3,6 @@ export const courses = [
     id: 'python',
     title: 'أساسيات بايثون',
     description: 'تعلّم بايثون من المتغيرات إلى هياكل البيانات عبر دروس واضحة وتمارين عملية.',
-    icon: 'fab fa-python',
-    color: 'blue',
     status: 'active',
     lessonsCount: 12,
     questionsCount: 25,
