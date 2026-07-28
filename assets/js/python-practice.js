@@ -4,6 +4,11 @@ import i18n from './i18n.js';
 import { escapeHtml } from './content-format.js';
 
 const tracker = createProgressTracker('python', questions);
+const text = value => ({ ar: value?.ar || '', en: value?.en || '' });
+const bilingualLabel = value => {
+  const localized = text(value);
+  return `<span class="block">${escapeHtml(localized.ar)}</span><span class="block text-[10px] font-normal opacity-60" dir="ltr">${escapeHtml(localized.en)}</span>`;
+};
 
 const PracticeController = {
   state: {
@@ -76,12 +81,14 @@ const PracticeController = {
       if (this.state.selectedCategoryId && question.categoryId !== this.state.selectedCategoryId) {
         return false;
       }
-
       if (!term) return true;
+
       const category = this.getCategory(question.categoryId);
-      return question.title.toLowerCase().includes(term)
-        || question.prompt.toLowerCase().includes(term)
-        || category?.label.toLowerCase().includes(term);
+      const title = text(question.title);
+      const prompt = text(question.prompt);
+      const categoryLabel = text(category?.label);
+      return [title.ar, title.en, prompt.ar, prompt.en, categoryLabel.ar, categoryLabel.en]
+        .some(value => value.toLowerCase().includes(term));
     });
   },
 
@@ -97,18 +104,18 @@ const PracticeController = {
     if (!container) return;
     container.innerHTML = '';
 
-    const appendButton = ({ id, label, completed, total }) => {
+    const appendButton = ({ id, labelHtml, completed, total }) => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = `category-btn w-full text-start px-4 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center justify-between ${this.state.selectedCategoryId === id ? 'active' : ''}`;
-      button.innerHTML = `<span>${label}</span><span class="opacity-50 font-mono text-xs">${completed}/${total}</span>`;
+      button.innerHTML = `<span>${labelHtml}</span><span class="opacity-50 font-mono text-xs">${completed}/${total}</span>`;
       button.addEventListener('click', () => this.selectCategory(id));
       container.appendChild(button);
     };
 
     appendButton({
       id: null,
-      label: i18n.t('python.practice.all_questions'),
+      labelHtml: `<span class="block">${i18n.t('python.practice.all_questions')}</span><span class="block text-[10px] font-normal opacity-60" dir="ltr">All exercises</span>`,
       completed: tracker.getCompletedQuestions().length,
       total: questions.length
     });
@@ -117,7 +124,7 @@ const PracticeController = {
       const progress = tracker.getCategoryProgress(category.id);
       appendButton({
         id: category.id,
-        label: category.label,
+        labelHtml: bilingualLabel(category.label),
         completed: progress.completed,
         total: progress.total
       });
@@ -137,8 +144,8 @@ const PracticeController = {
     const nextStep = nextQuestion ? `
       <div class="flex flex-wrap items-center gap-3 text-xs font-bold text-academic-primary">
         <span class="text-academic-secondary">${i18n.t('python.practice.resume')}:</span>
-        <span style="color:var(--accent)">${escapeHtml(nextQuestion.title)}</span>
-        <span class="opacity-50">(${escapeHtml(nextCategory?.label || '')})</span>
+        <span style="color:var(--accent)">${bilingualLabel(nextQuestion.title)}</span>
+        <span class="opacity-50">${nextCategory ? bilingualLabel(nextCategory.label) : ''}</span>
         <a href="./question.html?id=${nextQuestion.id}" class="btn-accent px-3 py-1.5 text-[11px] inline-flex items-center ms-auto">${i18n.t('python.practice.continue_learning')}</a>
       </div>` : `
       <div class="text-xs font-bold flex items-center gap-2" style="color:var(--success);">
@@ -163,10 +170,11 @@ const PracticeController = {
 
   createQuestionCard(question) {
     const category = this.getCategory(question.categoryId);
+    const title = text(question.title);
     const card = document.createElement('a');
     card.className = 'practice-question-card p-5 flex flex-col gap-3';
     card.href = `./question.html?id=${question.id}`;
-    card.setAttribute('aria-label', `${i18n.t('python.question.label')}: ${question.title}`);
+    card.setAttribute('aria-label', `${i18n.t('python.question.label')}: ${title.ar} / ${title.en}`);
 
     card.innerHTML = `
       <div class="flex items-center justify-between">
@@ -174,9 +182,12 @@ const PracticeController = {
           <span class="question-number">${question.id}</span>
           ${tracker.isQuestionCompleted(question.id) ? '<i class="fas fa-check-circle text-green-500 text-sm"></i>' : ''}
         </div>
-        <span class="category-tag">${escapeHtml(category?.label || i18n.t('python.practice.unknown_category'))}</span>
+        <span class="category-tag">${category ? bilingualLabel(category.label) : i18n.t('python.practice.unknown_category')}</span>
       </div>
-      <h3 class="text-base text-academic-primary font-semibold leading-snug">${escapeHtml(question.title)}</h3>`;
+      <h3 class="text-base text-academic-primary font-semibold leading-snug">
+        <span class="block">${escapeHtml(title.ar)}</span>
+        <span class="block mt-1 text-sm font-normal text-academic-secondary" dir="ltr">${escapeHtml(title.en)}</span>
+      </h3>`;
 
     return card;
   },
