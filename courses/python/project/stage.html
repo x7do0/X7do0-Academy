@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سؤال بايثون | أكاديمية X7do0</title>
-    <meta name="description" content="سؤال برمجي تفاعلي من تمارين بايثون.">
-    <meta property="og:title" content="سؤال بايثون | أكاديمية X7do0">
-    <meta property="og:description" content="سؤال برمجي تفاعلي من تمارين بايثون.">
+    <title>مرحلة المشروع الختامي | أكاديمية X7do0</title>
+    <meta name="description" content="مرحلة تعليمية تفاعلية من مشروع مدير المهام بلغة Python.">
+    <meta property="og:title" content="مرحلة المشروع الختامي | أكاديمية X7do0">
+    <meta property="og:description" content="مرحلة تعليمية تفاعلية من مشروع مدير المهام بلغة Python.">
     <meta property="og:image" content="https://x7do0.github.io/X7do0-Academy/assets/preview.png">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/png" href="../../../assets/favicon.png">
@@ -19,16 +19,15 @@
     <link rel="stylesheet" href="../../../assets/css/tailwind.css?v=21bf659121">
     <link rel="stylesheet" href="../../../assets/css/variables.css?v=10cb2b2b35">
     <link rel="stylesheet" href="../../../assets/css/styles.css?v=d7b2124db7">
-    <link rel="stylesheet" href="../../../assets/css/python-practice.css?v=a8a33a1596">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="../../../assets/css/python-project.css?v=576b6e37a6">
     <script src="../../../assets/js/theme-manager.js?v=ee9082061b"></script>
 </head>
 <body class="antialiased pb-20"
-    data-page="python-practice-detail"
+    data-page="python-project-stage"
     data-nav-section="courses"
     data-nav-home="../../../index.html"
     data-nav-courses="../../index.html"
-    data-nav-practice="./index.html"
+    data-nav-practice="../practice/index.html"
     data-nav-connect="../../../accounts/index.html">
     <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-60 pointer-events-none"></div>
     <nav class="w-full py-6 px-4 navbar-sticky">
@@ -55,33 +54,17 @@
             </div>
         </div>
     </nav>
-<main class="max-w-6xl mx-auto px-4 py-8">
-        <nav class="mb-6">
-            <div class="flex items-center gap-2 text-xs font-mono text-academic-muted">
-                <a href="../../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_home">الرئيسية</a>
-                <span>/</span>
-                <a href="../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_courses">الدورات</a>
-                <span>/</span>
-                <a href="../index.html" class="hover:text-academic-accent transition-colors" data-i18n="python_name">بايثون</a>
-                <span>/</span>
-                <a href="./index.html" class="hover:text-academic-accent transition-colors" data-i18n="python_practice_card_title">التمارين</a>
-                <span>/</span>
-                <span class="text-academic-secondary" data-i18n="python.question.label">التمرين</span>
-            </div>
-        </nav>
+<main class="max-w-5xl mx-auto px-4 py-8">
+    <nav class="mb-8 text-xs font-mono text-academic-muted flex items-center gap-2">
+        <a href="../../../index.html" class="hover:text-academic-accent">الرئيسية</a>
+        <span>/</span>
+        <a href="./index.html" class="hover:text-academic-accent">المشروع الختامي</a>
+        <span>/</span>
+        <span class="text-academic-secondary">المرحلة</span>
+    </nav>
 
-        <div class="mb-8">
-            <a href="./index.html" class="text-academic-secondary hover:text-academic-accent font-bold text-sm flex items-center gap-2">
-                <i class="fas fa-arrow-left rtl:rotate-180"></i>
-                <span data-i18n="python.practice.back_to_questions">العودة إلى التمارين</span>
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <aside id="sidebar" class="md:col-span-1"></aside>
-            <article id="question-view" class="md:col-span-3 flex flex-col gap-6"></article>
-        </div>
-    </main>
+    <article id="project-stage" aria-live="polite"></article>
+</main>
     <footer class="mt-auto py-8 text-center relative z-10">
         <div class="divider-gradient max-w-6xl mx-auto mb-8"></div>
         <p class="text-academic-secondary text-[10px] tracking-[0.3em] uppercase font-bold">X7do0eng</p>
@@ -91,7 +74,6 @@
         import i18n from '../../../assets/js/i18n.js?v=aba2f01a2d';
         i18n.init();
     </script>
-    <script type="module" src="../../../assets/js/python-detail.js?v=936585f3ac"></script>
-    <script type="module" src="../../../assets/js/python-runner.js?v=473c6ed240"></script>
+    <script type="module" src="../../../assets/js/python-project-stage.js?v=f63933505b"></script>
 </body>
 </html>

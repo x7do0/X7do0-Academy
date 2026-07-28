@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/tailwind.css?v=52f8eae6f9">
+    <link rel="stylesheet" href="../../assets/css/tailwind.css?v=21bf659121">
     <link rel="stylesheet" href="../../assets/css/variables.css?v=10cb2b2b35">
     <link rel="stylesheet" href="../../assets/css/styles.css?v=d7b2124db7">
 
@@ -74,7 +74,7 @@
                 <div class="hidden sm:flex items-center gap-4 text-[10px] font-mono text-blue-900/60 dark:text-slate-400 uppercase tracking-widest"><span class="flex items-center gap-1"><i class="fas fa-user-circle"></i> X7do0</span></div>
             </div>
 
-            <nav class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <nav class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <a href="./index.html" class="academic-card p-4 border-s-accent bg-[var(--accent-soft)] flex items-center gap-4 transition-all">
                     <div class="w-10 h-10 rounded bg-accent-solid flex items-center justify-center"><i class="fas fa-book-open"></i></div>
                     <div>
@@ -87,6 +87,13 @@
                     <div>
                         <div class="text-academic-primary font-bold opacity-70 group-hover:opacity-100 transition-opacity" data-i18n="python_practice_card_title">التمارين</div>
                         <div class="text-xs text-academic-muted" data-i18n="python_practice_card_desc">25 تمرينًا وتحديًا برمجيًا</div>
+                    </div>
+                </a>
+                <a href="./project/index.html" class="academic-card p-4 border-s-4 border-[var(--border-soft)] hover:border-[var(--accent)] flex items-center gap-4 transition-all group">
+                    <div class="w-10 h-10 rounded bg-[var(--bg-interactive)] flex items-center justify-center text-[var(--text-muted)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all"><i class="fas fa-flag-checkered"></i></div>
+                    <div>
+                        <div class="text-academic-primary font-bold opacity-70 group-hover:opacity-100 transition-opacity">المشروع الختامي</div>
+                        <div class="text-xs text-academic-muted">مدير مهام عبر 6 مراحل</div>
                     </div>
                 </a>
             </nav>
@@ -105,6 +112,6 @@
         import i18n from '../../assets/js/i18n.js?v=aba2f01a2d';
         i18n.init();
     </script>
-    <script type="module" src="../../assets/js/app.js?v=d36835babc"></script>
+    <script type="module" src="../../assets/js/app.js?v=f9f10b18cd"></script>
 </body>
 </html>

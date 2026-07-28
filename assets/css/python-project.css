@@ -1,0 +1,187 @@
+.project-hero {
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--border-card);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at top left, rgba(79, 125, 243, 0.18), transparent 38%),
+        var(--bg-card);
+    box-shadow: var(--shadow-soft);
+}
+
+.project-stage-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.project-stage-card {
+    display: flex;
+    min-height: 170px;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border-card);
+    border-radius: 14px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-stage-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-strong);
+}
+
+.project-stage-number {
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.project-secondary-button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 9px;
+    background: var(--bg-interactive);
+    color: var(--text-primary);
+    font-weight: 700;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.project-secondary-button:hover {
+    border-color: var(--border-accent);
+    background: var(--accent-soft);
+}
+
+.project-stage-card.is-complete {
+    border-color: var(--success);
+}
+
+.project-stage-card.is-complete .project-stage-number {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.project-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.project-info-panel {
+    padding: 1.25rem;
+    border: 1px solid var(--border-card);
+    border-radius: 14px;
+    background: var(--bg-card);
+}
+
+.project-runner {
+    padding: 1.25rem;
+    border: 1px solid #263246;
+    border-radius: 14px;
+    background: #101a2d;
+    box-shadow: 0 14px 34px rgba(2, 6, 23, 0.2);
+}
+
+.project-code-editor {
+    width: 100%;
+    min-height: 320px;
+    resize: vertical;
+    padding: 1rem;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    background: #0b1220;
+    color: #e2e8f0;
+    font-family: 'Fira Code', Consolas, monospace;
+    font-size: 0.84rem;
+    line-height: 1.75;
+    direction: ltr;
+    text-align: left;
+    unicode-bidi: isolate;
+    tab-size: 4;
+}
+
+.project-code-editor:focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
+}
+
+.project-runner-output {
+    margin-top: 1rem;
+    min-height: 70px;
+    padding: 1rem;
+    border: 1px solid #1e3a2d;
+    border-radius: 10px;
+    background: #071510;
+    color: #bbf7d0;
+    font-family: 'Fira Code', Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    direction: ltr;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.project-result {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.project-result--success {
+    border: 1px solid var(--success);
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.project-result--error {
+    border: 1px solid var(--danger);
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.project-summary-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.project-summary-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    background: var(--bg-interactive);
+}
+
+@media (max-width: 700px) {
+    .project-stage-list,
+    .project-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-stage-card {
+        min-height: 0;
+    }
+
+    .project-code-editor {
+        min-height: 260px;
+        font-size: 0.78rem;
+    }
+}
