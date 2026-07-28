@@ -23,8 +23,6 @@ const i18n = {
         course_python_desc: 'courses.python.desc',
         connect_title: 'connect.title',
         connect_desc: 'connect.desc',
-        desc_tg_personal: 'connect.telegram_personal',
-        desc_tg_channel: 'connect.telegram_channel',
         desc_youtube: 'connect.youtube',
         desc_instagram: 'connect.instagram',
         files_resources: 'python.files_resources',

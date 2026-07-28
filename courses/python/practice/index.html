@@ -21,10 +21,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/tailwind.css?v=bd518b142d">
+    <link rel="stylesheet" href="../../../assets/css/tailwind.css?v=06f661781b">
     <link rel="stylesheet" href="../../../assets/css/variables.css?v=7967938615">
-    <link rel="stylesheet" href="../../../assets/css/styles.css?v=b5b3e79234">
-    <link rel="stylesheet" href="../../../assets/css/python-practice.css?v=dd5e42b467">
+    <link rel="stylesheet" href="../../../assets/css/styles.css?v=bdbde45902">
+    <link rel="stylesheet" href="../../../assets/css/course-shell.css?v=40bae03f63">
+    <link rel="stylesheet" href="../../../assets/css/python-practice.css?v=3b8b0179c2">
     <script src="../../../assets/js/theme-manager.js?v=3b7a594baf"></script>
 </head>
 <body class="antialiased pb-20"
@@ -60,71 +61,63 @@
             </div>
         </div>
     </nav>
-<nav class="max-w-7xl mx-auto px-4 py-4">
-        <div class="flex items-center gap-2 text-xs font-mono text-academic-muted">
-            <a href="../../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_home">الرئيسية</a>
-            <span>/</span>
-            <a href="../../index.html" class="hover:text-academic-accent transition-colors" data-i18n="nav_courses">الدورات</a>
-            <span>/</span>
-            <a href="../index.html" class="hover:text-academic-accent transition-colors" data-i18n="python_name">بايثون</a>
-            <span>/</span>
-            <span class="text-academic-secondary" data-i18n="python_practice_card_title">التمارين</span>
-        </div>
+<div class="course-shell">
+    <aside class="course-sidebar" aria-label="أقسام مسار بايثون">
+    <div class="course-sidebar__brand">
+        <span class="course-sidebar__icon"><i class="fab fa-python" aria-hidden="true"></i></span>
+        <span>
+            <strong>أساسيات بايثون</strong>
+            <small>المسار التعليمي</small>
+        </span>
+    </div>
+    <nav class="course-sidebar__nav">
+        <a href="../index.html#course-overview" class="">
+            <i class="fas fa-border-all" aria-hidden="true"></i>
+            <span>نظرة عامة</span>
+        </a>
+        <a href="../index.html#lessons" class="">
+            <i class="fas fa-book-open" aria-hidden="true"></i>
+            <span>الدروس</span>
+        </a>
+        <a href="./index.html" class="active">
+            <i class="fas fa-code" aria-hidden="true"></i>
+            <span>التمارين</span>
+        </a>
+        <a href="../project/index.html" class="">
+            <i class="far fa-folder" aria-hidden="true"></i>
+            <span>المشاريع</span>
+        </a>
     </nav>
-
-    <header class="course-context-header sticky top-0 z-40 py-4 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="academic-card px-6 py-4 flex justify-between items-center relative overflow-hidden bg-academic-card border-t-0">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--accent)] via-[var(--accent-hover)] to-[var(--accent)]"></div>
-                <div class="flex items-center gap-4">
-                    <div class="relative flex items-center justify-center w-10 h-10 rounded-lg bg-accent-solid shadow-sm"><i class="fab fa-python text-2xl"></i></div>
-                    <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-academic-primary" data-i18n="course_python_practice_header_title" data-i18n-html="true">تمارين <span class="text-academic-accent">بايثون</span></h1>
-                </div>
-                <div class="hidden sm:flex items-center gap-4 text-[10px] font-mono text-blue-900/60 dark:text-slate-400 uppercase tracking-widest"><span class="flex items-center gap-1"><i class="fas fa-user-circle"></i> X7do0</span></div>
+</aside>
+    <main class="course-main">
+        <header class="course-header">
+            <div class="course-header__icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+            <div>
+                <h1>تمارين بايثون</h1>
+                <p>اختر سؤالاً، جرّب حلك، واحصل على نتيجة واضحة.</p>
             </div>
+        </header>
 
-            <nav class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="../index.html" class="academic-card p-4 border-s-4 border-[var(--border-soft)] hover:border-[var(--accent)] flex items-center gap-4 transition-all group">
-                    <div class="w-10 h-10 rounded bg-[var(--bg-interactive)] flex items-center justify-center text-[var(--text-muted)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all"><i class="fas fa-book-open"></i></div>
-                    <div>
-                        <div class="text-academic-primary font-bold opacity-70 group-hover:opacity-100 transition-opacity" data-i18n="python_notes_card_title">الدروس</div>
-                        <div class="text-xs text-academic-muted" data-i18n="python_notes_card_desc">دروس المسار وشروحاته</div>
-                    </div>
-                </a>
-                <a href="./index.html" class="academic-card p-4 border-s-accent bg-[var(--accent-soft)] flex items-center gap-4 transition-all" aria-current="page">
-                    <div class="w-10 h-10 rounded bg-accent-solid flex items-center justify-center"><i class="fas fa-code"></i></div>
-                    <div>
-                        <div class="text-academic-primary font-bold" data-i18n="python_practice_card_title">التمارين</div>
-                        <div class="text-xs text-academic-secondary" data-i18n="python_practice_card_desc">25 تمرينًا وتحديًا برمجيًا</div>
-                    </div>
-                </a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <aside class="practice-categories md:col-span-1">
-                <div class="sticky top-24">
-                    <div class="label mb-4" data-i18n="python.practice.categories">التصنيفات</div>
-                    <div id="practice-categories-sidebar" class="flex flex-col gap-1"></div>
+        <div class="practice-desktop-layout">
+            <aside class="practice-category-rail">
+                <div class="section-title-row">
+                    <h2>التصنيفات</h2>
                 </div>
+                <div id="practice-categories-sidebar"></div>
             </aside>
 
-            <div class="practice-content md:col-span-3">
-                <div id="filters-mount-point" class="mb-6" aria-label="خيارات تصفية التمارين" data-i18n-aria-label="python.practice.filters">
-                    <div class="relative w-full max-w-xl">
-                        <label for="practice-search" class="sr-only" data-i18n="python.practice.search_label">البحث في تمارين بايثون</label>
-                        <input type="text" id="practice-search" placeholder="ابحث في التمارين..." data-i18n-placeholder="python.practice.search_placeholder" class="w-full px-5 py-3 bg-academic-card border border-[var(--border)] rounded-xl text-academic-primary placeholder-academic-muted focus:outline-none focus:ring-2 focus:ring-[var(--accent-ring)] focus:border-[var(--accent)] transition-all shadow-sm">
-                        <div class="absolute end-5 top-4 text-academic-muted" aria-hidden="true"><i class="fas fa-search"></i></div>
-                    </div>
+            <section class="practice-content" aria-label="قائمة التمارين">
+                <div id="filters-mount-point" class="practice-toolbar" aria-label="خيارات تصفية التمارين">
+                    <label for="practice-search" class="sr-only">البحث في تمارين بايثون</label>
+                    <input type="text" id="practice-search" placeholder="ابحث في التمارين..." data-i18n-placeholder="python.practice.search_placeholder">
+                    <i class="fas fa-search" aria-hidden="true"></i>
                 </div>
-
-                <div id="progress-mount-point" class="mb-8"></div>
-                <div id="practice-questions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 auto-rows-min" aria-label="قائمة التمارين"></div>
-            </div>
+                <div id="progress-mount-point"></div>
+                <div id="practice-questions-container" class="practice-question-grid" aria-label="قائمة التمارين"></div>
+            </section>
         </div>
     </main>
+</div>
     <footer class="mt-auto py-8 text-center relative z-10">
         <div class="divider-gradient max-w-6xl mx-auto mb-8"></div>
         <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-4 text-xs font-bold text-academic-secondary" aria-label="روابط إضافية">
