@@ -263,11 +263,40 @@ pre {
 }
 
 .code-panel__language {
-    justify-self: end;
     color: #64748b;
     font-family: var(--font-mono);
     font-size: 0.68rem;
     font-weight: 700;
+}
+
+.code-panel__actions {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.code-copy-button {
+    display: inline-flex;
+    min-height: 30px;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.55rem;
+    border: 1px solid #334155;
+    border-radius: 7px;
+    background: #172033;
+    color: #cbd5e1;
+    font-family: 'Noto Sans Arabic', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.code-copy-button:hover,
+.code-copy-button.is-copied {
+    border-color: #38bdf8;
+    background: #0f2940;
+    color: #67e8f9;
 }
 
 .code-panel pre {

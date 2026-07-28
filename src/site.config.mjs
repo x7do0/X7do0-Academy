@@ -87,5 +87,53 @@ export const pages = [
     styles: ['assets/css/python-practice.css'],
     highlight: true,
     scripts: ['assets/js/python-detail.js', 'assets/js/python-runner.js']
+  },
+  {
+    output: 'courses/python/project/index.html',
+    source: 'src/pages/python-project.html',
+    root: '../../../',
+    title: 'المشروع الختامي | أكاديمية X7do0',
+    description: 'مشروع مدير مهام ختامي لمسار Python، مقسم إلى مراحل تعليمية قابلة للتشغيل.',
+    bodyAttributes: `class="antialiased pb-20"
+    data-page="python-project"
+    data-nav-section="courses"
+    data-nav-home="../../../index.html"
+    data-nav-courses="../../index.html"
+    data-nav-practice="../practice/index.html"
+    data-nav-connect="../../../accounts/index.html"`,
+    styles: ['assets/css/python-project.css'],
+    script: 'assets/js/python-project.js'
+  },
+  {
+    output: 'courses/python/project/stage.html',
+    source: 'src/pages/python-project-stage.html',
+    root: '../../../',
+    title: 'مرحلة المشروع الختامي | أكاديمية X7do0',
+    description: 'مرحلة تعليمية تفاعلية من مشروع مدير المهام بلغة Python.',
+    bodyAttributes: `class="antialiased pb-20"
+    data-page="python-project-stage"
+    data-nav-section="courses"
+    data-nav-home="../../../index.html"
+    data-nav-courses="../../index.html"
+    data-nav-practice="../practice/index.html"
+    data-nav-connect="../../../accounts/index.html"`,
+    styles: ['assets/css/python-project.css'],
+    script: 'assets/js/python-project-stage.js'
+  },
+  {
+    output: 'courses/python/project/summary.html',
+    source: 'src/pages/python-project-summary.html',
+    root: '../../../',
+    title: 'ملخص المشروع الختامي | أكاديمية X7do0',
+    description: 'ملخص ما بناه الطالب وما تعلمه في مشروع Python الختامي.',
+    bodyAttributes: `class="antialiased pb-20"
+    data-page="python-project-summary"
+    data-nav-section="courses"
+    data-nav-home="../../../index.html"
+    data-nav-courses="../../index.html"
+    data-nav-practice="../practice/index.html"
+    data-nav-connect="../../../accounts/index.html"`,
+    styles: ['assets/css/python-project.css'],
+    script: 'assets/js/python-project-summary.js'
   }
 ];

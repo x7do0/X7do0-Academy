@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const presentation = getLessonPresentation(lesson.id);
             const color = presentation.color;
             const card = document.createElement('section');
+            card.id = `lesson-${lesson.id}`;
             card.className = `academic-card p-6 group ${presentation.span > 1 ? `md:col-span-${presentation.span}` : ''}`;
             card.style.borderLeft = `4px solid ${accentVar(color)}`;
 

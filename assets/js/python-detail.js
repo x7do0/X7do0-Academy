@@ -13,7 +13,14 @@ const renderCodePanel = ({ code, label, type, language = 'python' }) => `
                 <span></span><span></span><span></span>
             </div>
             <span class="code-panel__label" dir="rtl">${escapeHtml(label)}</span>
-            <span class="code-panel__language" aria-hidden="true">${type === 'source' ? 'PY' : '›_'}</span>
+            <div class="code-panel__actions">
+                <span class="code-panel__language" aria-hidden="true">${type === 'source' ? 'PY' : '›_'}</span>
+                ${type === 'source' ? `
+                    <button type="button" class="code-copy-button" data-copy-code aria-label="نسخ الكود">
+                        <i class="far fa-copy" aria-hidden="true"></i>
+                        <span>نسخ</span>
+                    </button>` : ''}
+            </div>
         </div>
         <pre dir="ltr" tabindex="0"><code dir="ltr" class="${language === 'python' ? 'language-python' : 'nohighlight'}">${escapeHtml(code)}</code></pre>
     </div>`;
@@ -190,7 +197,44 @@ const DetailController = {
                 </a>
             </div>`;
 
-        document.getElementById('q-reveals')?.addEventListener('click', event => {
+        document.getElementById('q-reveals')?.addEventListener('click', async event => {
+            const copyButton = event.target.closest('[data-copy-code]');
+            if (copyButton) {
+                const code = copyButton.closest('.code-panel')?.querySelector('code')?.textContent || '';
+                try {
+                    let copied = false;
+                    if (navigator.clipboard?.writeText) {
+                        try {
+                            await navigator.clipboard.writeText(code);
+                            copied = true;
+                        } catch {
+                            copied = false;
+                        }
+                    }
+                    if (!copied) {
+                        const field = document.createElement('textarea');
+                        field.value = code;
+                        field.style.position = 'fixed';
+                        field.style.opacity = '0';
+                        document.body.appendChild(field);
+                        field.select();
+                        copied = document.execCommand('copy');
+                        field.remove();
+                    }
+                    if (!copied) throw new Error('Copy command failed');
+                    copyButton.classList.add('is-copied');
+                    copyButton.querySelector('span').textContent = 'تم النسخ';
+                    window.setTimeout(() => {
+                        copyButton.classList.remove('is-copied');
+                        copyButton.querySelector('span').textContent = 'نسخ';
+                    }, 1600);
+                } catch (error) {
+                    console.error('[CopyCode]', error);
+                    copyButton.querySelector('span').textContent = 'تعذر النسخ';
+                }
+                return;
+            }
+
             const toggle = event.target.closest('.reveal-toggle');
             if (!toggle) return;
             const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
