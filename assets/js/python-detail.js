@@ -4,6 +4,11 @@ import i18n from './i18n.js';
 import { escapeHtml, formatInlineCode } from './content-format.js';
 
 const tracker = createProgressTracker('python', questions);
+const text = value => ({ ar: value?.ar || '', en: value?.en || '' });
+const bilingualLabel = value => {
+    const localized = text(value);
+    return `<span class="block">${escapeHtml(localized.ar)}</span><span class="block text-[10px] font-normal opacity-60" dir="ltr">${escapeHtml(localized.en)}</span>`;
+};
 
 const DetailController = {
     getQuestion(questionId) {
@@ -66,15 +71,19 @@ const DetailController = {
                             return `
                                 <div class="space-y-1">
                                     <button type="button" class="category-disclosure w-full flex items-center justify-between text-sm font-bold text-academic-primary group" aria-expanded="${isActiveCategory}" aria-controls="question-category-${category.id}">
-                                        <span>${escapeHtml(category.label)}</span>
+                                        <span>${bilingualLabel(category.label)}</span>
                                         <span class="text-[10px] opacity-50">${completedCount}/${categoryQuestions.length}</span>
                                     </button>
                                     <div id="question-category-${category.id}" class="${isActiveCategory ? '' : 'hidden'} space-y-1 mt-2 ps-4 border-s" style="border-color:var(--border-soft);">
-                                        ${categoryQuestions.map(item => `
-                                            <a href="./question.html?id=${item.id}" class="block text-xs py-1.5 px-2 rounded" style="${item.id === question.id ? 'background:var(--accent-soft);color:var(--accent);font-weight:700;' : 'color:var(--text-secondary);'}">
-                                                <i class="fas ${tracker.isQuestionCompleted(item.id) ? 'fa-check-circle text-green-500' : 'fa-circle text-[6px]'} me-2"></i>
-                                                ${escapeHtml(item.title)}
-                                            </a>`).join('')}
+                                        ${categoryQuestions.map(item => {
+                                            const title = text(item.title);
+                                            return `
+                                                <a href="./question.html?id=${item.id}" class="block text-xs py-1.5 px-2 rounded" style="${item.id === question.id ? 'background:var(--accent-soft);color:var(--accent);font-weight:700;' : 'color:var(--text-secondary);'}">
+                                                    <i class="fas ${tracker.isQuestionCompleted(item.id) ? 'fa-check-circle text-green-500' : 'fa-circle text-[6px]'} me-2"></i>
+                                                    <span class="block">${escapeHtml(title.ar)}</span>
+                                                    <span class="block text-[10px] opacity-60" dir="ltr">${escapeHtml(title.en)}</span>
+                                                </a>`;
+                                        }).join('')}
                                     </div>
                                 </div>`;
                         }).join('')}
@@ -107,34 +116,56 @@ const DetailController = {
         const isCompleted = tracker.isQuestionCompleted(question.id);
         const { prev, next } = this.getPrevNext(question.id);
         const category = this.getCategory(question.categoryId);
+        const title = text(question.title);
+        const prompt = text(question.prompt);
+        const stepsAr = question.steps?.ar || [];
+        const stepsEn = question.steps?.en || [];
 
         container.innerHTML = `
             <div id="q-header" class="mb-8">
                 <div class="flex items-center gap-3 mb-2">
-                    <span class="category-tag">${escapeHtml(category?.label || i18n.t('python.practice.unknown_category'))}</span>
+                    <span class="category-tag">${category ? bilingualLabel(category.label) : i18n.t('python.practice.unknown_category')}</span>
                 </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-academic-primary">${escapeHtml(question.title)}</h1>
+                <h1 class="text-3xl md:text-4xl font-bold text-academic-primary">
+                    <span class="block">${escapeHtml(title.ar)}</span>
+                    <span class="block mt-2 text-xl md:text-2xl font-normal text-academic-secondary" dir="ltr">${escapeHtml(title.en)}</span>
+                </h1>
             </div>
 
             <div id="q-prompt" class="mb-8">
-                <div class="academic-card p-6">
-                    <div class="label mb-3">${i18n.t('python.question.prompt')}</div>
-                    <div class="text-academic-secondary leading-relaxed text-base">${formatInlineCode(question.prompt)}</div>
+                <div class="academic-card p-6 space-y-5">
+                    <div>
+                        <div class="label mb-3">${i18n.t('python.question.prompt')}</div>
+                        <div class="text-academic-secondary leading-relaxed text-base">${formatInlineCode(prompt.ar)}</div>
+                    </div>
+                    <div class="pt-4 border-t" style="border-color:var(--border-soft);" dir="ltr">
+                        <div class="text-[10px] uppercase tracking-wider font-bold text-academic-muted mb-2">English</div>
+                        <div class="text-academic-secondary leading-relaxed text-base">${formatInlineCode(prompt.en)}</div>
+                    </div>
                 </div>
             </div>
 
             <div id="q-reveals" class="space-y-4 mb-8">
-                ${question.steps?.length ? `
+                ${(stepsAr.length || stepsEn.length) ? `
                     <div>
                         <button type="button" class="reveal-toggle" aria-expanded="false">
                             <span>${i18n.t('python.question.show_steps')}</span>
                             <i class="fas fa-chevron-down reveal-icon"></i>
                         </button>
                         <div class="reveal-content">
-                            <div class="section-surface">
-                                <ul class="space-y-2 text-sm text-academic-primary">
-                                    ${question.steps.map(step => `<li class="flex items-start gap-3"><span class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style="background:var(--accent);"></span>${formatInlineCode(step)}</li>`).join('')}
-                                </ul>
+                            <div class="section-surface grid gap-6 md:grid-cols-2">
+                                <div>
+                                    <div class="text-xs font-bold text-academic-muted mb-3">العربية</div>
+                                    <ul class="space-y-2 text-sm text-academic-primary">
+                                        ${stepsAr.map(step => `<li class="flex items-start gap-3"><span class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style="background:var(--accent);"></span>${formatInlineCode(step)}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div dir="ltr">
+                                    <div class="text-xs font-bold text-academic-muted mb-3">English</div>
+                                    <ul class="space-y-2 text-sm text-academic-primary">
+                                        ${stepsEn.map(step => `<li class="flex items-start gap-3"><span class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style="background:var(--accent);"></span>${formatInlineCode(step)}</li>`).join('')}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>` : ''}
