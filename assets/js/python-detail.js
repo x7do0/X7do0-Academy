@@ -145,7 +145,7 @@ const DetailController = {
 
             <div id="q-reveals" class="space-y-4 mb-8">
                 ${steps.length ? `
-                    <div>
+                    <div id="q-steps">
                         <button type="button" class="reveal-toggle" aria-expanded="false">
                             <span>${i18n.t('python.question.show_steps')}</span>
                             <i class="fas fa-chevron-down reveal-icon"></i>
@@ -174,21 +174,6 @@ const DetailController = {
                         </div>
                     </div>` : ''}
 
-                ${question.output ? `
-                    <div>
-                        <button type="button" class="reveal-toggle" aria-expanded="false">
-                            <span>${i18n.t('python.question.show_output')}</span>
-                            <i class="fas fa-chevron-down reveal-icon"></i>
-                        </button>
-                        <div class="reveal-content">
-                            ${renderCodePanel({
-                                code: question.output,
-                                label: 'المخرجات',
-                                type: 'output',
-                                language: 'text'
-                            })}
-                        </div>
-                    </div>` : ''}
             </div>
 
             <div class="flex items-center justify-between mb-8">

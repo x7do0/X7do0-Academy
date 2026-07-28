@@ -86,6 +86,6 @@ export const pages = [
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/python-practice.css'],
     highlight: true,
-    script: 'assets/js/python-detail.js'
+    scripts: ['assets/js/python-detail.js', 'assets/js/python-runner.js']
   }
 ];

@@ -51,9 +51,10 @@ function renderExtraHead(page) {
 }
 
 function renderScripts(page) {
-  const pageScript = page.script
-    ? `    <script type="module" src="${page.root}${page.script}"></script>`
-    : '';
+  const pageScripts = page.scripts ?? (page.script ? [page.script] : []);
+  const pageScript = pageScripts
+    .map(src => `    <script type="module" src="${page.root}${src}"></script>`)
+    .join('\n');
 
   return `    <script type="module" src="${page.root}assets/js/nav-drawer.js"></script>
     <script type="module">
