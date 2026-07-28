@@ -4,8 +4,7 @@ import i18n from './i18n.js';
 import { escapeHtml } from './content-format.js';
 
 const tracker = createProgressTracker('python', questions);
-const text = value => ({ ar: value?.ar || '', en: value?.en || '' });
-const arabicLabel = value => escapeHtml(text(value).ar);
+const arabicLabel = value => escapeHtml(value || '');
 
 const PracticeController = {
   state: {
@@ -81,10 +80,7 @@ const PracticeController = {
       if (!term) return true;
 
       const category = this.getCategory(question.categoryId);
-      const title = text(question.title);
-      const prompt = text(question.prompt);
-      const categoryLabel = text(category?.label);
-      return [title.ar, title.en, prompt.ar, prompt.en, categoryLabel.ar, categoryLabel.en]
+      return [question.title, question.prompt, category?.label || '']
         .some(value => value.toLowerCase().includes(term));
     });
   },
@@ -167,11 +163,10 @@ const PracticeController = {
 
   createQuestionCard(question) {
     const category = this.getCategory(question.categoryId);
-    const title = text(question.title);
     const card = document.createElement('a');
     card.className = 'practice-question-card p-5 flex flex-col gap-3';
     card.href = `./question.html?id=${question.id}`;
-    card.setAttribute('aria-label', `${i18n.t('python.question.label')}: ${title.ar}`);
+    card.setAttribute('aria-label', `${i18n.t('python.question.label')}: ${question.title}`);
 
     card.innerHTML = `
       <div class="flex items-center justify-between">
@@ -182,7 +177,7 @@ const PracticeController = {
         <span class="category-tag">${category ? arabicLabel(category.label) : i18n.t('python.practice.unknown_category')}</span>
       </div>
       <h3 class="text-base text-academic-primary font-semibold leading-snug">
-        <span class="block">${escapeHtml(title.ar)}</span>
+        <span class="block">${escapeHtml(question.title)}</span>
       </h3>`;
 
     return card;
