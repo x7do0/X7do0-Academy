@@ -1,4 +1,4 @@
-// محتوى التمارين باللغة العربية، مع إبقاء الشيفرات ومخرجاتها بصياغتها البرمجية الصحيحة.
+// العناوين والشرح بالعربية، مع نص المطلوب بالإنجليزية أيضاً والشيفرات بصياغتها البرمجية الصحيحة.
 
 export const categories = [
   {
@@ -53,6 +53,7 @@ export const questions = [
     "categoryId": "fibonacci",
     "title": "طباعة أول N من متتالية فيبوناتشي",
     "prompt": "اكتب برنامج يطلب من المستخدم إدخال عدد صحيح موجب `N`، ثم يقوم بطباعة أول `N` رقم من متتالية فيبوناتشي.",
+    "promptEn": "Write a program that asks the user to enter a positive integer `N`, then prints the first `N` numbers of the `Fibonacci` sequence.",
     "steps": [
       "1- قراءة العدد `N` من المستخدم.",
       "2- تهيئة المتغير `a` بصفر والمتغير `b` بواحد.",
@@ -68,6 +69,7 @@ export const questions = [
     "categoryId": "fibonacci",
     "title": "أعداد فيبوناتشي القابلة للقسمة على 3",
     "prompt": "اكتب برنامج يطلب من المستخدم إدخال عدد صحيح موجب `N`، ثم يقوم بتوليد أول `N` رقم من متتالية فيبوناتشي وتخزينها داخل قائمة، وبعد ذلك يقوم بطباعة القيم التي تقبل القسمة على `3` بدون باقي.",
+    "promptEn": "Write a program that asks the user to enter a positive integer `N`, generates the first `N` numbers of the `Fibonacci` sequence, stores them in a `List`, and then prints the values that are divisible by `3` without a remainder.",
     "steps": [
       "1- قراءة العدد `N` من المستخدم.",
       "2- إنشاء قائمة فارغة لتخزين أرقام فيبوناتشي.",
@@ -83,6 +85,7 @@ export const questions = [
     "categoryId": "fibonacci",
     "title": "أعداد فيبوناتشي الأصغر من N",
     "prompt": "اكتب برنامج يطلب من المستخدم إدخال عدد صحيح موجب `N`، ثم يقوم بطباعة جميع أرقام متتالية فيبوناتشي التي تكون أقل من العدد المدخل `N`.",
+    "promptEn": "Write a program that asks the user to enter a positive integer `N`, then prints all `Fibonacci` sequence numbers that are strictly less than the entered number `N`.",
     "steps": [
       "1- قراءة العدد `N` من المستخدم.",
       "2- تهيئة المتغيرات الأساسية `a = 0` و `b = 1`.",
@@ -97,6 +100,7 @@ export const questions = [
     "categoryId": "factorial",
     "title": "حساب مضروب عدد",
     "prompt": "اكتب برنامج يطلب من المستخدم إدخال عدد صحيح موجب `N`، ثم يقوم بحساب مضروب العدد المدخل وطباعته.",
+    "promptEn": "Write a program that asks the user to enter a positive integer `N`, calculates the `Factorial` value of the entered number, and prints it.",
     "steps": [
       "1- قراءة العدد المطلوب من المستخدم.",
       "2- تهيئة المتغير `fact` بقيمة `1` كبداية للضرب.",
@@ -112,6 +116,7 @@ export const questions = [
     "categoryId": "factorial",
     "title": "تحديد زوجية ناتج المضروب",
     "prompt": "اكتب برنامج يطلب من المستخدم إدخال عدد صحيح موجب `N`، ثم يقوم بحساب مضروب العدد المدخل، وبعد ذلك يتحقق هل الناتج زوجي أم فردي ويطبع النتيجة.",
+    "promptEn": "Write a program that asks the user to enter a positive integer `N`, calculates its `Factorial`, checks if the result is even or odd, and prints the result.",
     "steps": [
       "1- قراءة الدخل من المستخدم كمتغير `N`.",
       "2- حساب الناتج النهائي للمضروب كما في الطريقة الأساسية.",
@@ -126,6 +131,7 @@ export const questions = [
     "categoryId": "factorial",
     "title": "جمع المضاريب من 1 إلى N",
     "prompt": "اكتب برنامج يطلب من المستخدم إدخال عدد صحيح موجب `N`، ثم يقوم بحساب مجموع القيم من `1!` إلى `N!` وطباعة الناتج.",
+    "promptEn": "Write a program that asks the user to enter a positive integer `N`, calculates the sum of factorials from `1!` to `N!`, and prints the result.",
     "steps": [
       "1- قراءة العدد `N` من قبل المستخدم.",
       "2- تهيئة المتغير `fact = 1` لحفظ قيمة المضروب، والمتغير `total = 0` لجمع القيم بصورة تراكمية.",
@@ -142,6 +148,7 @@ export const questions = [
     "categoryId": "lists",
     "title": "تحليل قائمة من عشرة أعداد",
     "prompt": "اكتب برنامج يطلب من المستخدم إدخال `10` أرقام صحيحة وتخزينها داخل قائمة، ثم يقوم بتنفيذ مجموعة من المطالب (طباعة، مجموع، معدل، الأكبر، الأصغر، أكبر/أقل من المعدل).",
+    "promptEn": "Write a program that takes `10` integers from the user, stores them in a `List`, and performs various operations (Print, Sum, Average, Maximum, Minimum, Elements greater/less than average).",
     "steps": [
       "1- إنشاء قائمة فارغة وكتابة حلقة تكرار باستخدام الدالة `range(10)` لطلب الأرقام.",
       "2- استخدام حلقة للمرور على القائمة وحساب المجموع الكلي لمعرفة المعدل `avg = total / 10`.",
@@ -156,6 +163,7 @@ export const questions = [
     "categoryId": "lists",
     "title": "تصفية الأعداد الأكبر من قيمة محددة",
     "prompt": "اكتب برنامج يطلب من المستخدم إدخال أرقام صحيحة إلى أن يتم إدخال `0` لإيقاف الحلقة. ثم يطلب إدخال رقم معين ويقوم بطباعة جميع الأرقام الأكبر منه وعددها.",
+    "promptEn": "Write a program that asks the user to enter integers until `0` is entered to stop the loop. Then, request a specific target number and print all numbers greater than it along with their count.",
     "steps": [
       "1- استخدام حلقة التكرار `while True` لسؤال المستخدم عن الرقم إلى أن يتم إدخال `0`.",
       "2- إيقاف الحلقة عبر أمر `break` وسؤال المستخدم عن الرقم المستهدف `target`.",
@@ -170,6 +178,7 @@ export const questions = [
     "categoryId": "lists",
     "title": "تصفية قائمة حسب قابلية القسمة",
     "prompt": "اكتب برنامج يطلب إدخال `10` أرقام في قائمة، ثم يطلب رقماً معيناً، ويطبع جميع الأرقام التي تقبل القسمة عليه.",
+    "promptEn": "Write a program that asks for `10` numbers to populate a `List`, then asks for a specific divisor, and prints all numbers in the list that are fully divisible by it.",
     "steps": [
       "1- قراءة `10` أرقام كالمعتاد وحفظهم داخل القائمة الطويلة.",
       "2- قراءة الرقم الذي سنستخدمه كمقسوم عليه `divisor`.",
@@ -184,6 +193,7 @@ export const questions = [
     "categoryId": "prime-numbers",
     "title": "التحقق من العدد الأولي",
     "prompt": "اكتب برنامج للتحقق هل العدد المدخل عدد أولي أم لا وطباعة `True` او `False`.",
+    "promptEn": "Write a program to verify whether the entered number is a prime number and print `True` or `False` accordingly.",
     "steps": [
       "1- قراءة الرقم `N` المدخل من المستخدم بغرض الفحص.",
       "2- تهيئة متغير منطقي `prime = True` واعتباره صحيحاً في البداية.",
@@ -199,6 +209,7 @@ export const questions = [
     "categoryId": "prime-numbers",
     "title": "الأعداد الأولية حتى N",
     "prompt": "برنامج يطبع الأعداد الأولية من `1` إلى `N`، ثم يطبع أول عدد أولي يأتي بعد الرقم المدخل `N`.",
+    "promptEn": "A program that prints prime numbers from `1` to `N`, and then finds and prints the very first prime number coming right after `N`.",
     "steps": [
       "1- قراءة العدد `N` لحصر النطاق وتحديده.",
       "2- تشغيل حلقة التكرار من `1` إلى `N` والتحقق من كون الأرقام أولية وطباعتهم.",
@@ -213,6 +224,7 @@ export const questions = [
     "categoryId": "functions",
     "title": "اختبار القسمة على 2 و3",
     "prompt": "برنامج يولد عدداً عشوائياً ويمرره إلى دالة تتحقق مما إذا كان يقبل القسمة على `2` و`3` معاً.",
+    "promptEn": "A program that generates a random number and passes it to a `Function` to verify if it is divisible by both `2` and `3` completely.",
     "steps": [
       "1- استيراد مكتبة `random` للتعامل مع الأرقام العشوائية وتوليد رقم فوري.",
       "2- إنشاء دالة تستقبل المتغير، وتشغل اختباراً مزدوجاً بباقي القسمة بطريقة `num % 2 == 0 and num % 3 == 0`.",
@@ -226,6 +238,7 @@ export const questions = [
     "categoryId": "functions",
     "title": "إيجاد أصغر وأكبر قيمة في قائمة",
     "prompt": "دالة تستقبل قائمة، وتطبع أكبر قيمة وأصغر قيمة فيها.",
+    "promptEn": "A `Function` that accepts a `List` structure as input, and prints the highest and the lowest numerical values residing inside it.",
     "steps": [
       "1- تعريف الدالة لاستقبال القائمة المُسماة `numbers` كمعطى أساسي.",
       "2- استخدام دوال بايثون المدمجة `max()` لاستخراج الرقم الأكبر، و `min()` لاستخراج الرقم الأصغر بشكل مباشر.",
@@ -239,6 +252,7 @@ export const questions = [
     "categoryId": "functions",
     "title": "اختبار العدد الأولي والمربع الكامل",
     "prompt": "اكتب دالة تختبر العدد للتحقق مما إذا كان عدداً أولياً ومربعاً كاملاً، ثم تطبع النتيجة كقيمة منطقية `True` أو `False`.",
+    "promptEn": "Write a `Function` that examines a number to check whether it represents a `Prime` entity, and if it comprises a `Perfect Square`, printing boolean variables `True` or `False` for both.",
     "steps": [
       "1- إنشاء الدالة لتحديد قسمين مستقلين لاختبار كل مطلب على حدة.",
       "2- القسم الأول: تستخدم خوارزمية التحقق من العدد الأولي المعتادة لضبط قيمة المتغير الثنائي `is_prime`.",
@@ -253,6 +267,7 @@ export const questions = [
     "categoryId": "conditions",
     "title": "تصنيف درجات الطلبة",
     "prompt": "أدخل `10` درجات في قائمة، وصنّفها بنظام تقديرات الجامعات، ثم اطبع عدد الطلبة الحاصلين على التقدير `A`.",
+    "promptEn": "Input `10` exam scores into a `List`, categorize them under university grading bounds, and print the total subset achieving exactly an `A` grade.",
     "steps": [
       "1- كتابة حلقة لطلب `10` درجات دراسية وتعبئتها رقمياً.",
       "2- إدراج وتخزين الدرجات في القائمة بشكل متسلسل.",
@@ -267,6 +282,7 @@ export const questions = [
     "categoryId": "conditions",
     "title": "تحديد العدد الزوجي أو الفردي",
     "prompt": "برنامج يسأل عن عدد صحيح `N`، ويتحقق هل هو زوجي أم فردي، ثم يطبع النتيجة.",
+    "promptEn": "A short program asking for an integer `N`, subsequently verifying whether it stands as even or odd, rendering `Even` for matches and `Odd` for discrepancies.",
     "steps": [
       "1- قراءة القيمة `N` من المستخدم كمدخل مباشر.",
       "2- التحقق من باقي القسمة على الرقم اثنان باستخدام عملية `n % 2 == 0` القابلة للمقارنة.",
@@ -281,6 +297,7 @@ export const questions = [
     "categoryId": "loops",
     "title": "رسم هرم باستخدام النجوم",
     "prompt": "ارسم الشكل الهرمي باستخدام أداة النجوم `*` بناءً على عملية التصاعد في الحلقات المتكررة للأسطر.",
+    "promptEn": "Render a geometric pyramid layout utilizing trailing star indices `*` generated via an ascending looped iteration over consecutive screen lines.",
     "steps": [
       "1- الدوران والمضي حول نطاق الأسطر المطلوب وهو مثال هنا من `1` إلى النطاق الكلي `6`.",
       "2- استخدام خاصية تكرار النصوص في بايثون بكتابة النجمة على التوالي كـ `\"*\" * i`.",
@@ -294,6 +311,7 @@ export const questions = [
     "categoryId": "sets",
     "title": "اكتشاف التكرار باستخدام مجموعة",
     "prompt": "أدخل قائمة أرقام، ثم حوّلها إلى مجموعة، واطبع القائمة والمجموعة، وتحقق من وجود قيم مكررة، ثم اطبع القيم المحذوفة.",
+    "promptEn": "Input an array list series, map it subsequently onto a `Set` scope, print both collections, verify duplication events logging `True`/`False`, and explicitly output cleared properties.",
     "steps": [
       "1- استقبال الأرقام وتخزينها في قائمة.",
       "2- تحويل القائمة مباشرة إلى مجموعة للتخلص من القيم المكررة.",
@@ -308,6 +326,7 @@ export const questions = [
     "categoryId": "sets",
     "title": "مقارنة مجموعتين",
     "prompt": "أدخل أرقاماً في قائمتين، ثم حوّلهما إلى مجموعتين، واطبع الاتحاد والتقاطع والفرق، وتحقق من تساوي المجموعتين.",
+    "promptEn": "Populate two distinct `List` bounds manually, shift them to topological `Set` scopes rendering mathematical `Union`, `Intersection`, standard `Difference`, and ultimately confirm their symmetric integrity.",
     "steps": [
       "1- تجهيز قائمتين فارغتين واستخدام حلقة التكرار لملئهما بخمسة أرقام مدخلة لكل واحدة كحد أقصى.",
       "2- تحويل القائمتين الممتلئتين إلى مجموعات عبر الدالة `set()` لنفي أي تكرار بالأرقام.",
@@ -322,6 +341,7 @@ export const questions = [
     "categoryId": "sets",
     "title": "المشتركات والفروقات بين مجموعتين",
     "prompt": "أنشئ مجموعتين من الأرقام التي يدخلها المستخدم، ثم استخرج العناصر المشتركة، والعناصر الموجودة في كل مجموعة فقط، والعناصر غير المشتركة.",
+    "promptEn": "Generate two operational `Set` bounds iteratively fetched, extracting overlapping intersections, explicitly localized exclusive items, and uniquely unshared components respectively.",
     "steps": [
       "1- تهيئة وإنشاء مجموعتين متفرقتين وفارغتين باستخدام `set()` لتلقي العناصر لاحقاً.",
       "2- تشغيل حلقة تكرار مرتين لطلب وإضافة `5` أرقام لكل مجموعة عبر دالة الإضافة `add()`.",
@@ -336,6 +356,7 @@ export const questions = [
     "categoryId": "dictionary",
     "title": "تخزين قوى العدد في قاموس",
     "prompt": "أنشئ قاموساً لحفظ الأرقام، وبداخل كل عنصر قاموس آخر يحتوي على مربع الرقم ومكعبه وقوته الرابعة.",
+    "promptEn": "Nest a dictionary layer storing operational attributes computing trailing explicit geometric sequences mapping quadratic, cubic, and quadric polynomial equivalents internally mapping exponential shortcuts.",
     "steps": [
       "1- تهيئة المعجم الرئيسي في المتغير `data` وتجهيزه فارغاً كبداية للمنظومة.",
       "2- تشغيل حلقة التكرار للعد من `1` إلى التصاعد المطلوب باستخدام الدالة `range`.",
@@ -350,6 +371,7 @@ export const questions = [
     "categoryId": "dictionary",
     "title": "تخزين أزواج القوى بصيغة زوج مرتب",
     "prompt": "أنشئ قاموساً لحفظ الأرقام كما في الفكرة السابقة، لكن اجعل القيم أزواجاً مرتبة تحتوي على القوى المطلوبة.",
+    "promptEn": "Construct identical scalar dictionary configurations adopting static paired constraints utilizing strictly grouped `Tuple` variants instead of sub-dictionaries alongside expedited algorithmic scaling tools.",
     "steps": [
       "1- تهيئة وإنشاء المعجم الرئيسي في متغير `data` وتفريغه للاستقبال.",
       "2- تشغيل حلقة التكرار `for` للتتابع وتوليد الأرقام عبر دالة `range`.",
@@ -364,6 +386,7 @@ export const questions = [
     "categoryId": "strings",
     "title": "عد حروف العلة والحروف الساكنة",
     "prompt": "استقبال نص صريح، وحساب عدد حروف العلة المكتوبة بالصيغة المتعارفة كـ `vowels` بالإضافة للحروف الساكنة الأخرى والرموز المرافقة.",
+    "promptEn": "Prompt open plain texts, scanning tracking vocalic identities practically known explicitly as `vowels`, accompanying concurrent metric assessments concerning trailing solid consonants explicitly ignoring loose punctuation structures.",
     "steps": [
       "1- استقبال السلسلة النصية الواردة كمدخل يُدعى بـ `text`.",
       "2- تحديد السلسلة اللينة التي تحتوي على نطاق حروف العلة لعمل وإكمال المقارنة المطلوبة.",
@@ -378,6 +401,7 @@ export const questions = [
     "categoryId": "strings",
     "title": "تحويل حالة أحرف النص",
     "prompt": "أدخل نصاً، ثم حوّل أحرفه إلى صيغة الأحرف الكبيرة وصيغة الأحرف الصغيرة.",
+    "promptEn": "Accept targeted text streams entered securely by arbitrary visitors, subsequently processing raw contents triggering full up-shift transformations creating standardized `upper case` sequences alongside miniaturized `lower case` formats explicitly.",
     "steps": [
       "1- قراءة وقبول النص المستخرج من المستخدِم كمتغير نصي اعتيادي للملف.",
       "2- طباعة وعرض النص مصحوباً باستخدام توجيه وتفعيل الدالة `upper()` لجعل جميع الحروف كبيرة واضحة.",
@@ -391,6 +415,7 @@ export const questions = [
     "categoryId": "numbers-problems",
     "title": "عكس ترتيب أرقام العدد",
     "prompt": "عكس وقلب اتجاه ترتيب أرقام العدد كاملة (مثال: من الرقم الأصلي `123` بالاتجاه الصاعد إلى `321` بصورته الهابطة المعكوسة).",
+    "promptEn": "Reverse flip and actively re-arrange absolute whole number string sets procedurally overriding standard sequences (Example rendering specifically: converting source input `123` incrementally shifted into backward `321` arrangements dynamically).",
     "steps": [
       "1- قراءة العدد من المستخدم واستقباله كمتغير نصي.",
       "2- استخدام التقطيع النصي عبر المعامل العكسي `[::-1]` لعكس ترتيب جميع أرقام العدد.",
