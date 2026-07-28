@@ -23,9 +23,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/tailwind.css?v=97858818f8">
     <link rel="stylesheet" href="../../../assets/css/variables.css?v=7967938615">
-    <link rel="stylesheet" href="../../../assets/css/styles.css?v=3ba331519b">
+    <link rel="stylesheet" href="../../../assets/css/styles.css?v=16b6b0b6da">
     <link rel="stylesheet" href="../../../assets/css/course-shell.css?v=a03d12edbe">
-    <link rel="stylesheet" href="../../../assets/css/python-practice.css?v=1cedc982cd">
+    <link rel="stylesheet" href="../../../assets/css/python-practice.css?v=fb07a33643">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="../../../assets/js/theme-manager.js?v=3b7a594baf"></script>
 </head>
@@ -100,11 +100,23 @@
                 <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 <span>العودة إلى التمارين</span>
             </a>
+            <button type="button" class="category-drawer-trigger" data-category-drawer-open
+                aria-controls="question-category-drawer" aria-expanded="false">
+                <i class="fas fa-sliders" aria-hidden="true"></i>
+                <span>التصنيفات</span>
+            </button>
         </header>
 
         <div class="question-workspace">
             <article id="question-view" class="question-main"></article>
-            <aside id="sidebar" class="question-index practice-category-rail"></aside>
+            <aside id="question-category-drawer" class="question-index practice-category-rail"
+                data-category-drawer aria-label="تصنيفات التمارين">
+                <button type="button" class="category-drawer__close" data-category-drawer-close
+                    aria-label="إغلاق التصنيفات">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+                <div id="sidebar"></div>
+            </aside>
         </div>
     </main>
 </div>
@@ -117,8 +129,9 @@
         </nav>
         <p class="text-academic-secondary text-[10px] tracking-[0.3em] uppercase font-bold">X7do0eng</p>
     </footer>
-    <script type="module" src="../../../assets/js/nav-drawer.js?v=7a2f5e6b59"></script>
+    <script type="module" src="../../../assets/js/nav-drawer.js?v=79f37aece7"></script>
     <script type="module" src="../../../assets/js/python-detail.js?v=e6b7f7fc2e"></script>
     <script type="module" src="../../../assets/js/python-runner.js?v=e1fceb16d7"></script>
+    <script type="module" src="../../../assets/js/practice-category-drawer.js?v=772766e697"></script>
 </body>
 </html>
