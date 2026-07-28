@@ -1,12 +1,24 @@
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import process from 'node:process';
 import { pages } from '../src/site.config.mjs';
 
 const rootDirectory = process.cwd();
 const checkOnly = process.argv.includes('--check');
+const assetHashes = new Map();
 
 const read = relativePath => readFile(path.join(rootDirectory, relativePath), 'utf8');
+
+async function versionedAsset(root, relativePath) {
+  let hash = assetHashes.get(relativePath);
+  if (!hash) {
+    const content = await readFile(path.join(rootDirectory, relativePath));
+    hash = createHash('sha256').update(content).digest('hex').slice(0, 10);
+    assetHashes.set(relativePath, hash);
+  }
+  return `${root}${relativePath}?v=${hash}`;
+}
 
 function render(template, values) {
   return Object.entries(values).reduce(
@@ -39,26 +51,33 @@ async function ensurePageSource(page) {
   }
 }
 
-function renderExtraHead(page) {
-  const styles = (page.styles ?? [])
-    .map(href => `    <link rel="stylesheet" href="${page.root}${href}">`)
-    .join('\n');
+async function renderExtraHead(page) {
+  const styles = await Promise.all(
+    (page.styles ?? []).map(async href =>
+      `    <link rel="stylesheet" href="${await versionedAsset(page.root, href)}">`
+    )
+  );
   const highlight = page.highlight
     ? '    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>'
     : '';
 
-  return [styles, highlight].filter(Boolean).join('\n');
+  return [...styles, highlight].filter(Boolean).join('\n');
 }
 
-function renderScripts(page) {
+async function renderScripts(page) {
   const pageScripts = page.scripts ?? (page.script ? [page.script] : []);
-  const pageScript = pageScripts
-    .map(src => `    <script type="module" src="${page.root}${src}"></script>`)
+  const [navDrawer, i18n, ...versionedPageScripts] = await Promise.all([
+    versionedAsset(page.root, 'assets/js/nav-drawer.js'),
+    versionedAsset(page.root, 'assets/js/i18n.js'),
+    ...pageScripts.map(src => versionedAsset(page.root, src))
+  ]);
+  const pageScript = versionedPageScripts
+    .map(src => `    <script type="module" src="${src}"></script>`)
     .join('\n');
 
-  return `    <script type="module" src="${page.root}assets/js/nav-drawer.js"></script>
+  return `    <script type="module" src="${navDrawer}"></script>
     <script type="module">
-        import i18n from '${page.root}assets/js/i18n.js';
+        import i18n from '${i18n}';
         i18n.init();
     </script>
 ${pageScript}`.trimEnd();
@@ -79,7 +98,11 @@ async function buildPages() {
       title: page.title,
       description: page.description,
       root: page.root,
-      extraHead: renderExtraHead(page)
+      tailwindCss: await versionedAsset(page.root, 'assets/css/tailwind.css'),
+      variablesCss: await versionedAsset(page.root, 'assets/css/variables.css'),
+      stylesCss: await versionedAsset(page.root, 'assets/css/styles.css'),
+      themeManagerJs: await versionedAsset(page.root, 'assets/js/theme-manager.js'),
+      extraHead: await renderExtraHead(page)
     });
     const html = render(layout, {
       head: renderedHead.trimEnd(),
@@ -87,7 +110,7 @@ async function buildPages() {
       navbar: render(navbar, { root: page.root }).trimEnd(),
       content,
       footer: footer.trimEnd(),
-      scripts: renderScripts(page)
+      scripts: await renderScripts(page)
     });
     const destination = path.join(rootDirectory, page.output);
     await mkdir(path.dirname(destination), { recursive: true });
