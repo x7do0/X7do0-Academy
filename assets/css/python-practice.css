@@ -381,8 +381,26 @@ pre {
     box-shadow: var(--shadow-sm);
 }
 
-.runner-code-input,
-.runner-values-input {
+.reveal-toggle.runner-toggle {
+    border-color: #2457d6;
+    background: linear-gradient(135deg, #2457d6, #4f7df3);
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(36, 87, 214, 0.24);
+}
+
+.reveal-toggle.runner-toggle:hover {
+    border-color: #6f96ff;
+    background: linear-gradient(135deg, #1d4fc9, #416fe3);
+    color: #ffffff;
+    box-shadow: 0 10px 28px rgba(36, 87, 214, 0.32);
+    transform: translateY(-1px);
+}
+
+.reveal-toggle.runner-toggle[aria-expanded="true"] {
+    background: linear-gradient(135deg, #1d4fc9, #315fcf);
+}
+
+.runner-code-input {
     width: 100%;
     resize: vertical;
     direction: ltr !important;
@@ -404,20 +422,7 @@ pre {
     line-height: 1.75;
 }
 
-.runner-values-input {
-    min-height: 72px;
-    padding: 0.75rem;
-    border: 1px solid var(--border-subtle);
-    border-radius: 9px;
-    background: var(--bg-interactive);
-    color: var(--text-primary);
-    font-size: 0.82rem;
-    font-weight: 500;
-    line-height: 1.6;
-}
-
-.runner-code-input:focus-visible,
-.runner-values-input:focus-visible {
+.runner-code-input:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
@@ -435,32 +440,6 @@ pre {
     background: var(--bg-interactive);
     color: var(--text-primary);
     font-weight: 700;
-}
-
-.runner-hint {
-    overflow: hidden;
-    border: 1px solid #263246;
-    border-radius: 9px;
-    background: #0b1220;
-}
-
-.runner-hint pre {
-    margin: 0;
-    padding: 1rem;
-    overflow-x: auto;
-    background: #0b1220;
-}
-
-.runner-hint code {
-    display: block;
-    min-width: max-content;
-    color: #e2e8f0;
-    font-family: 'Fira Code', Consolas, 'Courier New', monospace;
-    font-size: 0.82rem;
-    line-height: 1.7;
-    direction: ltr !important;
-    text-align: left !important;
-    white-space: pre;
 }
 
 .runner-result {
