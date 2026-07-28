@@ -5,10 +5,7 @@ import { escapeHtml } from './content-format.js';
 
 const tracker = createProgressTracker('python', questions);
 const text = value => ({ ar: value?.ar || '', en: value?.en || '' });
-const bilingualLabel = value => {
-  const localized = text(value);
-  return `<span class="block">${escapeHtml(localized.ar)}</span><span class="block text-[10px] font-normal opacity-60" dir="ltr">${escapeHtml(localized.en)}</span>`;
-};
+const arabicLabel = value => escapeHtml(text(value).ar);
 
 const PracticeController = {
   state: {
@@ -115,7 +112,7 @@ const PracticeController = {
 
     appendButton({
       id: null,
-      labelHtml: `<span class="block">${i18n.t('python.practice.all_questions')}</span><span class="block text-[10px] font-normal opacity-60" dir="ltr">All exercises</span>`,
+      labelHtml: escapeHtml(i18n.t('python.practice.all_questions')),
       completed: tracker.getCompletedQuestions().length,
       total: questions.length
     });
@@ -124,7 +121,7 @@ const PracticeController = {
       const progress = tracker.getCategoryProgress(category.id);
       appendButton({
         id: category.id,
-        labelHtml: bilingualLabel(category.label),
+        labelHtml: arabicLabel(category.label),
         completed: progress.completed,
         total: progress.total
       });
@@ -144,8 +141,8 @@ const PracticeController = {
     const nextStep = nextQuestion ? `
       <div class="flex flex-wrap items-center gap-3 text-xs font-bold text-academic-primary">
         <span class="text-academic-secondary">${i18n.t('python.practice.resume')}:</span>
-        <span style="color:var(--accent)">${bilingualLabel(nextQuestion.title)}</span>
-        <span class="opacity-50">${nextCategory ? bilingualLabel(nextCategory.label) : ''}</span>
+        <span style="color:var(--accent)">${arabicLabel(nextQuestion.title)}</span>
+        <span class="opacity-50">${nextCategory ? arabicLabel(nextCategory.label) : ''}</span>
         <a href="./question.html?id=${nextQuestion.id}" class="btn-accent px-3 py-1.5 text-[11px] inline-flex items-center ms-auto">${i18n.t('python.practice.continue_learning')}</a>
       </div>` : `
       <div class="text-xs font-bold flex items-center gap-2" style="color:var(--success);">
@@ -174,7 +171,7 @@ const PracticeController = {
     const card = document.createElement('a');
     card.className = 'practice-question-card p-5 flex flex-col gap-3';
     card.href = `./question.html?id=${question.id}`;
-    card.setAttribute('aria-label', `${i18n.t('python.question.label')}: ${title.ar} / ${title.en}`);
+    card.setAttribute('aria-label', `${i18n.t('python.question.label')}: ${title.ar}`);
 
     card.innerHTML = `
       <div class="flex items-center justify-between">
@@ -182,11 +179,10 @@ const PracticeController = {
           <span class="question-number">${question.id}</span>
           ${tracker.isQuestionCompleted(question.id) ? '<i class="fas fa-check-circle text-green-500 text-sm"></i>' : ''}
         </div>
-        <span class="category-tag">${category ? bilingualLabel(category.label) : i18n.t('python.practice.unknown_category')}</span>
+        <span class="category-tag">${category ? arabicLabel(category.label) : i18n.t('python.practice.unknown_category')}</span>
       </div>
       <h3 class="text-base text-academic-primary font-semibold leading-snug">
         <span class="block">${escapeHtml(title.ar)}</span>
-        <span class="block mt-1 text-sm font-normal text-academic-secondary" dir="ltr">${escapeHtml(title.en)}</span>
       </h3>`;
 
     return card;

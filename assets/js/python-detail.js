@@ -5,10 +5,19 @@ import { escapeHtml, formatInlineCode } from './content-format.js';
 
 const tracker = createProgressTracker('python', questions);
 const text = value => ({ ar: value?.ar || '', en: value?.en || '' });
-const bilingualLabel = value => {
-    const localized = text(value);
-    return `<span class="block">${escapeHtml(localized.ar)}</span><span class="block text-[10px] font-normal opacity-60" dir="ltr">${escapeHtml(localized.en)}</span>`;
-};
+const arabicLabel = value => escapeHtml(text(value).ar);
+
+const renderCodePanel = ({ code, label, type, language = 'python' }) => `
+    <div class="code-panel code-panel--${type}" dir="ltr">
+        <div class="code-panel__toolbar">
+            <div class="code-panel__traffic-lights" aria-hidden="true">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="code-panel__label" dir="rtl">${escapeHtml(label)}</span>
+            <span class="code-panel__language" aria-hidden="true">${type === 'source' ? 'PY' : '›_'}</span>
+        </div>
+        <pre dir="ltr" tabindex="0"><code dir="ltr" class="${language === 'python' ? 'language-python' : 'nohighlight'}">${escapeHtml(code)}</code></pre>
+    </div>`;
 
 const DetailController = {
     getQuestion(questionId) {
@@ -71,7 +80,7 @@ const DetailController = {
                             return `
                                 <div class="space-y-1">
                                     <button type="button" class="category-disclosure w-full flex items-center justify-between text-sm font-bold text-academic-primary group" aria-expanded="${isActiveCategory}" aria-controls="question-category-${category.id}">
-                                        <span>${bilingualLabel(category.label)}</span>
+                                        <span>${arabicLabel(category.label)}</span>
                                         <span class="text-[10px] opacity-50">${completedCount}/${categoryQuestions.length}</span>
                                     </button>
                                     <div id="question-category-${category.id}" class="${isActiveCategory ? '' : 'hidden'} space-y-1 mt-2 ps-4 border-s" style="border-color:var(--border-soft);">
@@ -81,7 +90,6 @@ const DetailController = {
                                                 <a href="./question.html?id=${item.id}" class="block text-xs py-1.5 px-2 rounded" style="${item.id === question.id ? 'background:var(--accent-soft);color:var(--accent);font-weight:700;' : 'color:var(--text-secondary);'}">
                                                     <i class="fas ${tracker.isQuestionCompleted(item.id) ? 'fa-check-circle text-green-500' : 'fa-circle text-[6px]'} me-2"></i>
                                                     <span class="block">${escapeHtml(title.ar)}</span>
-                                                    <span class="block text-[10px] opacity-60" dir="ltr">${escapeHtml(title.en)}</span>
                                                 </a>`;
                                         }).join('')}
                                     </div>
@@ -124,11 +132,10 @@ const DetailController = {
         container.innerHTML = `
             <div id="q-header" class="mb-8">
                 <div class="flex items-center gap-3 mb-2">
-                    <span class="category-tag">${category ? bilingualLabel(category.label) : i18n.t('python.practice.unknown_category')}</span>
+                    <span class="category-tag">${category ? arabicLabel(category.label) : i18n.t('python.practice.unknown_category')}</span>
                 </div>
                 <h1 class="text-3xl md:text-4xl font-bold text-academic-primary">
                     <span class="block">${escapeHtml(title.ar)}</span>
-                    <span class="block mt-2 text-xl md:text-2xl font-normal text-academic-secondary" dir="ltr">${escapeHtml(title.en)}</span>
                 </h1>
             </div>
 
@@ -177,9 +184,11 @@ const DetailController = {
                             <i class="fas fa-chevron-down reveal-icon"></i>
                         </button>
                         <div class="reveal-content">
-                            <div class="code-surface overflow-hidden">
-                                <pre class="p-5 overflow-x-auto text-sm font-mono leading-relaxed"><code>${escapeHtml(question.code)}</code></pre>
-                            </div>
+                            ${renderCodePanel({
+                                code: question.code,
+                                label: 'كود Python',
+                                type: 'source'
+                            })}
                         </div>
                     </div>` : ''}
 
@@ -190,9 +199,12 @@ const DetailController = {
                             <i class="fas fa-chevron-down reveal-icon"></i>
                         </button>
                         <div class="reveal-content">
-                            <div class="code-surface">
-                                <pre class="p-4 overflow-x-auto text-sm font-mono"><code>${escapeHtml(question.output)}</code></pre>
-                            </div>
+                            ${renderCodePanel({
+                                code: question.output,
+                                label: 'المخرجات',
+                                type: 'output',
+                                language: 'text'
+                            })}
                         </div>
                     </div>` : ''}
             </div>
@@ -233,7 +245,7 @@ const DetailController = {
 
         this.renderSidebar(question);
         if (typeof hljs !== 'undefined') {
-            document.querySelectorAll('#q-reveals pre code').forEach(element => hljs.highlightElement(element));
+            document.querySelectorAll('#q-reveals code.language-python').forEach(element => hljs.highlightElement(element));
         }
     },
 
