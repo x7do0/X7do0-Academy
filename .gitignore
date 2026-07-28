@@ -45,5 +45,3 @@ archive/
 docs/
 AGENTS.md
 playwright.config.js
-package.json
-package-lock.json
