@@ -737,6 +737,16 @@ img {
         padding-right: max(0.5rem, env(safe-area-inset-right));
     }
 
+    .mobile-bottom-nav--course {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        padding-left: max(0.2rem, env(safe-area-inset-left));
+        padding-right: max(0.2rem, env(safe-area-inset-right));
+    }
+
+    .mobile-bottom-nav--course .mobile-bottom-link {
+        font-size: 0.62rem;
+    }
+
     .mobile-bottom-link {
         display: flex;
         min-height: 52px;
