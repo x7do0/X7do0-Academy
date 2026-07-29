@@ -22,7 +22,7 @@ export const pages = [
     source: 'src/pages/connect.html',
     root: '../',
     title: 'تواصل معي | أكاديمية X7do0',
-    description: 'روابط التواصل الخاصة بأكاديمية X7do0.',
+    description: 'روابط يوتيوب وإنستغرام وتيليغرام الرسمية الخاصة بأكاديمية X7do0.',
     bodyAttributes: `class="antialiased min-h-screen flex flex-col"
     data-page="connect"
     data-nav-home="../index.html"
