@@ -1,10 +1,12 @@
-<main class="flex-grow w-full max-w-5xl mx-auto px-4 py-12">
-        <header class="mb-9 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-academic-primary mb-4">تواصل معي</h1>
-            <p class="text-academic-secondary max-w-2xl mx-auto leading-7">أنا مطوّر أكاديمية X7do0 ومصمم تجربتها التعليمية. أبني محتوى برمجياً عربياً عملياً، وأطوّر الموقع وواجهاته وأدوات التعلّم فيه.</p>
+<main class="flex-grow w-full max-w-5xl mx-auto px-4 py-12 md:py-16">
+        <header class="mb-10 text-center">
+            <span class="label">روابط التواصل الرسمية</span>
+            <h1 class="text-3xl md:text-4xl font-bold text-academic-primary mt-3 mb-4">تواصل معي</h1>
+            <p class="text-academic-secondary max-w-2xl mx-auto leading-8">تابع محتوى الأكاديمية، وشروحات البرمجة، وآخر التحديثات من خلال المنصة الأنسب إلك.</p>
         </header>
 
-        <section class="academic-card card-accent-top p-6 md:p-8 mb-6">
+        <!-- محفوظة للمستقبل: تزال خاصية hidden بعد تجهيز البريد المهني وLinkedIn. -->
+        <section hidden data-feature="professional-profile-links" class="academic-card card-accent-top p-6 md:p-8 mb-6">
             <div class="flex items-center justify-between gap-4 mb-6">
                 <div>
                     <span class="label">الملف المهني</span>
@@ -32,11 +34,67 @@
             </div>
         </section>
 
-        <section class="academic-card p-6 md:p-8">
-            <h2 class="text-xl font-bold text-academic-primary mb-5">منصات التواصل والمحتوى</h2>
-            <div class="grid sm:grid-cols-2 gap-4">
-                <a href="https://www.youtube.com/@X7do0eng" target="_blank" rel="noopener noreferrer" class="academic-card p-4 flex items-center gap-4 hover:border-accent transition-colors"><i class="fab fa-youtube text-2xl text-red-600"></i><span><strong class="block text-academic-primary">يوتيوب</strong><small class="text-academic-secondary">شروحات ودورات مرئية</small></span></a>
-                <a href="https://instagram.com/x7do0" target="_blank" rel="noopener noreferrer" class="academic-card p-4 flex items-center gap-4 hover:border-accent transition-colors"><i class="fab fa-instagram text-2xl text-pink-600"></i><span><strong class="block text-academic-primary">إنستغرام</strong><small class="text-academic-secondary">الحساب الشخصي</small></span></a>
+        <section class="academic-card card-accent-top p-6 md:p-8" aria-labelledby="social-links-title">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
+                <div>
+                    <span class="label">المحتوى والتواصل</span>
+                    <h2 id="social-links-title" class="text-2xl font-bold text-academic-primary mt-2">اختار المنصة المناسبة إلك</h2>
+                </div>
+                <p class="text-sm text-academic-secondary">كل الروابط أدناه رسمية ومعتمدة.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <a href="https://www.youtube.com/@X7do0eng" target="_blank" rel="noopener noreferrer" aria-label="زيارة قناة X7do0eng على يوتيوب" class="academic-card p-5 flex items-center gap-4 hover:border-accent transition-colors group">
+                    <span class="w-12 h-12 rounded-xl bg-academic-surface flex items-center justify-center text-red-600 text-2xl" aria-hidden="true">
+                        <i class="fab fa-youtube"></i>
+                    </span>
+                    <span class="min-w-0 flex-1">
+                        <span class="label-sm">فيديو وشروحات</span>
+                        <strong class="block text-lg text-academic-primary mt-1">يوتيوب</strong>
+                        <small class="block text-academic-secondary mt-1">دروس وشروحات برمجية مرتبة</small>
+                        <small class="block text-academic-accent font-bold mt-2" dir="ltr">@X7do0eng</small>
+                    </span>
+                    <i class="fas fa-arrow-up-right-from-square text-academic-muted group-hover:text-academic-accent transition-colors" aria-hidden="true"></i>
+                </a>
+
+                <a href="https://instagram.com/x7do0" target="_blank" rel="noopener noreferrer" aria-label="زيارة حساب x7do0 على إنستغرام" class="academic-card p-5 flex items-center gap-4 hover:border-accent transition-colors group">
+                    <span class="w-12 h-12 rounded-xl bg-academic-surface flex items-center justify-center text-pink-600 text-2xl" aria-hidden="true">
+                        <i class="fab fa-instagram"></i>
+                    </span>
+                    <span class="min-w-0 flex-1">
+                        <span class="label-sm">محتوى وتحديثات</span>
+                        <strong class="block text-lg text-academic-primary mt-1">إنستغرام</strong>
+                        <small class="block text-academic-secondary mt-1">الحساب الشخصي وتحديثات رحلة التطوير</small>
+                        <small class="block text-academic-accent font-bold mt-2" dir="ltr">@x7do0</small>
+                    </span>
+                    <i class="fas fa-arrow-up-right-from-square text-academic-muted group-hover:text-academic-accent transition-colors" aria-hidden="true"></i>
+                </a>
+
+                <a href="https://t.me/x7do0eng" target="_blank" rel="noopener noreferrer" aria-label="زيارة قناة أكاديمية X7do0 على تيليغرام" class="academic-card p-5 flex items-center gap-4 hover:border-accent transition-colors group">
+                    <span class="w-12 h-12 rounded-xl bg-academic-surface flex items-center justify-center text-blue-500 text-2xl" aria-hidden="true">
+                        <i class="fab fa-telegram"></i>
+                    </span>
+                    <span class="min-w-0 flex-1">
+                        <span class="label-sm">القناة الرسمية</span>
+                        <strong class="block text-lg text-academic-primary mt-1">قناة تيليغرام</strong>
+                        <small class="block text-academic-secondary mt-1">إعلانات الأكاديمية والمحتوى الجديد</small>
+                        <small class="block text-academic-accent font-bold mt-2" dir="ltr">@x7do0eng</small>
+                    </span>
+                    <i class="fas fa-arrow-up-right-from-square text-academic-muted group-hover:text-academic-accent transition-colors" aria-hidden="true"></i>
+                </a>
+
+                <a href="https://t.me/ctedev" target="_blank" rel="noopener noreferrer" aria-label="التواصل مع ctedev على تيليغرام" class="academic-card p-5 flex items-center gap-4 hover:border-accent transition-colors group">
+                    <span class="w-12 h-12 rounded-xl bg-academic-surface flex items-center justify-center text-blue-500 text-2xl" aria-hidden="true">
+                        <i class="fab fa-telegram-plane"></i>
+                    </span>
+                    <span class="min-w-0 flex-1">
+                        <span class="label-sm">تواصل مباشر</span>
+                        <strong class="block text-lg text-academic-primary mt-1">حساب تيليغرام</strong>
+                        <small class="block text-academic-secondary mt-1">للتواصل والاستفسارات المباشرة</small>
+                        <small class="block text-academic-accent font-bold mt-2" dir="ltr">@ctedev</small>
+                    </span>
+                    <i class="fas fa-arrow-up-right-from-square text-academic-muted group-hover:text-academic-accent transition-colors" aria-hidden="true"></i>
+                </a>
             </div>
         </section>
 
