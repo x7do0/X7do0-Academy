@@ -11,7 +11,6 @@ export const pages = [
     data-nav-courses="./courses/index.html"
     data-nav-lessons="./courses/python/lessons/index.html"
     data-nav-practice="./courses/python/practice/index.html"
-    data-nav-project="./courses/python/project/index.html"
     data-nav-about="./about/index.html"
     data-nav-connect="./accounts/index.html"`,
     styles: ['assets/css/home.css'],
@@ -29,7 +28,6 @@ export const pages = [
     data-nav-courses="../courses/index.html"
     data-nav-lessons="../courses/python/lessons/index.html"
     data-nav-practice="../courses/python/practice/index.html"
-    data-nav-project="../courses/python/project/index.html"
     data-nav-about="../about/index.html"
     data-nav-connect="./index.html"`
   },
@@ -45,7 +43,6 @@ export const pages = [
     data-nav-courses="../courses/index.html"
     data-nav-lessons="../courses/python/lessons/index.html"
     data-nav-practice="../courses/python/practice/index.html"
-    data-nav-project="../courses/python/project/index.html"
     data-nav-about="./index.html"
     data-nav-connect="../accounts/index.html"`
   },
@@ -61,7 +58,6 @@ export const pages = [
     data-nav-courses="./index.html"
     data-nav-lessons="./python/lessons/index.html"
     data-nav-practice="./python/practice/index.html"
-    data-nav-project="./python/project/index.html"
     data-nav-about="../about/index.html"
     data-nav-connect="../accounts/index.html"`
   },
@@ -79,7 +75,6 @@ export const pages = [
     data-nav-overview="./index.html"
     data-nav-lessons="./lessons/index.html"
     data-nav-practice="./practice/index.html"
-    data-nav-project="./project/index.html"
     data-nav-about="../../about/index.html"
     data-nav-connect="../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/code-experience.css'],
@@ -88,8 +83,7 @@ export const pages = [
     courseSection: 'overview',
     courseHome: './index.html',
     lessonsHome: './lessons/index.html',
-    practiceHome: './practice/index.html',
-    projectHome: './project/index.html'
+    practiceHome: './practice/index.html'
   },
   {
     output: 'courses/python/lessons/index.html',
@@ -105,7 +99,6 @@ export const pages = [
     data-nav-overview="../index.html"
     data-nav-lessons="./index.html"
     data-nav-practice="../practice/index.html"
-    data-nav-project="../project/index.html"
     data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/code-experience.css'],
@@ -114,8 +107,7 @@ export const pages = [
     courseSection: 'lessons',
     courseHome: '../index.html',
     lessonsHome: './index.html',
-    practiceHome: '../practice/index.html',
-    projectHome: '../project/index.html'
+    practiceHome: '../practice/index.html'
   },
   {
     output: 'courses/python/practice/index.html',
@@ -131,7 +123,6 @@ export const pages = [
     data-nav-overview="../index.html"
     data-nav-lessons="../lessons/index.html"
     data-nav-practice="./index.html"
-    data-nav-project="../project/index.html"
     data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
@@ -139,8 +130,7 @@ export const pages = [
     courseSection: 'practice',
     courseHome: '../index.html',
     lessonsHome: '../lessons/index.html',
-    practiceHome: './index.html',
-    projectHome: '../project/index.html'
+    practiceHome: './index.html'
   },
   {
     output: 'courses/python/practice/question.html',
@@ -156,7 +146,6 @@ export const pages = [
     data-nav-overview="../index.html"
     data-nav-lessons="../lessons/index.html"
     data-nav-practice="./index.html"
-    data-nav-project="../project/index.html"
     data-nav-about="../../../about/index.html"
     data-nav-connect="../../../accounts/index.html"`,
     styles: ['assets/css/course-shell.css', 'assets/css/python-practice.css'],
@@ -165,57 +154,6 @@ export const pages = [
     courseSection: 'practice',
     courseHome: '../index.html',
     lessonsHome: '../lessons/index.html',
-    practiceHome: './index.html',
-    projectHome: '../project/index.html'
-  },
-  {
-    output: 'courses/python/project/index.html',
-    source: 'src/pages/python-project.html',
-    root: '../../../',
-    title: 'المشروع الختامي | أكاديمية X7do0',
-    description: 'مشروع مدير مهام ختامي لمسار بايثون، معروض على مراحل عملية واضحة.',
-    bodyAttributes: `class="antialiased pb-20"
-    data-page="python-project"
-    data-nav-section="courses"
-    data-nav-home="../../../index.html"
-    data-nav-courses="../../index.html"
-    data-nav-overview="../index.html"
-    data-nav-lessons="../lessons/index.html"
-    data-nav-practice="../practice/index.html"
-    data-nav-project="./index.html"
-    data-nav-about="../../../about/index.html"
-    data-nav-connect="../../../accounts/index.html"`,
-    styles: ['assets/css/course-shell.css', 'assets/css/python-project.css'],
-    script: 'assets/js/python-project.js',
-    courseSection: 'project',
-    courseHome: '../index.html',
-    lessonsHome: '../lessons/index.html',
-    practiceHome: '../practice/index.html',
-    projectHome: './index.html'
-  },
-  {
-    output: 'courses/python/project/stage.html',
-    source: 'src/pages/python-project-stage.html',
-    root: '../../../',
-    title: 'مرحلة المشروع الختامي | أكاديمية X7do0',
-    description: 'تفاصيل مرحلة من مراحل مشروع مدير المهام بلغة بايثون.',
-    bodyAttributes: `class="antialiased pb-20"
-    data-page="python-project-stage"
-    data-nav-section="courses"
-    data-nav-home="../../../index.html"
-    data-nav-courses="../../index.html"
-    data-nav-overview="../index.html"
-    data-nav-lessons="../lessons/index.html"
-    data-nav-practice="../practice/index.html"
-    data-nav-project="./index.html"
-    data-nav-about="../../../about/index.html"
-    data-nav-connect="../../../accounts/index.html"`,
-    styles: ['assets/css/course-shell.css', 'assets/css/python-project.css'],
-    script: 'assets/js/python-project-stage.js',
-    courseSection: 'project',
-    courseHome: '../index.html',
-    lessonsHome: '../lessons/index.html',
-    practiceHome: '../practice/index.html',
-    projectHome: './index.html'
+    practiceHome: './index.html'
   }
 ];

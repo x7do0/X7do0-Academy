@@ -4,7 +4,6 @@ import path from 'node:path';
 import process from 'node:process';
 import { pages } from '../src/site.config.mjs';
 import { questions } from '../data/python-practice-questions.js';
-import { finalProject } from '../data/python-final-project.js';
 
 const rootDirectory = process.cwd();
 const checkOnly = process.argv.includes('--check');
@@ -101,11 +100,9 @@ async function buildPages() {
           courseHome: page.courseHome,
           lessonsHome: page.lessonsHome,
           practiceHome: page.practiceHome,
-          projectHome: page.projectHome,
           overviewActive: page.courseSection === 'overview' ? 'active' : '',
           lessonsActive: page.courseSection === 'lessons' ? 'active' : '',
-          practiceActive: page.courseSection === 'practice' ? 'active' : '',
-          projectActive: page.courseSection === 'project' ? 'active' : ''
+          practiceActive: page.courseSection === 'practice' ? 'active' : ''
         }).trim()
       : '';
     const content = render(sourceContent, { courseSidebar: sidebar });
@@ -143,8 +140,7 @@ const xmlEscape = value => value
 async function buildDiscoveryFiles() {
   const urls = [
     ...pages.map(page => `${siteUrl}/${page.output}`),
-    ...questions.map(question => `${siteUrl}/courses/python/practice/question.html?id=${question.id}`),
-    ...finalProject.stages.map(stage => `${siteUrl}/courses/python/project/stage.html?id=${stage.id}`)
+    ...questions.map(question => `${siteUrl}/courses/python/practice/question.html?id=${question.id}`)
   ];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

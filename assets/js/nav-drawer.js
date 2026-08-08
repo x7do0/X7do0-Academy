@@ -21,7 +21,6 @@ const i18nKeys = {
     overview: 'nav.overview',
     lessons: 'nav.lessons',
     practice: 'nav.practice',
-    project: 'nav.project',
     connect: 'nav.connect',
 };
 
@@ -33,7 +32,6 @@ const NavDrawer = {
         this.practicePath = body.dataset.navPractice;
         this.overviewPath = body.dataset.navOverview;
         this.lessonsPath = body.dataset.navLessons;
-        this.projectPath = body.dataset.navProject;
         this.aboutPath = body.dataset.navAbout;
         this.connectPath = body.dataset.navConnect;
         this.currentPage = body.dataset.page;
@@ -54,7 +52,6 @@ const NavDrawer = {
         if (this.currentPage === 'about') return 'about';
         if (this.currentPage === 'python-lessons') return 'lessons';
         if (this.currentPage?.startsWith('python-practice')) return 'practice';
-        if (this.currentPage?.startsWith('python-project')) return 'project';
         if (this.isCourseContext) return 'courses';
         return 'courses';
     },
@@ -70,7 +67,6 @@ const NavDrawer = {
             { key: 'courses', path: this.coursesPath, icon: 'fa-layer-group' },
             { key: 'lessons', path: this.lessonsPath, icon: 'fa-book-open' },
             { key: 'practice', path: this.practicePath, icon: 'fa-code' },
-            { key: 'project', path: this.projectPath, icon: 'fa-folder' },
         ];
 
         return (this.isCourseContext ? courseItems : globalItems).filter(item => item.path);
