@@ -1,0 +1,28 @@
+<div class="course-shell">
+    {{courseSidebar}}
+    <main class="course-main">
+        <header class="course-header course-header--question">
+            <a href="./index.html" class="course-back-link">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                <span>العودة إلى التمارين</span>
+            </a>
+            <button type="button" class="category-drawer-trigger" data-category-drawer-open
+                aria-controls="question-category-drawer" aria-expanded="false">
+                <i class="fas fa-sliders" aria-hidden="true"></i>
+                <span>التصنيفات</span>
+            </button>
+        </header>
+
+        <div class="question-workspace">
+            <article id="question-view" class="question-main"></article>
+            <aside id="question-category-drawer" class="question-index practice-category-rail"
+                data-category-drawer aria-label="تصنيفات التمارين">
+                <button type="button" class="category-drawer__close" data-category-drawer-close
+                    aria-label="إغلاق التصنيفات">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+                <div id="sidebar"></div>
+            </aside>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,41 @@
+<div class="course-shell">
+    {{courseSidebar}}
+    <main class="course-main">
+        <header class="course-header">
+            <div class="course-header__icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+            <div>
+                <h1>تمارين بايثون</h1>
+                <p>اختر سؤالاً، جرّب حلك، واحصل على نتيجة واضحة.</p>
+            </div>
+            <button type="button" class="category-drawer-trigger" data-category-drawer-open
+                aria-controls="practice-category-drawer" aria-expanded="false">
+                <i class="fas fa-sliders" aria-hidden="true"></i>
+                <span>التصنيفات</span>
+            </button>
+        </header>
+
+        <div class="practice-desktop-layout">
+            <aside id="practice-category-drawer" class="practice-category-rail" data-category-drawer
+                aria-label="تصنيفات التمارين">
+                <button type="button" class="category-drawer__close" data-category-drawer-close
+                    aria-label="إغلاق التصنيفات">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+                <div class="section-title-row">
+                    <h2>التصنيفات</h2>
+                </div>
+                <div id="practice-categories-sidebar" class="practice-categories-list"></div>
+            </aside>
+
+            <section class="practice-content" aria-label="قائمة التمارين">
+                <div id="filters-mount-point" class="practice-toolbar" aria-label="خيارات تصفية التمارين">
+                    <label for="practice-search" class="sr-only">البحث في تمارين بايثون</label>
+                    <input type="text" id="practice-search" placeholder="ابحث في التمارين..." data-i18n-placeholder="python.practice.search_placeholder">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </div>
+                <div id="progress-mount-point"></div>
+                <div id="practice-questions-container" class="practice-question-grid" aria-label="قائمة التمارين"></div>
+            </section>
+        </div>
+    </main>
+</div>

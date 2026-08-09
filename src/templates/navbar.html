@@ -1,0 +1,25 @@
+    <nav class="w-full py-6 px-4 navbar-sticky">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="{{root}}index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded bg-accent-solid flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                    <i class="fas fa-graduation-cap text-sm" aria-hidden="true"></i>
+                </div>
+                <span class="font-bold text-lg tracking-tight text-academic-primary transition-colors" data-i18n="brand.name_html" data-i18n-html="true">أكاديمية <span class="text-academic-accent">X7do0</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-academic-secondary">
+                <a href="{{root}}index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.home" data-nav-link="home">الرئيسية</a>
+                <a href="{{root}}courses/index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.courses" data-nav-link="courses">الدورات</a>
+                <a href="{{root}}about/index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.about" data-nav-link="about">عن المشروع</a>
+                <a href="{{root}}accounts/index.html" class="nav-link hover:text-academic-accent transition-colors" data-i18n="nav.connect" data-nav-link="connect">تواصل معي</a>
+                <div class="nav-divider"></div>
+            </div>
+            <div class="flex items-center gap-1">
+                <button id="theme-toggle" class="flex items-center justify-center text-academic-secondary hover:text-academic-accent transition-colors rounded-lg hover:bg-[var(--bg-card-hover)]" aria-label="تبديل مظهر الألوان" data-i18n-aria-label="controls.theme_toggle">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <button id="hamburger-btn" class="md:hidden flex items-center justify-center rounded-lg hover:bg-[var(--bg-card-hover)] transition-colors text-academic-secondary hover:text-academic-accent" aria-label="فتح قائمة التنقل" data-i18n-aria-label="nav.open_menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+                    <i class="fas fa-bars text-lg" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </nav>

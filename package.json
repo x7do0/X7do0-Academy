@@ -1,0 +1,16 @@
+{
+  "name": "x7do0-academy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build:site && tailwindcss -i ./assets/css/tailwind-input.css -o ./assets/css/tailwind.css --watch",
+    "build:site": "node ./tools/build-site.mjs",
+    "build:css": "tailwindcss -i ./assets/css/tailwind-input.css -o ./assets/css/tailwind.css --minify",
+    "check": "node ./tools/build-site.mjs --check",
+    "build": "npm run build:css && npm run build:site && npm run check"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

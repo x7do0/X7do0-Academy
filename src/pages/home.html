@@ -1,0 +1,86 @@
+<main class="home-shell flex-grow">
+        <section class="home-hero" aria-labelledby="home-title">
+            <div class="home-hero-copy">
+                <span class="home-kicker" aria-hidden="true"></span>
+                <h1 id="home-title" class="home-title font-bold" data-i18n="dashboard.hero_title">تعلّم البرمجة بخطوات واضحة</h1>
+                <p class="home-description" data-i18n="dashboard.hero_description">دروس عملية، وتمارين واقعية، وتقدّم مستمر من الأساسيات إلى بناء حلول أقوى.</p>
+                <a href="./courses/python/index.html" class="home-primary-cta btn-accent inline-flex items-center gap-3">
+                    <span data-i18n="dashboard.start_learning">ابدأ التعلّم</span>
+                    <i class="fas fa-arrow-left rtl:rotate-180" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="code-visual-wrap" aria-label="مثال برمجي بلغة بايثون">
+                <span class="code-floating-icon braces" aria-hidden="true">{ }</span>
+                <span class="code-floating-icon terminal" aria-hidden="true"><i class="fas fa-terminal"></i></span>
+                <div class="code-visual">
+                    <div class="code-visual-bar">
+                        <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                        <i class="fas fa-bars text-slate-500" aria-hidden="true"></i>
+                    </div>
+                    <pre><code><span class="code-line"><span class="code-number">1</span><span><span class="code-keyword">def</span> <span class="code-function">learn</span>(code):</span></span><span class="code-line"><span class="code-number">2</span><span>    <span class="code-keyword">while</span> <span class="code-value">not</span> mastered(code):</span></span><span class="code-line"><span class="code-number">3</span><span>        review(lesson)</span></span><span class="code-line"><span class="code-number">4</span><span>        solve(challenge)</span></span><span class="code-line"><span class="code-number">5</span><span>        improve()</span></span><span class="code-line"><span class="code-number">6</span><span>    <span class="code-keyword">return</span> progress</span></span></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="learning-paths" class="home-section" aria-labelledby="learning-paths-title">
+            <div class="home-section-heading">
+                <h2 id="learning-paths-title" data-i18n="dashboard.paths_title">مسارات التعلّم</h2>
+                <a href="./courses/index.html" class="home-section-link" data-i18n="dashboard.view_all">عرض الكل</a>
+            </div>
+
+            <div class="learning-paths-grid">
+                <article class="learning-path-card">
+                    <div class="path-card-head">
+                        <div class="path-card-icon python"><i class="fab fa-python" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="path-card-title" data-i18n="dashboard.path_python">بايثون</h3>
+                            <p class="path-card-subtitle" data-i18n="dashboard.path_python_desc">من الأساسيات إلى بناء الحلول</p>
+                        </div>
+                    </div>
+                    <div class="path-progress-row">
+                        <div class="path-progress-track"><div class="path-progress-fill" data-course-progress-fill="python"></div></div>
+                        <span data-course-progress-value="python">0%</span>
+                    </div>
+                    <a href="./courses/python/index.html" class="path-card-action" data-i18n="dashboard.continue_path">متابعة المسار</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="progress" class="home-section" aria-labelledby="progress-title">
+            <div class="home-section-heading">
+                <h2 id="progress-title" data-i18n="dashboard.progress_title">تقدّمك</h2>
+                <a href="./courses/index.html" class="home-section-link" data-i18n="dashboard.by_course">حسب الدورة</a>
+            </div>
+            <div class="progress-dashboard">
+                <div class="progress-ring" data-home-progress-ring role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="نسبة الإنجاز" data-i18n-aria-label="dashboard.overall_progress">
+                    <div class="progress-ring-inner">
+                        <span class="progress-ring-value" data-home-progress-value>0%</span>
+                        <span class="progress-ring-label" data-i18n="dashboard.overall_progress">نسبة الإنجاز</span>
+                    </div>
+                </div>
+                <div class="progress-metrics">
+                    <div class="progress-metric">
+                        <span class="progress-metric-label" data-i18n="dashboard.path_status">حالة المسار</span>
+                        <strong class="progress-metric-value" data-home-metric="status" data-i18n="dashboard.status_not_started">لم يبدأ</strong>
+                        <span class="progress-metric-note" data-i18n="dashboard.status_note">تُحدَّث الحالة حسب نسبة الإنجاز</span>
+                    </div>
+                    <div class="progress-metric">
+                        <span class="progress-metric-label" data-i18n="dashboard.completed">التمارين المكتملة</span>
+                        <strong class="progress-metric-value" data-home-metric="completed">0</strong>
+                        <span class="progress-metric-note" data-i18n="dashboard.exercise">تمرين</span>
+                    </div>
+                    <div class="progress-metric">
+                        <span class="progress-metric-label" data-i18n="dashboard.remaining">التمارين المتبقية</span>
+                        <strong class="progress-metric-value" data-home-metric="remaining">25</strong>
+                        <span class="progress-metric-note" data-i18n="dashboard.exercise">تمرين</span>
+                    </div>
+                    <div class="progress-metric">
+                        <span class="progress-metric-label" data-i18n="dashboard.total">إجمالي التمارين</span>
+                        <strong class="progress-metric-value" data-home-metric="total">25</strong>
+                        <span class="progress-metric-note" data-i18n="dashboard.exercise">تمرين</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
