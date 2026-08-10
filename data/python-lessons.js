@@ -31,7 +31,7 @@ export const lessons = [
       { type: 'keyword', label: 'القواميس { } (dict)', code: 'user = {"id": 1, "name": "Ali"}' },
       { type: 'keyword', label: 'المجموعات المرتبة (tuple)', code: 'point = (10, 20)\n# point[0] = 5  (Error!)' }
     ],
-    extraInfo: { text: 'بايثون لغة ديناميكية؛ يُحدَّد النوع تلقائيًا.', icon: 'fas fa-info-circle', color: 'blue' },
+    extraInfo: { text: 'بايثون لغة ديناميكية؛ يُحدَّد النوع تلقائياً.', icon: 'fas fa-info-circle', color: 'blue' },
     files: {
       subject: '../../files/python/lesson-02/subject2.py',
       challenge: '../../files/python/lesson-02/challenge2.py'
@@ -60,7 +60,7 @@ export const lessons = [
     title: 'مدخلات المستخدم',
     items: [
       { type: 'keyword', label: 'طريقة الإدخال', code: 'name = input("Enter name: ")', style: 'block', padding: 'py-3' },
-      { type: 'alert', text: 'تُحفَظ المدخلات دائمًا كنص (String).', color: 'amber', icon: 'fas fa-exclamation-triangle' }
+      { type: 'alert', text: 'تُحفَظ المدخلات دائماً كنص (String).', color: 'amber', icon: 'fas fa-exclamation-triangle' }
     ],
     files: {
       subject: '../../files/python/lesson-04/subject4.py',
@@ -229,7 +229,7 @@ export const lessons = [
       { type: 'keyword', label: 'اتحاد المجموعتين (|)', code: 'print(a | b)' },
       { type: 'keyword', label: 'تقاطع المجموعتين (&)', code: 'print(a & b)' },
       { type: 'keyword', label: 'الفرق بين المجموعتين (-)', code: 'print(a - b)' },
-      { type: 'alert', text: 'يخزن Dictionary مفاتيح وقيمًا، بينما لا تسمح Set بالعناصر المكررة ولا تضمن ترتيبها.', color: 'blue', icon: 'fas fa-info-circle' }
+      { type: 'alert', text: 'يخزن Dictionary مفاتيح وقيماً، بينما لا تسمح Set بالعناصر المكررة ولا تضمن ترتيبها.', color: 'blue', icon: 'fas fa-info-circle' }
     ],
     files: {
       subject: '../../files/python/lesson-12/subject12.py',
