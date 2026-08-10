@@ -51,7 +51,7 @@ export const pages = [
     source: 'src/pages/courses.html',
     root: '../',
     title: 'الدورات | أكاديمية X7do0',
-    description: 'مسارات البرمجة العربية المتاحة في أكاديمية X7do0.',
+    description: 'مسارات البرمجة العربية المتاحة والقادمة في أكاديمية X7do0.',
     bodyAttributes: `class="antialiased min-h-screen flex flex-col"
     data-page="courses"
     data-nav-home="../index.html"
