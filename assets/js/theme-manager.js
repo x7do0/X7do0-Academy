@@ -3,6 +3,14 @@
  */
 
 (function () {
+    const analytics = document.createElement('script');
+    analytics.async = true;
+    analytics.src = 'https://gc.zgo.at/count.js';
+    analytics.dataset.goatcounter = 'https://academy-x7do0.goatcounter.com/count';
+    document.head.appendChild(analytics);
+})();
+
+(function () {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.documentElement.lang = 'ar';
