@@ -9,16 +9,19 @@ export function renderCodeWindow({
     code = '',
     label = 'كود بايثون',
     filename = 'example.py',
+    language = 'python',
     compact = false,
     copy = true
 } = {}) {
+    const languageKey = language === 'cpp' ? 'cpp' : 'python';
+    const languageLabel = languageKey === 'cpp' ? 'C++' : 'PY';
     return `
         <section class="programming-window ${compact ? 'programming-window--compact' : ''}" dir="ltr">
             <div class="programming-window__toolbar">
                 <div class="programming-window__traffic" aria-hidden="true"><span></span><span></span><span></span></div>
                 <span class="programming-window__filename">${escapeHtml(filename)}</span>
                 <div class="programming-window__actions">
-                    <span class="programming-window__language">PY</span>
+                    <span class="programming-window__language">${languageLabel}</span>
                     ${copy ? `
                         <button type="button" class="programming-window__copy" data-programming-copy aria-label="نسخ الكود">
                             <i class="far fa-copy" aria-hidden="true"></i>
@@ -27,7 +30,7 @@ export function renderCodeWindow({
                 </div>
             </div>
             <div class="programming-window__label" dir="rtl">${escapeHtml(label)}</div>
-            <pre tabindex="0"><code class="language-python" dir="ltr">${escapeHtml(code)}</code></pre>
+            <pre tabindex="0"><code class="language-${languageKey}" dir="ltr">${escapeHtml(code)}</code></pre>
         </section>`;
 }
 
