@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.body.dataset.page !== 'cpp-practice') return;
     const container = document.getElementById('cpp-challenges');
     if (!container) return;
-    container.innerHTML = lessons.map(lesson => `
+    const challengeLessons = lessons.filter(lesson => lesson.files?.challenge);
+    container.innerHTML = challengeLessons.map(lesson => `
         <a href="../lessons/index.html#lesson-${escapeHtml(lesson.id)}" class="academic-card p-5 block transition-all hover:border-accent">
             <div class="flex items-center justify-between gap-3 mb-3">
                 <span class="text-xs font-mono text-academic-muted">${escapeHtml(lesson.id)}</span>

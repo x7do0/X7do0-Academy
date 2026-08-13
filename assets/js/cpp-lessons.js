@@ -68,11 +68,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         activeLesson = lesson;
         activeFileType = 'subject';
         const subjectPath = lessonFilePath(lesson.files?.subject);
+        const hasChallenge = Boolean(lesson.files?.challenge);
         lessonViewer.innerHTML = `
             <article class="lesson-document">
                 <span class="lesson-document__eyebrow">الدرس ${escapeHtml(lesson.id)}</span>
                 <h2>${escapeHtml(lesson.title)}</h2>
-                <p class="lesson-document__summary">شرح عملي بنفس أسلوب ملفات الدورة مع أمثلة برمجية مباشرة وملاحظات مختصرة.</p>
+                <p class="lesson-document__summary">${escapeHtml(lesson.summary || 'شرح عملي مرتب مع أمثلة برمجية مباشرة وملاحظات مختصرة.')}</p>
                 <section class="lesson-section"><h3>الأمثلة الأساسية</h3><div class="lesson-examples">${(lesson.items || []).map(renderExample).join('')}</div></section>
                 ${lesson.extraInfo?.text ? `<section class="lesson-section"><h3>معلومة مهمة</h3><div class="lesson-note"><i class="${escapeHtml(lesson.extraInfo.icon || 'fas fa-info-circle')}" aria-hidden="true"></i><span>${escapeHtml(lesson.extraInfo.text)}</span></div></section>` : ''}
             </article>
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="file-viewer__header">
                     <div class="file-viewer__tabs" role="tablist" aria-label="ملفات الدرس">
                         <button type="button" class="file-viewer__tab active" role="tab" aria-selected="true" data-file-type="subject">ملف الموضوع</button>
-                        <button type="button" class="file-viewer__tab" role="tab" aria-selected="false" data-file-type="challenge">ملف التحدي</button>
+                        ${hasChallenge ? '<button type="button" class="file-viewer__tab" role="tab" aria-selected="false" data-file-type="challenge">ملف التحدي</button>' : ''}
                     </div>
                     <a class="file-viewer__download" id="lesson-file-download" href="${escapeHtml(subjectPath)}" download><i class="fas fa-download" aria-hidden="true"></i>تنزيل الملف</a>
                 </div>

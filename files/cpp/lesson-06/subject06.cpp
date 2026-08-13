@@ -3,18 +3,32 @@ using namespace std;
 
 int main()
 {
-    int a, b;
-    cin >> a >> b;
+    // boolalpha تخلي cout تطبع true و false بدل 1 و 0
+    cout << boolalpha;
 
-    //? AND
-    if (a && b) {cout << "AND = 1" << endl;}
-    else        {cout << "AND = 0" << endl;}
+    //? أي مقارنة بالنهاية تعطي true أو false
+    cout << (10 > 5) << endl;  // true
+    cout << (10 == 5) << endl; // false
 
-    //? OR
-    if (a || b) {cout << "OR = 1" << endl;}
-    else        {cout << "OR = 0" << endl;}
+    bool a = true;
+    bool b = false;
 
-    //? NOT
-    if (!a) {cout << "NOT a = 1" << endl;}
-    else    {cout << "NOT a = 0" << endl;}
+    //? AND: لازم الشرطان يكونان true
+    cout << (a && b) << endl; // false
+
+    //? OR: يكفي شرط واحد يكون true
+    cout << (a || b) << endl; // true
+
+    //? NOT: تعكس النتيجة
+    cout << (!a) << endl; // false
+
+    //? مثال بشروط فعلية
+    int age = 20;
+    int degree = 70;
+
+    cout << (age >= 18 && degree >= 50) << endl; // true
+    cout << (age < 18 || degree >= 50) << endl;  // true
+    cout << !(degree >= 50) << endl;              // false
+
+    return 0;
 }

@@ -1,11 +1,14 @@
 #include <iostream>
 using namespace std;
 
-//todo--> Q/ اقرأ قيمتين 0 او 1
-//todo-->    واطبع نتيجة AND و OR و NOT للقيمة الاولى
+//todo--> Q/ عرف age = 20 و degree = 70
+//todo-->    واستخدم boolalpha حتى تطبع true او false للآتي:
+//todo-->    1- age >= 18 && degree >= 50
+//todo-->    2- age < 18 || degree >= 50
+//todo-->    3- !(degree >= 50)
 
 int main()
 {
-    
+
 
 }
